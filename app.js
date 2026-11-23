@@ -64,7 +64,7 @@
   // 2. 상태 관리 및 LocalStorage 연동
   // ==========================================================================
   const STORAGE_KEY = "middle_idiom_master_save_v1";
-  const PUBLIC_GAME_URL = "https://litter.catbox.moe/jgu9ed.html";
+  const PUBLIC_GAME_URL = "https://sangmin1254-boop.github.io/middle-school-idiom-master/";
 
   const state = {
     currentView: "start", // 'start' | 'play' | 'result'
