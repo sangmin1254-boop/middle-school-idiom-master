@@ -1,0 +1,4797 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>사자성어 마스터! | 중학생 500+ 인터랙티브 사자성어 게임</title>
+  <meta name="description" content="중학교 1~3학년 필수 사자성어 525개를 5단계 게임과 레벨업으로 재미있게 마스터하세요!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="🏆 사자성어 마스터! - 중학생 인터랙티브 한자·어휘 게임" />
+  <meta property="og:description" content="STEP 1 학습부터 빈칸 타임어택, 상황별 퀴즈, 최종 마스터 도전까지! 지금 바로 도전해 보세요." />
+  <meta name="theme-color" content="#4f46e5" />
+  <!-- Google Fonts: Pretendard/Noto Sans KR & Noto Serif KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   사자성어 마스터! - 중학교 1~3학년 맞춤형 인터랙티브 웹 게임 스타일시트
+   - 밝고 경쾌하며 세련된 모던 아케이드 학습 게임 UI
+   - 모바일(카카오톡), 태블릿, PC 반응형 완벽 호환
+   ========================================================================== */
+
+:root {
+  --bg-page: #f0f4ff;
+  --bg-card: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-indigo-soft: #eef2ff;
+  --bg-amber-soft: #fffbeb;
+  --bg-emerald-soft: #ecfdf5;
+  --bg-rose-soft: #fff1f2;
+
+  --text-main: #0f172a;
+  --text-sub: #334155;
+  --text-muted: #64748b;
+
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --primary-light: #818cf8;
+
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+
+  --success: #10b981;
+  --success-dark: #059669;
+  --danger: #ef4444;
+  --danger-dark: #dc2626;
+
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 8px 22px rgba(79, 70, 229, 0.1);
+  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.15);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top left, #e0e7ff 0%, #f0f4ff 45%, #fef3c7 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  word-break: keep-all;
+  overflow-x: hidden;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   상단 게임 HUD
+   ========================================================================== */
+.game-hud {
+  background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+  color: #ffffff;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 4px 16px rgba(49, 46, 129, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.hud-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+}
+
+.hud-mascot {
+  font-size: 1.9rem;
+  background: rgba(255, 255, 255, 0.18);
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.hud-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.hud-rank-badge {
+  display: inline-block;
+  background: #fbbf24;
+  color: #1e1b4b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  margin-top: 0.15rem;
+}
+
+.hud-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hud-stat-pill {
+  background: rgba(15, 23, 42, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+}
+
+.pill-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #c7d2fe;
+  letter-spacing: 0.04em;
+}
+
+.pill-value {
+  font-size: 1.02rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.score-pill .pill-value {
+  color: #fde047;
+}
+
+.hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hud-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  padding: 0.4rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hud-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.hud-btn.active {
+  background: #fbbf24;
+  color: #1e1b4b;
+  border-color: #fbbf24;
+}
+
+/* ==========================================================================
+   메인 컨테이너 & 뷰 전환
+   ========================================================================== */
+.game-container {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 1rem 2.5rem;
+  flex: 1;
+}
+
+.game-view {
+  display: none;
+}
+
+.game-view.active {
+  display: block;
+  animation: popIn 0.24s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   VIEW 1: 시작 화면 & 레벨 선택
+   ========================================================================== */
+.hero-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 2px solid #e0e7ff;
+  margin-bottom: 1.25rem;
+}
+
+.hero-badge-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.chip-badge {
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+}
+
+.chip-badge.primary {
+  background: var(--bg-indigo-soft);
+  color: var(--primary);
+}
+
+.chip-badge.accent {
+  background: var(--bg-amber-soft);
+  color: var(--accent-dark);
+}
+
+.hero-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 270px;
+}
+
+.hero-title {
+  font-size: 1.85rem;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 0.45rem;
+  color: var(--text-main);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #4f46e5, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 0.98rem;
+  color: var(--text-sub);
+}
+
+.hero-character-box {
+  background: var(--bg-indigo-soft);
+  border: 2px solid #c7d2fe;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 350px;
+}
+
+.character-avatar {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.character-speech {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #312e81;
+  line-height: 1.4;
+}
+
+/* 오늘의 사자성어 박스 */
+.today-idiom-box {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 2px solid #fcd34d;
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.15rem;
+}
+
+.today-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.today-tag {
+  background: #d97706;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.18rem 0.6rem;
+  border-radius: 6px;
+}
+
+.today-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.mini-action-btn {
+  background: #ffffff;
+  color: #92400e;
+  border: 1.5px solid #f59e0b;
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.mini-action-btn:hover {
+  background: #fef3c7;
+}
+
+.today-word-area {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.today-hanja {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #92400e;
+}
+
+.today-word {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+.today-level-tag {
+  background: #fde68a;
+  color: #78350f;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.1rem 0.5rem;
+  border-radius: 6px;
+}
+
+.today-meaning {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.today-example {
+  font-size: 0.9rem;
+  color: #78350f;
+  font-weight: 500;
+}
+
+/* 레벨 선택 그리드 */
+.level-select-section {
+  margin-bottom: 1.25rem;
+}
+
+.section-head {
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+.section-sub {
+  font-size: 0.92rem;
+  color: var(--text-sub);
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.85rem;
+}
+
+.level-card {
+  background: var(--bg-card);
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.7rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: all 0.18s ease;
+}
+
+.level-card.unlocked:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.level-card.current-level {
+  border-color: var(--primary);
+  background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
+}
+
+.level-card.locked {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  opacity: 0.82;
+}
+
+.lv-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lv-badge {
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+}
+
+.level-card.locked .lv-badge {
+  background: #64748b;
+}
+
+.lv-stars {
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+
+.lv-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.lv-desc {
+  font-size: 0.86rem;
+  color: var(--text-sub);
+}
+
+.lv-count-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.lv-play-btn {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.lv-play-btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.level-card.locked .lv-play-btn {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* 하단 빠른 메뉴 바 */
+.quick-menu-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.cta-btn {
+  padding: 0.85rem 1.3rem;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.primary-cta {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.primary-cta:hover {
+  background: var(--primary-dark);
+}
+
+.secondary-cta {
+  background: #ffffff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.secondary-cta:hover {
+  background: var(--bg-indigo-soft);
+}
+
+.warn-cta {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.warn-cta:hover {
+  background: #ea580c;
+}
+
+.outline-cta {
+  background: var(--bg-subtle);
+  color: var(--text-sub);
+  border: 2px solid var(--border-strong);
+}
+
+.outline-cta:hover {
+  background: #e2e8f0;
+}
+
+.full-width-btn {
+  width: 100%;
+}
+
+/* ==========================================================================
+   VIEW 2: STEP 1 ~ STEP 5 플레이 화면
+   ========================================================================== */
+.step-nav-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--border);
+  margin-bottom: 0.9rem;
+}
+
+.step-nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.back-btn {
+  background: var(--bg-subtle);
+  color: var(--text-sub);
+  border: 1.5px solid var(--border-strong);
+  padding: 0.38rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.current-level-banner {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--primary-dark);
+}
+
+.help-peek-btn {
+  background: var(--bg-amber-soft);
+  color: #b45309;
+  border: 1.5px solid #f59e0b;
+  padding: 0.38rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.help-peek-btn:hover {
+  background: #fde68a;
+}
+
+/* 5단계 STEP 탭 */
+.step-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+
+.step-tab {
+  background: var(--bg-subtle);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 0.5rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  color: var(--text-sub);
+}
+
+.step-tab:hover {
+  border-color: var(--primary-light);
+  background: var(--bg-indigo-soft);
+}
+
+.step-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.step-num {
+  font-size: 0.72rem;
+  font-weight: 900;
+  opacity: 0.85;
+}
+
+.step-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+/* 진행률 막대 */
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-sub);
+}
+
+.live-combo-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.combo-badge {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 900;
+  animation: bounceCombo 0.4s ease;
+}
+
+@keyframes bounceCombo {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.step-score-badge strong {
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   STEP 1: 사자성어 학습하기 카드
+   ========================================================================== */
+.step-content-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border);
+}
+
+.study-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.study-category-chip {
+  background: var(--bg-indigo-soft);
+  color: var(--primary);
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.study-header-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.action-pill-btn {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-main);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.action-pill-btn.active {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.study-title-area {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.study-word {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 0.1rem;
+}
+
+.study-hanja {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: 0.08em;
+}
+
+/* 한자 4글자별 음과 뜻 쪼개기 그리드 */
+.hanja-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.1rem;
+}
+
+.hanja-char-card {
+  background: var(--bg-indigo-soft);
+  border: 2px solid #c7d2fe;
+  border-radius: 14px;
+  padding: 0.7rem 0.4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.hc-char {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #312e81;
+  line-height: 1.15;
+}
+
+.hc-hun-sound {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: #ffffff;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+/* 상세 설명 4종 그리드 */
+.study-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+}
+
+.study-info-box {
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+}
+
+.primary-box {
+  background: #f8fafc;
+  border-left: 5px solid var(--primary);
+}
+
+.easy-box {
+  background: #fffbeb;
+  border-left: 5px solid #f59e0b;
+}
+
+.example-box {
+  background: #ecfdf5;
+  border-left: 5px solid #10b981;
+}
+
+.story-box {
+  background: #fdf4ff;
+  border-left: 5px solid #d946ef;
+}
+
+.info-label {
+  font-size: 0.84rem;
+  font-weight: 900;
+  color: var(--text-sub);
+  margin-bottom: 0.3rem;
+}
+
+.info-text {
+  font-size: 0.98rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.strong-text {
+  font-size: 1.06rem;
+  font-weight: 800;
+}
+
+.study-nav-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   STEP 2, 4, 5: 객관식 & 상황별 & 최종 도전 퀴즈
+   ========================================================================== */
+.quiz-question-card {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  border: 2px solid #c7d2fe;
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.25rem;
+  text-align: center;
+  margin-bottom: 0.95rem;
+}
+
+.q-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.q-type-chip {
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+}
+
+.q-points-chip {
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+}
+
+.q-instruction {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--text-sub);
+  margin-bottom: 0.55rem;
+}
+
+.q-prompt-box {
+  background: #ffffff;
+  border: 2px solid #e0e7ff;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 0.55rem;
+}
+
+.q-main-prompt {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.q-main-prompt.text-prompt {
+  font-size: 1.22rem;
+  color: #1e1b4b;
+}
+
+.q-sub-prompt {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 0.25rem;
+}
+
+.q-char-hint {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+/* 4지선다 그리드 (2x2) */
+.quiz-choices-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 0.9rem;
+}
+
+.quiz-choice-btn {
+  background: #ffffff;
+  border: 2.5px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-choice-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--bg-indigo-soft);
+  transform: translateY(-2px);
+}
+
+.choice-index {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  border: 2px solid var(--border-strong);
+  color: var(--primary);
+  font-weight: 900;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quiz-choice-btn.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #064e3b;
+}
+
+.quiz-choice-btn.correct .choice-index {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #ffffff;
+}
+
+.quiz-choice-btn.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #7f1d1d;
+}
+
+.quiz-choice-btn.wrong .choice-index {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* 피드백 & 해설 박스 */
+.quiz-feedback-box {
+  border: 2.5px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  animation: popIn 0.2s ease-out;
+}
+
+.fb-header {
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fb-header.is-correct {
+  background: #dcfce7;
+  border-bottom: 2px solid #86efac;
+  color: #064e3b;
+}
+
+.fb-header.is-wrong {
+  background: #fee2e2;
+  border-bottom: 2px solid #fca5a5;
+  color: #7f1d1d;
+}
+
+.fb-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.fb-emoji {
+  font-size: 1.8rem;
+}
+
+.fb-title {
+  font-size: 1.12rem;
+  font-weight: 900;
+}
+
+.fb-sub {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.next-action-btn {
+  background: var(--accent-dark);
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 900;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+}
+
+.next-action-btn:hover {
+  background: #b45309;
+}
+
+.fb-body {
+  padding: 0.9rem 1rem;
+}
+
+.fb-explain-card {
+  background: var(--bg-subtle);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  border-left: 5px solid var(--primary);
+}
+
+.fb-word-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.fb-word-line strong {
+  font-size: 1.18rem;
+  color: var(--primary-dark);
+}
+
+.fb-breakdown {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.fb-meaning {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.fb-reason {
+  font-size: 0.94rem;
+  color: #0f766e;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.fb-example {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+.fb-footer {
+  padding: 0.6rem 1rem 0.85rem;
+  background: #f8fafc;
+  border-top: 1px solid var(--border);
+  position: sticky;
+  bottom: 0;
+}
+
+/* ==========================================================================
+   STEP 3: 한자 빈칸 채우기 타임어택 게임
+   ========================================================================== */
+.blank-game-header {
+  background: #1e1b4b;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  margin-bottom: 0.9rem;
+}
+
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.timer-seconds {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #fde047;
+}
+
+.timer-bonus-hint {
+  font-size: 0.82rem;
+  color: #c7d2fe;
+}
+
+.timer-bar-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.timer-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #eab308, #ef4444);
+  transition: width 0.1s linear;
+}
+
+.blank-question-card {
+  background: var(--bg-amber-soft);
+  border: 2px solid #fcd34d;
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  text-align: center;
+  margin-bottom: 0.9rem;
+}
+
+.blank-instruction {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 0.45rem;
+}
+
+.blank-meaning-banner {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--text-main);
+  background: #ffffff;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid #fde68a;
+  margin-bottom: 0.9rem;
+}
+
+.blank-slots-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.blank-slot {
+  background: #ffffff;
+  border: 2.5px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 0.75rem 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.blank-slot.target-blank {
+  background: #eef2ff;
+  border: 3px dashed var(--primary);
+  animation: pulseSlot 1.4s infinite;
+}
+
+.blank-slot.target-blank.filled-correct {
+  background: #dcfce7;
+  border: 3px solid #16a34a;
+  animation: none;
+}
+
+.blank-slot.target-blank.filled-wrong {
+  background: #fee2e2;
+  border: 3px solid #dc2626;
+  animation: none;
+}
+
+@keyframes pulseSlot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.slot-hanja {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.15;
+}
+
+.blank-slot.target-blank .slot-hanja {
+  color: var(--primary);
+}
+
+.slot-sound {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-sub);
+}
+
+.blank-options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 0.9rem;
+}
+
+.blank-opt-btn {
+  background: #ffffff;
+  border: 2.5px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 0.85rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.blank-opt-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--bg-indigo-soft);
+  transform: translateY(-2px);
+}
+
+.bo-hanja {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary-dark);
+}
+
+.bo-hun {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-sub);
+}
+
+.blank-opt-btn.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+.blank-opt-btn.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+/* ==========================================================================
+   VIEW 3: 결과 화면
+   ========================================================================== */
+.result-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 2.5px solid #c7d2fe;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.result-trophy {
+  font-size: 3.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.result-step-badge {
+  display: inline-block;
+  background: var(--bg-indigo-soft);
+  color: var(--primary);
+  font-size: 0.86rem;
+  font-weight: 900;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.result-heading {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+.result-desc {
+  font-size: 1rem;
+  color: var(--text-sub);
+  margin-bottom: 1rem;
+}
+
+.result-stars-row {
+  font-size: 2.4rem;
+  margin-bottom: 1.1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.res-star.empty {
+  filter: grayscale(1);
+  opacity: 0.35;
+}
+
+.result-title-banner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 16px;
+  margin-bottom: 1.2rem;
+}
+
+.title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.title-label {
+  font-size: 0.8rem;
+  color: #c7d2fe;
+  font-weight: 700;
+}
+
+.title-value {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fde047;
+}
+
+.result-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.4rem;
+}
+
+.res-stat-box {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.res-stat-box.highlight {
+  background: var(--bg-amber-soft);
+  border-color: #f59e0b;
+}
+
+.rs-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.rs-val {
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.rs-val.correct { color: var(--success-dark); }
+.rs-val.combo { color: #ea580c; }
+.rs-val.score { color: #b45309; }
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* ==========================================================================
+   모달 (도감, 통계, 뜻·해설 찬스)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(3px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-window {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.modal-window.large-modal {
+  max-width: 980px;
+}
+
+.modal-header {
+  background: var(--bg-indigo-soft);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid #c7d2fe;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #1e1b4b;
+}
+
+.modal-sub {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.modal-close-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 900;
+  border: 1.5px solid var(--border-strong);
+}
+
+.modal-toolbar {
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+.modal-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.m-tab {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px solid var(--border-strong);
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--text-sub);
+}
+
+.m-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.modal-search-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.modal-search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid var(--border-strong);
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.slim-btn {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.9rem;
+}
+
+.modal-body {
+  padding: 1.1rem 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 0.75rem;
+}
+
+.col-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.45rem;
+}
+
+.col-card.is-learned {
+  background: #fffbeb;
+  border-color: #f59e0b;
+}
+
+.col-card.is-wrong {
+  border-left: 5px solid var(--danger);
+}
+
+.col-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.col-word-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.col-word {
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.col-hanja {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.15rem;
+  color: var(--primary);
+  font-weight: 900;
+}
+
+.col-meaning {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* 통계 모달 */
+.stats-rank-showcase {
+  background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+  color: #ffffff;
+  padding: 1.15rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.showcase-icon {
+  font-size: 3rem;
+}
+
+.showcase-label {
+  font-size: 0.8rem;
+  color: #c7d2fe;
+}
+
+.showcase-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fde047;
+}
+
+.stats-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.st-box {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.st-box span {
+  font-size: 0.84rem;
+  color: var(--text-sub);
+  font-weight: 700;
+}
+
+.st-box strong {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--primary-dark);
+}
+
+.rank-guide-table {
+  background: var(--bg-amber-soft);
+  border: 1.5px solid #fcd34d;
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+}
+
+.rank-guide-table h5 {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #92400e;
+}
+
+.rank-guide-table ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rank-guide-table li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  border-bottom: 1px dashed #fde68a;
+  padding-bottom: 0.2rem;
+}
+
+/* 토스트 알림 */
+.toast-message {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1b4b;
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  border: 2px solid #fbbf24;
+}
+
+/* ==========================================================================
+   반응형 미디어 쿼리 (스마트폰 & 카카오톡 인앱 브라우저 완벽 최적화)
+   ========================================================================== */
+button, .quiz-choice-btn, .blank-opt-btn, .step-tab, .lv-play-btn, .cta-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14.5px;
+  }
+
+  .game-hud {
+    padding: 0.45rem 0.65rem;
+  }
+
+  .hud-inner {
+    gap: 0.4rem;
+  }
+
+  .hud-mascot {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.4rem;
+  }
+
+  .hud-title {
+    font-size: 1.08rem;
+  }
+
+  .hud-rank-badge {
+    font-size: 0.7rem;
+    padding: 0.08rem 0.45rem;
+  }
+
+  .hud-stat-pill {
+    padding: 0.22rem 0.55rem;
+    font-size: 0.78rem;
+  }
+
+  .hud-btn {
+    padding: 0.35rem 0.55rem;
+  }
+
+  .hud-btn-label {
+    display: none;
+  }
+
+  .game-container {
+    padding: 0.65rem 0.65rem calc(1.8rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-card {
+    padding: 0.95rem 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-title {
+    font-size: 1.45rem;
+  }
+
+  .hero-character-box {
+    max-width: 100%;
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+  }
+
+  /* 스마트폰에서 STEP 1 ~ 5 탭을 한 줄 가로 슬라이드로 깔끔하게 배치 */
+  .step-nav-card {
+    padding: 0.65rem 0.75rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .step-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.35rem;
+    padding-bottom: 0.2rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .step-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .step-tab {
+    flex: 1 0 auto;
+    min-width: 82px;
+    padding: 0.42rem 0.5rem;
+  }
+
+  .step-content-card {
+    padding: 0.9rem 0.85rem;
+  }
+
+  /* 한자 4글자 분해 카드는 스마트폰에서도 4칸 한 줄로 한눈에 보기 */
+  .hanja-breakdown-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.35rem;
+  }
+
+  .hanja-char-card {
+    padding: 0.45rem 0.2rem;
+    border-radius: 10px;
+  }
+
+  .hc-char {
+    font-size: 1.45rem;
+  }
+
+  .hc-hun-sound {
+    font-size: 0.75rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .study-info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .study-nav-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+  }
+
+  .study-nav-actions #nextStudyCardBtn {
+    grid-column: 1 / -1;
+  }
+
+  .q-main-prompt {
+    font-size: 1.45rem;
+  }
+
+  .q-main-prompt.text-prompt {
+    font-size: 1.08rem;
+  }
+
+  .quiz-choices-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .quiz-choice-btn {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.98rem;
+  }
+
+  /* STEP 3 빈칸 채우기 슬롯 4칸 유지 & 보기 2x2 배치 */
+  .blank-slots-row {
+    gap: 0.35rem;
+  }
+
+  .blank-slot {
+    padding: 0.55rem 0.2rem;
+  }
+
+  .slot-hanja {
+    font-size: 1.65rem;
+  }
+
+  .slot-sound {
+    font-size: 0.78rem;
+  }
+
+  .blank-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .blank-opt-btn {
+    padding: 0.65rem 0.4rem;
+  }
+
+  .bo-hanja {
+    font-size: 1.65rem;
+  }
+
+  .result-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .next-action-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.65rem;
+    font-size: 1.05rem;
+  }
+
+  .fb-footer {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+</style>
+</head>
+<body>
+  <!-- ======================================================================
+       상단 게임 HUD (레벨, 칭호, 총점, 별, 사운드, 도감/해설 모달 버튼)
+       ====================================================================== -->
+  <header class="game-hud">
+    <div class="hud-inner">
+      <div class="hud-brand" id="hudHomeBtn" role="button" tabindex="0" aria-label="시작 화면으로 이동">
+        <span class="hud-mascot">🦊</span>
+        <div class="hud-title-wrap">
+          <h1 class="hud-title">사자성어 마스터!</h1>
+          <span class="hud-rank-badge" id="hudRankBadge">🌱 사자성어 새싹</span>
+        </div>
+      </div>
+
+      <div class="hud-stats">
+        <div class="hud-stat-pill level-pill" title="현재 선택된 레벨">
+          <span class="pill-label">LEVEL</span>
+          <strong class="pill-value" id="hudLevelText">1</strong>
+        </div>
+        <div class="hud-stat-pill score-pill" title="현재 획득 점수">
+          <span class="pill-label">SCORE</span>
+          <strong class="pill-value" id="hudScoreText">0</strong>
+        </div>
+        <div class="hud-stat-pill star-pill" title="획득한 총 별 개수">
+          <span class="pill-icon">⭐</span>
+          <strong class="pill-value" id="hudStarsText">0 / 15</strong>
+        </div>
+      </div>
+
+      <div class="hud-actions">
+        <button type="button" id="openBookModalBtn" class="hud-btn" title="학습한 사자성어 & 전체 525 도감 보기">
+          <span>📚</span>
+          <span class="hud-btn-label">도감·오답(<strong id="hudLearnedCount">0</strong>)</span>
+        </button>
+        <button type="button" id="openStatsModalBtn" class="hud-btn" title="나의 정답률 및 학습 리포트">
+          <span>📊</span>
+          <span class="hud-btn-label">기록</span>
+        </button>
+        <button type="button" id="soundToggleBtn" class="hud-btn active" aria-pressed="true" title="효과음 켜기/끄기">
+          <span id="soundIcon">🔊</span>
+        </button>
+        <button type="button" id="shareGameBtn" class="hud-btn share-btn" title="친구에게 게임 링크 공유하기">
+          <span>💬</span>
+          <span class="hud-btn-label">공유</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       메인 게임 스테이지 컨테이너
+       ====================================================================== -->
+  <main class="game-container">
+    <!-- --------------------------------------------------------------------
+         VIEW 1: 게임 시작 화면 & 레벨 선택 + 오늘의 사자성어
+         -------------------------------------------------------------------- -->
+    <section id="view-start" class="game-view active">
+      <!-- 히어로 배너 -->
+      <div class="hero-card">
+        <div class="hero-badge-row">
+          <span class="chip-badge primary">중학교 1~3학년 필수 525선 완벽 수록</span>
+          <span class="chip-badge accent">5단계 인터랙티브 퀘스트</span>
+        </div>
+        <div class="hero-main">
+          <div class="hero-text">
+            <h2 class="hero-title">즐기면서 저절로 외워지는<br /><span class="gradient-text">사자성어 마스터!</span></h2>
+            <p class="hero-desc">
+              한자별 음과 뜻부터 재미있는 유래, 실생활 예문, 타임어택 빈칸 채우기까지!<br />
+              5개의 레벨을 클리어하고 <strong>👑 사자성어 마스터</strong> 칭호에 도전하세요!
+            </p>
+          </div>
+          <div class="hero-character-box">
+            <div class="character-avatar" id="heroMascot">🦊</div>
+            <div class="character-speech" id="heroSpeech">
+              "안녕! 오늘도 사자성어 퀘스트를 함께 정복해 볼까?"
+            </div>
+          </div>
+        </div>
+
+        <!-- 오늘의 사자성어 카드 -->
+        <div class="today-idiom-box">
+          <div class="today-header">
+            <span class="today-tag">💡 오늘의 추천 사자성어</span>
+            <div class="today-controls">
+              <button type="button" id="todayHintBtn" class="mini-action-btn">📖 상세 뜻·유래 보기</button>
+              <button type="button" id="todayRefreshBtn" class="mini-action-btn">🔄 다른 사자성어</button>
+            </div>
+          </div>
+          <div class="today-body">
+            <div class="today-word-area">
+              <span class="today-hanja" id="todayHanja">一石二鳥</span>
+              <strong class="today-word" id="todayWord">일석이조</strong>
+              <span class="today-level-tag" id="todayLevelTag">LEVEL 1</span>
+            </div>
+            <p class="today-meaning" id="todayMeaning">돌 한 개를 던져 새 두 마리를 잡듯, 한 가지 일로 두 가지 이득을 봄</p>
+            <p class="today-example" id="todayExample">💬 예문: 주말에 영어 원서로 독서록 숙제도 하고 영어 실력도 늘렸더니 일석이조였다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEVEL 1 ~ LEVEL 5 선택 그리드 -->
+      <div class="level-select-section">
+        <div class="section-head">
+          <h3 class="section-heading">🗺️ 도전할 레벨을 선택하세요</h3>
+          <p class="section-sub">각 레벨의 <strong>STEP 5 최종 도전 퀴즈</strong>에서 60점 이상을 획득하면 다음 레벨이 열립니다!</p>
+        </div>
+
+        <div class="level-grid" id="levelGrid">
+          <!-- JS에서 LEVEL 1 ~ 5 카드 동적 렌더링 -->
+        </div>
+      </div>
+
+      <!-- 빠른 메뉴 바 (틀린 문제 다시 풀기 / 학습한 사자성어 모아보기 / 전체 랜덤 도전) -->
+      <div class="quick-menu-bar">
+        <button type="button" id="quickStartCurrentLevelBtn" class="cta-btn primary-cta">
+          🚀 현재 레벨 바로 시작하기
+        </button>
+        <button type="button" id="quickWrongRetryBtn" class="cta-btn warn-cta">
+          📝 틀린 문제 다시 풀기 (<span id="startWrongCount">0</span>)
+        </button>
+        <button type="button" id="quickCollectionBtn" class="cta-btn secondary-cta">
+          📚 학습한 사자성어 모아보기
+        </button>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         VIEW 2: 레벨 플레이 화면 (STEP 1 ~ STEP 5 탭 & 진행 화면)
+         -------------------------------------------------------------------- -->
+    <section id="view-play" class="game-view">
+      <!-- 상단 STEP 네비게이션 바 -->
+      <div class="step-nav-card">
+        <div class="step-nav-top">
+          <button type="button" id="backToMapBtn" class="back-btn">⬅️ 레벨 선택으로</button>
+          <div class="current-level-banner" id="playLevelBanner">LEVEL 1: 기초 사자성어</div>
+          <button type="button" id="instantHelpBtn" class="help-peek-btn" title="현재 문제의 사자성어 뜻과 해설 힌트 보기">
+            💡 뜻·해설 찬스 보기
+          </button>
+        </div>
+
+        <!-- 5단계 STEP 전환 탭 -->
+        <div class="step-tabs" id="stepTabs" role="tablist">
+          <button type="button" class="step-tab active" data-step="1">
+            <span class="step-num">STEP 1</span>
+            <span class="step-name">📖 학습하기</span>
+          </button>
+          <button type="button" class="step-tab" data-step="2">
+            <span class="step-num">STEP 2</span>
+            <span class="step-name">🎯 객관식 퀴즈</span>
+          </button>
+          <button type="button" class="step-tab" data-step="3">
+            <span class="step-num">STEP 3</span>
+            <span class="step-name">🧩 빈칸 타임어택</span>
+          </button>
+          <button type="button" class="step-tab" data-step="4">
+            <span class="step-num">STEP 4</span>
+            <span class="step-name">🏫 상황별 찾기</span>
+          </button>
+          <button type="button" class="step-tab" data-step="5">
+            <span class="step-num">STEP 5</span>
+            <span class="step-name">👑 최종 도전(10문)</span>
+          </button>
+        </div>
+
+        <!-- 진행률 막대 및 실시간 점수/콤보 표시 -->
+        <div class="progress-hud">
+          <div class="progress-meta">
+            <span class="progress-step-label" id="progressStepLabel">STEP 1 · 사자성어 학습 카드 (1 / 10)</span>
+            <div class="live-combo-box">
+              <span class="combo-badge hidden" id="comboBadge">🔥 0연속 정답!</span>
+              <span class="step-score-badge">획득 점수: <strong id="stepScoreText">0</strong>점</span>
+            </div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="stepProgressBar" style="width: 10%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           STEP 1: 사자성어 학습하기 (한자별 음·뜻, 쉬운 설명, 예문, 유래)
+           ================================================================== -->
+      <div id="step-view-1" class="step-content-card active">
+        <div class="study-card-header">
+          <span class="study-category-chip" id="studyCategoryChip">학문·노력</span>
+          <div class="study-header-actions">
+            <button type="button" id="studySpeakBtn" class="action-pill-btn">🔊 발음·뜻 듣기</button>
+            <button type="button" id="studyBookmarkBtn" class="action-pill-btn">⭐ 학습 완료 체크</button>
+          </div>
+        </div>
+
+        <div class="study-title-area">
+          <h2 class="study-word" id="studyWord">일석이조</h2>
+          <span class="study-hanja" id="studyHanja">一石二鳥</span>
+        </div>
+
+        <!-- 한자 4글자별 음과 뜻 쪼개기 카드 -->
+        <div class="hanja-breakdown-grid" id="studyBreakdownGrid">
+          <!-- JS에서 4개 한자 블록 생성 -->
+        </div>
+
+        <!-- 상세 설명 4종 세트 -->
+        <div class="study-info-grid">
+          <div class="study-info-box primary-box">
+            <div class="info-label">📌 핵심 의미</div>
+            <p class="info-text strong-text" id="studyMeaning"></p>
+          </div>
+
+          <div class="study-info-box easy-box">
+            <div class="info-label">🦊 중학생 눈높이 쉬운 설명</div>
+            <p class="info-text" id="studyEasyExp"></p>
+          </div>
+
+          <div class="study-info-box example-box">
+            <div class="info-label">💬 일상·학교생활 활용 예문</div>
+            <p class="info-text" id="studyExample"></p>
+          </div>
+
+          <div class="study-info-box story-box">
+            <div class="info-label">📜 기억하기 쉬운 이야기 &amp; 유래</div>
+            <p class="info-text" id="studyStory"></p>
+          </div>
+        </div>
+
+        <!-- 학습 카드 이동 컨트롤 -->
+        <div class="study-nav-actions">
+          <button type="button" id="prevStudyCardBtn" class="cta-btn secondary-cta">⬅️ 이전 사자성어</button>
+          <button type="button" id="shuffleStudyBatchBtn" class="cta-btn outline-cta">🔀 새로운 10개 뽑기</button>
+          <button type="button" id="nextStudyCardBtn" class="cta-btn primary-cta">다음 사자성어 ➡️</button>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           STEP 2, 4, 5 공통: 인터랙티브 4지선다 퀴즈 & 상황별 퀴즈 & 최종 도전
+           ================================================================== -->
+      <div id="step-view-quiz" class="step-content-card hidden">
+        <div class="quiz-question-card">
+          <div class="q-top-row">
+            <span class="q-type-chip" id="qTypeChip">뜻 맞히기 퀴즈</span>
+            <span class="q-points-chip" id="qPointsChip">기본 +10점 · 연속 정답 보너스!</span>
+          </div>
+
+          <p class="q-instruction" id="qInstruction">다음 사자성어의 알맞은 뜻은 무엇일까요?</p>
+
+          <div class="q-prompt-box" id="qPromptBox">
+            <div class="q-main-prompt" id="qMainPrompt">一石二鳥 (일석이조)</div>
+            <div class="q-sub-prompt" id="qSubPrompt"></div>
+          </div>
+
+          <!-- 한자별 훈음 힌트 바 -->
+          <div class="q-char-hint" id="qCharHint"></div>
+        </div>
+
+        <!-- 4지선다 선택지 그리드 -->
+        <div class="quiz-choices-grid" id="quizChoicesGrid" role="group" aria-label="4지선다 보기"></div>
+
+        <!-- 정답/오답 즉시 피드백 및 해설 박스 (상단·하단 다음 문제 스위치 포함) -->
+        <div id="quizFeedbackBox" class="quiz-feedback-box hidden" aria-live="polite">
+          <div class="fb-header" id="fbHeader">
+            <div class="fb-title-group">
+              <span class="fb-emoji" id="fbEmoji">🎉</span>
+              <div>
+                <h4 class="fb-title" id="fbTitle">정답입니다! 훌륭해요! (+10점)</h4>
+                <p class="fb-sub" id="fbSub"></p>
+              </div>
+            </div>
+            <button type="button" id="fbNextTopBtn" class="next-action-btn">다음 문제 ➡️</button>
+          </div>
+
+          <div class="fb-body">
+            <div class="fb-explain-card">
+              <div class="fb-word-line">
+                <strong id="fbWord">동고동락 (同苦同樂)</strong>
+                <span class="fb-breakdown" id="fbBreakdown"></span>
+              </div>
+              <p class="fb-meaning" id="fbMeaning"></p>
+              <p class="fb-reason" id="fbReason"></p>
+              <p class="fb-example" id="fbExample"></p>
+            </div>
+          </div>
+
+          <div class="fb-footer">
+            <button type="button" id="fbNextBottomBtn" class="cta-btn primary-cta full-width-btn">
+              다음 문제로 넘어가기 ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           STEP 3: 한자 빈칸 채우기 타임어택 게임
+           ================================================================== -->
+      <div id="step-view-blank" class="step-content-card hidden">
+        <div class="blank-game-header">
+          <div class="timer-wrap">
+            <span class="timer-icon">⏱️</span>
+            <span class="timer-label">제한 시간:</span>
+            <strong class="timer-seconds" id="blankTimerText">15.0초</strong>
+            <span class="timer-bonus-hint">(빠르게 맞히면 스피드 보너스 최대 +5점!)</span>
+          </div>
+          <div class="timer-bar-track">
+            <div class="timer-bar-fill" id="blankTimerBar" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="blank-question-card">
+          <p class="blank-instruction">뜻과 한글 음을 보고 빈칸(<strong>?</strong>)에 들어갈 알맞은 한자를 고르세요!</p>
+          <div class="blank-meaning-banner" id="blankMeaningText">
+            “돌 한 개를 던져 새 두 마리를 잡듯, 한 가지 일로 두 가지 이득을 봄”
+          </div>
+
+          <!-- 4글자 한자 슬롯 (그중 1~2개가 빈칸 ?) -->
+          <div class="blank-slots-row" id="blankSlotsRow">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 한자 보기 4지선다 -->
+        <div class="blank-options-grid" id="blankOptionsGrid">
+          <!-- JS 동적 생성 -->
+        </div>
+
+        <!-- 빈칸 게임 피드백 -->
+        <div id="blankFeedbackBox" class="quiz-feedback-box hidden" aria-live="polite">
+          <div class="fb-header" id="blankFbHeader">
+            <div class="fb-title-group">
+              <span class="fb-emoji" id="blankFbEmoji">⚡</span>
+              <div>
+                <h4 class="fb-title" id="blankFbTitle">정답입니다! 스피드 보너스 획득!</h4>
+                <p class="fb-sub" id="blankFbSub"></p>
+              </div>
+            </div>
+            <button type="button" id="blankNextTopBtn" class="next-action-btn">다음 문제 ➡️</button>
+          </div>
+          <div class="fb-body">
+            <div class="fb-explain-card">
+              <div class="fb-word-line">
+                <strong id="blankFbWord"></strong>
+                <span class="fb-breakdown" id="blankFbBreakdown"></span>
+              </div>
+              <p class="fb-meaning" id="blankFbMeaning"></p>
+              <p class="fb-example" id="blankFbExample"></p>
+            </div>
+          </div>
+          <div class="fb-footer">
+            <button type="button" id="blankNextBottomBtn" class="cta-btn primary-cta full-width-btn">
+              다음 빈칸 문제로 ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         VIEW 3: 단계 완료 & 최종 도전 결과 화면 (점수, 등급, 칭호, 별 보상)
+         -------------------------------------------------------------------- -->
+    <section id="view-result" class="game-view">
+      <div class="result-card">
+        <div class="result-trophy" id="resTrophyIcon">🏆</div>
+        <span class="result-step-badge" id="resStepBadge">LEVEL 1 · STEP 5 최종 도전 완료!</span>
+        <h2 class="result-heading" id="resHeading">축하합니다! 레벨을 통과했습니다!</h2>
+        <p class="result-desc" id="resDesc"></p>
+
+        <!-- 별 획득 애니메이션 -->
+        <div class="result-stars-row" id="resStarsRow">
+          <span class="res-star earned">⭐</span>
+          <span class="res-star earned">⭐</span>
+          <span class="res-star earned">⭐</span>
+        </div>
+
+        <!-- 획득 칭호 및 등급 카드 -->
+        <div class="result-title-banner">
+          <div class="title-box">
+            <span class="title-label">획득한 칭호</span>
+            <strong class="title-value" id="resTitleName">👑 사자성어 마스터</strong>
+          </div>
+          <div class="title-box">
+            <span class="title-label">최종 등급</span>
+            <strong class="title-value grade-value" id="resGradeText">S등급</strong>
+          </div>
+        </div>
+
+        <!-- 점수 요약 그리드 -->
+        <div class="result-stats-grid">
+          <div class="res-stat-box">
+            <span class="rs-label">정답 개수</span>
+            <strong class="rs-val correct" id="resCorrectText">9 / 10</strong>
+          </div>
+          <div class="res-stat-box">
+            <span class="rs-label">정답률</span>
+            <strong class="rs-val" id="resAccuracyText">90%</strong>
+          </div>
+          <div class="res-stat-box">
+            <span class="rs-label">최대 연속 콤보</span>
+            <strong class="rs-val combo" id="resMaxComboText">6연속</strong>
+          </div>
+          <div class="res-stat-box highlight">
+            <span class="rs-label">총 획득 점수</span>
+            <strong class="rs-val score" id="resTotalScoreText">115점</strong>
+          </div>
+        </div>
+
+        <!-- 결과 화면 액션 버튼들 -->
+        <div class="result-actions">
+          <button type="button" id="resNextActionBtn" class="cta-btn primary-cta">
+            🚀 다음 단계로 진격하기 ➡️
+          </button>
+          <button type="button" id="resRetryStepBtn" class="cta-btn secondary-cta">
+            🔄 다시 도전하기
+          </button>
+          <button type="button" id="resReviewWrongBtn" class="cta-btn warn-cta hidden">
+            📝 틀린 문제 다시 풀기
+          </button>
+          <button type="button" id="resGoHomeBtn" class="cta-btn outline-cta">
+            🏠 레벨 선택 화면으로
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       모달 1: 학습한 사자성어 모아보기 & 525선 전체 도감 + 오답노트
+       ====================================================================== -->
+  <div id="modal-collection" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="collectionModalTitle">
+    <div class="modal-window large-modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="collectionModalTitle">📚 사자성어 525 마스터 도감 &amp; 오답노트</h3>
+          <p class="modal-sub">학습한 사자성어와 틀린 문제를 언제든지 검색하고 복습할 수 있어요.</p>
+        </div>
+        <button type="button" id="closeBookModalBtn" class="modal-close-btn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modal-toolbar">
+        <div class="modal-filter-tabs" id="collectionFilterTabs">
+          <button type="button" class="m-tab active" data-filter="all">전체 525선</button>
+          <button type="button" class="m-tab" data-filter="learned">⭐ 학습 완료한 단어</button>
+          <button type="button" class="m-tab" data-filter="wrong">📝 내가 틀린 문제</button>
+          <button type="button" class="m-tab" data-filter="lv1">LV.1</button>
+          <button type="button" class="m-tab" data-filter="lv2">LV.2</button>
+          <button type="button" class="m-tab" data-filter="lv3">LV.3</button>
+          <button type="button" class="m-tab" data-filter="lv4">LV.4</button>
+          <button type="button" class="m-tab" data-filter="lv5">LV.5</button>
+        </div>
+        <div class="modal-search-row">
+          <input type="search" id="collectionSearchInput" class="modal-search-input" placeholder="사자성어, 한자, 뜻 검색 (예: 일석이조, 친구, 노력...)" />
+          <button type="button" id="startWrongQuizFromModalBtn" class="cta-btn warn-cta slim-btn hidden">
+            🔥 틀린 문제 복습 퀴즈 시작
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div id="collectionListGrid" class="collection-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       모달 2: 나의 학습 결과 & 칭호 리포트
+       ====================================================================== -->
+  <div id="modal-stats" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="statsModalTitle">📊 나의 사자성어 마스터 리포트</h3>
+          <p class="modal-sub">지금까지의 정답률과 레벨별 획득 별점, 칭호 등급을 확인하세요.</p>
+        </div>
+        <button type="button" id="closeStatsModalBtn" class="modal-close-btn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="stats-rank-showcase">
+          <div class="showcase-icon" id="statsRankIcon">🌱</div>
+          <div>
+            <span class="showcase-label">현재 나의 칭호</span>
+            <h4 class="showcase-title" id="statsRankTitle">사자성어 새싹</h4>
+            <p class="showcase-desc" id="statsRankDesc">최고 점수에 따라 칭호가 승급됩니다!</p>
+          </div>
+        </div>
+
+        <div class="stats-summary-grid">
+          <div class="st-box">
+            <span>누적 총점</span>
+            <strong id="stTotalScore">0점</strong>
+          </div>
+          <div class="st-box">
+            <span>최고 도전 점수</span>
+            <strong id="stBestScore">0점</strong>
+          </div>
+          <div class="st-box">
+            <span>전체 정답률</span>
+            <strong id="stAccuracy">0%</strong>
+          </div>
+          <div class="st-box">
+            <span>학습 완료 사자성어</span>
+            <strong id="stLearnedCount">0 / 525개</strong>
+          </div>
+        </div>
+
+        <div class="rank-guide-table">
+          <h5>🏆 점수별 칭호 승급 기준</h5>
+          <ul>
+            <li><span>0 ~ 30점</span> <strong>🌱 사자성어 새싹</strong></li>
+            <li><span>31 ~ 50점</span> <strong>🧭 사자성어 탐험가</strong></li>
+            <li><span>51 ~ 70점</span> <strong>⚔️ 사자성어 도전자</strong></li>
+            <li><span>71 ~ 90점</span> <strong>🔥 사자성어 고수</strong></li>
+            <li><span>91점 이상</span> <strong>👑 사자성어 마스터</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       모달 3: 게임 중 언제든지 여는 [뜻·해설·유래 찬스 카드]
+       ====================================================================== -->
+  <div id="modal-hint" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="hintModalTitle">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="hintModalTitle">💡 사자성어 상세 뜻·해설 카드</h3>
+          <p class="modal-sub">게임 진행 중 언제든지 한자 풀이와 유래, 예문을 확인할 수 있어요.</p>
+        </div>
+        <button type="button" id="closeHintModalBtn" class="modal-close-btn" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body" id="hintModalBody">
+        <!-- JS 동적 렌더링 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toastMessage" class="toast-message hidden" role="status" aria-live="polite"></div>
+
+  <script>
+// 838개 한자 훈(뜻) 사전 및 중학생 사자성어 525선 완벽 데이터베이스
+const HANJA_HUN_MAP = {
+  "佳":"아름다울", "價":"값", "加":"더할", "可":"옳을", "家":"집", "暇":"겨를", "柯":"가지", "歌":"노래", "苛":"가혹할", "街":"거리",
+  "刻":"새길", "覺":"깨달을", "角":"뿔", "閣":"누각", "看":"볼", "竿":"장대", "肝":"간", "間":"사이", "渴":"목마를", "感":"느낄",
+  "敢":"감히", "甘":"달", "邯":"땅이름", "甲":"갑옷", "剛":"굳셀", "康":"편안할", "强":"강할", "江":"강", "糠":"겨", "改":"고칠",
+  "開":"열", "客":"손님", "去":"갈", "居":"살", "拒":"막을", "擧":"들", "乾":"하늘", "劍":"칼", "擊":"칠", "格":"격식",
+  "激":"격할", "隔":"사이뜰", "牽":"끌", "犬":"개", "見":"볼", "決":"결단할", "潔":"깨끗할", "結":"맺을", "缺":"이지러질", "兼":"겸할",
+  "謙":"겸손할", "傾":"기울", "境":"지경", "慶":"경사", "敬":"공경할", "更":"다시", "竟":"마침내", "經":"지날", "耕":"밭갈", "輕":"가벼울",
+  "鏡":"거울", "頸":"목", "驚":"놀랄", "戒":"경계할", "計":"꾀", "鷄":"닭", "古":"옛", "告":"알릴", "姑":"시어미", "孤":"외로울",
+  "故":"연고", "枯":"마를", "考":"생각할", "苦":"쓸", "顧":"돌아볼", "高":"높을", "曲":"굽을", "谷":"골짜기", "坤":"땅", "骨":"뼈",
+  "公":"공평할", "功":"공", "恭":"공손할", "攻":"칠", "空":"빌", "寡":"적을", "果":"열매", "科":"과목", "過":"지날", "管":"대롱",
+  "觀":"볼", "貫":"꿸", "刮":"비빌", "光":"빛", "狂":"미칠", "交":"사귈", "巧":"교묘할", "敎":"가르칠", "矯":"바로잡을", "膠":"아교",
+  "驕":"교만할", "九":"아홉", "俱":"함께", "口":"입", "句":"글귀", "求":"구할", "狗":"개", "衢":"네거리", "邱":"언덕", "驅":"몰",
+  "國":"나라", "菊":"국화", "君":"임금", "群":"무리", "軍":"군사", "屈":"굽힐", "掘":"팔", "倦":"게으를", "勸":"권할", "卷":"책",
+  "捲":"말", "權":"권세", "歸":"돌아갈", "貴":"귀할", "鬼":"귀신", "橘":"귤", "克":"이길", "近":"가까울", "今":"이제", "錦":"비단",
+  "及":"미칠", "急":"급할", "給":"줄", "兢":"조심할", "其":"그", "器":"그릇", "奇":"기이할", "岐":"갈림길", "己":"몸", "棄":"버릴",
+  "機":"틀", "氣":"기운", "記":"기록할", "起":"일어날", "騎":"말탈", "金":"쇠", "難":"어려울", "南":"남쪽", "男":"사내", "囊":"주머니",
+  "內":"안", "女":"여자", "年":"해", "念":"생각", "拈":"집을", "怒":"성낼", "能":"능할", "多":"많을", "丹":"붉을", "單":"홑",
+  "斷":"끊을", "端":"끝", "簞":"대그릇", "鄲":"땅이름", "鍛":"단련할", "膽":"쓸개", "談":"말씀", "答":"대답", "踏":"밟을", "堂":"집",
+  "撞":"칠", "當":"마땅할", "螳":"사마귀", "黨":"무리", "代":"대신할", "大":"클", "對":"마주할", "待":"기다릴", "戴":"일", "德":"큰덕",
+  "倒":"넘어질", "刀":"칼", "到":"이를", "塗":"진흙", "徒":"무리", "桃":"복숭아", "濤":"큰물결", "道":"길", "毒":"독", "獨":"홀로",
+  "讀":"읽을", "突":"부딪칠", "冬":"겨울", "動":"움직일", "同":"같을", "東":"동녘", "杜":"막을", "頭":"머리", "得":"얻을", "燈":"등불",
+  "登":"오를", "騰":"오를", "落":"떨어질", "亂":"어지러울", "卵":"알", "爛":"찬란할", "蘭":"난초", "藍":"쪽", "覽":"볼", "螂":"사마귀",
+  "來":"올", "兩":"두", "良":"어질", "勵":"힘쓸", "廬":"오두막", "慮":"생각할", "力":"힘", "憐":"불쌍히여길", "鍊":"단련할", "廉":"청렴할",
+  "斂":"거둘", "令":"명령", "禮":"예도", "勞":"수고할", "老":"늙을", "路":"길", "隴":"언덕", "牢":"우리", "雷":"우레", "瞭":"밝을",
+  "龍":"용", "樓":"다락", "累":"쌓을", "流":"흐를", "類":"무리", "利":"이로울", "梨":"배", "裏":"속", "里":"마을", "臨":"임할",
+  "立":"설", "笠":"삿갓", "磨":"갈", "馬":"말", "魔":"마귀", "麻":"삼", "莫":"없을", "晩":"늦을", "滿":"찰", "漫":"질펀할",
+  "萬":"일만", "亡":"망할", "妄":"망령될", "忘":"잊을", "忙":"바쁠", "望":"바랄", "網":"그물", "寐":"잘", "梅":"매화", "脈":"줄기",
+  "麥":"보리", "孟":"맏", "盲":"소경", "盟":"맹세", "勉":"힘쓸", "眄":"곁눈질할", "面":"얼굴", "滅":"멸할", "名":"이름", "命":"목숨",
+  "明":"밝을", "鳴":"울", "摸":"더듬을", "暮":"저물", "母":"어머니", "毛":"털", "謀":"꾀할", "木":"나무", "目":"눈", "沒":"빠질",
+  "夢":"꿈", "撫":"어루만질", "無":"없을", "茂":"우거질", "霧":"안개", "墨":"먹", "默":"잠잠할", "刎":"목벨", "問":"물을", "聞":"들을",
+  "門":"문", "物":"물건", "味":"맛", "尾":"꼬리", "微":"작을", "未":"아닐", "眉":"눈썹", "美":"아름다울", "民":"백성", "蜜":"꿀",
+  "博":"넓을", "搏":"칠", "縛":"묶을", "薄":"엷을", "半":"반", "反":"돌이킬", "返":"돌아올", "飯":"밥", "拔":"뽑을", "發":"필",
+  "傍":"곁", "方":"모", "防":"막을", "背":"등", "伯":"맏", "柏":"잣나무", "白":"흰", "百":"일백", "煩":"번거로울", "罰":"벌할",
+  "範":"법", "法":"법", "碧":"푸를", "變":"변할", "辯":"말잘할", "兵":"군사", "病":"병", "報":"갚을", "步":"걸음", "補":"기울",
+  "復":"회복할", "福":"복", "腹":"배", "覆":"엎을", "本":"근본", "奉":"받들", "棒":"몽둥이", "不":"아닐", "夫":"지어미", "婦":"며느리",
+  "富":"부자", "扶":"도울", "斧":"도끼", "父":"아버지", "腐":"썩을", "負":"질", "附":"붙을", "北":"북녘", "分":"나눌", "奔":"달릴",
+  "奮":"떨칠", "憤":"분할", "焚":"불사를", "粉":"가루", "朋":"벗", "備":"갖출", "卑":"낮을", "悲":"슬플", "肥":"살찔", "蜚":"날",
+  "非":"아닐", "飛":"날", "鼻":"코", "貧":"가난할", "顰":"찡그릴", "氷":"얼음", "事":"일", "似":"닮을", "四":"넉", "師":"스승",
+  "思":"생각", "死":"죽을", "沙":"모래", "瀉":"쏟을", "私":"사사로울", "絲":"실", "蛇":"뱀", "辭":"말씀", "駟":"사마", "山":"뫼",
+  "散":"흩을", "殺":"죽일", "三":"석", "上":"위", "嘗":"맛볼", "尙":"오히려", "床":"상", "想":"생각", "桑":"뽕나무", "相":"서로",
+  "裳":"치마", "象":"코끼리", "賞":"상줄", "霜":"서리", "塞":"막힐", "索":"찾을", "色":"빛", "生":"날", "序":"차례", "書":"글",
+  "西":"서녘", "鼠":"쥐", "夕":"저녁", "席":"자리", "惜":"아낄", "昔":"옛", "石":"돌", "釋":"풀", "先":"먼저", "善":"착할",
+  "船":"배", "舌":"혀", "說":"말씀", "雪":"눈", "纖":"가늘", "成":"이룰", "省":"살필", "聲":"소리", "誠":"정성", "世":"인간",
+  "勢":"기세", "歲":"해", "小":"작을", "少":"적을", "所":"바", "消":"사라질", "笑":"웃음", "銷":"녹일", "束":"묶을", "謖":"일어날",
+  "速":"빠를", "損":"덜", "率":"거느릴", "松":"소나무", "送":"보낼", "碎":"부술", "修":"닦을", "垂":"드리울", "守":"지킬", "手":"손",
+  "樹":"나무", "水":"물", "秀":"빼어날", "穗":"이삭", "羞":"부끄러울", "袖":"소매", "隨":"따를", "首":"머리", "熟":"익을", "旬":"열흘",
+  "筍":"죽순", "脣":"입술", "習":"익힐", "乘":"탈", "勝":"이길", "昇":"오를", "繩":"노끈", "匙":"숟가락", "始":"비로소", "市":"저자",
+  "施":"베풀", "是":"옳을", "時":"때", "息":"쉴", "識":"알", "食":"밥", "信":"믿을", "愼":"삼갈", "新":"새", "晨":"새벽",
+  "神":"귀신", "薪":"섶", "身":"몸", "失":"잃을", "實":"열매", "審":"살필", "心":"마음", "深":"깊을", "十":"열", "我":"나",
+  "牙":"어금니", "阿":"아첨할", "惡":"악할", "樂":"즐거울", "安":"편안할", "案":"책상", "眼":"눈", "顔":"얼굴", "暗":"어두울", "哀":"슬플",
+  "愛":"사랑", "靄":"아지랑이", "夜":"밤", "弱":"약할", "約":"약속", "若":"같을", "藥":"약", "揚":"날릴", "羊":"양", "讓":"사양할",
+  "於":"어조사", "漁":"고기잡을", "語":"말씀", "魚":"물고기", "言":"말씀", "嚴":"엄할", "業":"업", "如":"같을", "與":"더불", "餘":"남을",
+  "易":"바꿀", "逆":"거스를", "淵":"못", "然":"그럴", "煙":"연기", "緣":"인연", "悅":"기쁠", "熱":"더울", "焰":"불꽃", "葉":"잎",
+  "五":"다섯", "吾":"나", "吳":"나라", "寤":"깰", "烏":"까마귀", "玉":"구슬", "溫":"따뜻할", "翁":"늙은이", "臥":"누울", "蛙":"개구리",
+  "完":"완전할", "往":"갈", "外":"바깥", "撓":"휠", "要":"요긴할", "欲":"바랄", "庸":"떳떳할", "用":"쓸", "優":"넉넉할", "友":"벗",
+  "右":"오른", "愚":"어리석을", "憂":"근심", "牛":"소", "雨":"비", "旭":"아침해", "雲":"구름", "園":"동산", "援":"도울", "源":"근원",
+  "猿":"원숭이", "遠":"멀", "月":"달", "越":"넘을", "危":"위태할", "爲":"할", "韋":"가죽", "乳":"젖", "唯":"오직", "幼":"어릴",
+  "悠":"아득할", "有":"있을", "柔":"부드러울", "猶":"오히려", "維":"바", "肉":"고기", "恩":"은혜", "隱":"숨을", "乙":"새", "陰":"그늘",
+  "音":"소리", "飮":"마실", "泣":"울", "應":"응할", "意":"뜻", "疑":"의심할", "義":"옳을", "衣":"옷", "二":"두", "以":"써",
+  "異":"다를", "移":"옮길", "而":"말이을", "耳":"귀", "益":"더할", "人":"사람", "仁":"어질", "印":"도장", "因":"인할", "引":"끌",
+  "忍":"참을", "一":"한", "日":"날", "入":"들", "子":"아들", "字":"글자", "慈":"사랑", "紫":"자줏빛", "者":"놈", "自":"스스로",
+  "作":"지을", "殘":"해칠", "丈":"어른", "場":"마당", "壯":"씩씩할", "將":"장수", "張":"베풀", "掌":"손바닥", "杖":"지팡이", "腸":"창자",
+  "長":"길", "再":"두번", "材":"재목", "底":"바닥", "著":"드러날", "敵":"대적할", "滴":"물방울", "積":"쌓을", "賊":"도둑", "赤":"붉을",
+  "蹟":"자취", "適":"맞을", "傳":"전할", "全":"온전할", "前":"앞", "戰":"싸움", "田":"밭", "輾":"구를", "轉":"구를", "錢":"돈",
+  "電":"번개", "顚":"엎드러질", "切":"끊을", "折":"꺾을", "節":"마디", "絶":"끊을", "漸":"점점", "點":"점", "井":"우물", "定":"정할",
+  "情":"뜻", "正":"바를", "淨":"깨끗할", "睛":"눈동자", "精":"정할", "制":"절제할", "弟":"아우", "濟":"건널", "際":"가", "齊":"가지런할",
+  "助":"도울", "朝":"아침", "條":"가지", "照":"비출", "糟":"지게미", "造":"지을", "鳥":"새", "足":"발", "存":"있을", "尊":"높을",
+  "卒":"마칠", "從":"좇을", "終":"마칠", "坐":"앉을", "左":"왼", "罪":"허물", "主":"주인", "周":"두루", "晝":"낮", "朱":"붉을",
+  "株":"그루", "舟":"배", "誅":"벨", "走":"달릴", "竹":"대", "中":"가운데", "衆":"무리", "重":"무거울", "卽":"곧", "之":"갈",
+  "地":"땅", "志":"뜻", "智":"지혜", "枝":"가지", "枳":"탱자", "止":"그칠", "知":"알", "至":"이를", "芝":"지초", "直":"곧을",
+  "塵":"티끌", "盡":"다할", "眞":"참", "進":"나아갈", "陣":"진칠", "疾":"병", "懲":"징계할", "磋":"갈", "車":"수레", "着":"붙을",
+  "讚":"기릴", "斬":"벨", "創":"비롯할", "唱":"부를", "策":"꾀", "妻":"아내", "尺":"자", "擲":"던질", "千":"일천", "天":"하늘",
+  "穿":"뚫을", "遷":"옮길", "徹":"통할", "撤":"거둘", "轍":"바퀴자국", "鐵":"쇠", "添":"더할", "淸":"맑을", "靑":"푸를", "體":"몸",
+  "初":"처음", "招":"부를", "楚":"초나라", "焦":"태울", "草":"풀", "蜀":"나라", "觸":"닿을", "寸":"마디", "總":"거느릴", "秋":"가을",
+  "錐":"송곳", "春":"봄", "出":"날", "忠":"충성", "衝":"찌를", "就":"나아갈", "炊":"불땔", "臭":"냄새", "側":"곁", "惻":"슬퍼할",
+  "恥":"부끄러울", "治":"다스릴", "致":"이를", "齒":"이", "親":"친할", "七":"일곱", "漆":"옻", "沈":"잠길", "針":"바늘", "快":"쾌할",
+  "他":"다를", "打":"칠", "濁":"흐릴", "琢":"쫄", "歎":"탄식할", "炭":"숯", "貪":"탐낼", "殆":"위태할", "兎":"토끼", "土":"흙",
+  "痛":"아플", "通":"통할", "退":"물러날", "鬪":"싸울", "破":"깨뜨릴", "八":"여덟", "敗":"패할", "偏":"치우칠", "片":"조각", "編":"엮을",
+  "遍":"두루", "鞭":"채찍", "平":"평평할", "蔽":"가릴", "哺":"먹일", "鮑":"절인물고기", "暴":"사나울", "瓢":"표주박", "表":"겉", "品":"물건",
+  "風":"바람", "彼":"저", "必":"반드시", "筆":"붓", "下":"아래", "何":"어찌", "夏":"여름", "河":"물", "瑕":"티", "荷":"메고갈",
+  "學":"배울", "鶴":"학", "寒":"찰", "恨":"한할", "閑":"한가할", "緘":"봉할", "合":"합할", "巷":"거리", "偕":"함께", "海":"바다",
+  "解":"풀", "行":"다닐", "鄕":"시골", "虛":"빌", "懸":"매달", "絃":"줄", "穴":"구멍", "血":"피", "亨":"형통할", "兄":"형",
+  "螢":"반딧불", "互":"서로", "好":"좋을", "浩":"넓을", "湖":"호수", "虎":"범", "昏":"어두울", "弘":"넓을", "紅":"붉을", "和":"화할",
+  "化":"될", "火":"불", "畵":"그림", "禍":"재앙", "花":"꽃", "華":"빛날", "患":"근심", "還":"돌아올", "回":"돌아올", "會":"모일",
+  "孝":"효도", "效":"본받을", "厚":"두터울", "後":"뒤", "揮":"휘두를", "黑":"검을", "興":"일", "喜":"기쁠"
+};
+
+const IDIOMS_DATA = [
+  { id: 1, level: 1, word: "일석이조", hanja: "一石二鳥", meaning: "돌 한 개를 던져 새 두 마리를 잡듯, 한 가지 일로 두 가지 이득을 봄", category: "행운·지혜" },
+  { id: 2, level: 1, word: "전화위복", hanja: "轉禍爲福", meaning: "재앙과 불행이 오히려 바뀌어 복과 좋은 결과로 돌아옴", category: "희망·행운" },
+  { id: 3, level: 1, word: "유비무환", hanja: "有備無患", meaning: "미리 준비가 되어 있으면 앞으로 닥칠 우환이나 걱정이 없음", category: "지혜·처세" },
+  { id: 4, level: 1, word: "작심삼일", hanja: "作心三日", meaning: "굳게 먹은 마음이 사흘을 가지 못하듯, 결심이 얼마 되지 않아 곧 느슨해짐", category: "수양·반성" },
+  { id: 5, level: 1, word: "고진감래", hanja: "苦盡甘來", meaning: "쓴 것이 다하면 단 것이 온다는 뜻으로, 고생 끝에 즐거움이 찾아옴", category: "희망·노력" },
+  { id: 6, level: 1, word: "동고동락", hanja: "同苦同樂", meaning: "괴로움도 함께하고 즐거움도 함께 나누며 생사고락을 같이함", category: "우정·가족" },
+  { id: 7, level: 1, word: "새옹지마", hanja: "塞翁之馬", meaning: "변방 노인의 말이라는 뜻으로, 인생의 길흉화복은 늘 바뀌므로 일희일비할 것이 아님", category: "인생·지혜" },
+  { id: 8, level: 1, word: "금상첨화", hanja: "錦上添花", meaning: "비단 위에 꽃을 더하듯, 좋은 일 위에 또 좋은 일이 겹쳐서 더욱 좋음", category: "행운·기쁨" },
+  { id: 9, level: 1, word: "과유불급", hanja: "過猶不及", meaning: "정도가 지나친 것은 도리어 미치지 못한 것과 같으므로 중용이 중요함", category: "수양·처세" },
+  { id: 10, level: 1, word: "역지사지", hanja: "易地思之", meaning: "처지를 서로 바꾸어 상대방의 입장에서 헤아려 생각함", category: "수양·공감" },
+  { id: 11, level: 1, word: "우공이산", hanja: "愚公移山", meaning: "우공이라는 노인이 산을 옮기듯, 남이 보기엔 어리석어 보여도 한 가지 일을 끝까지 밀고 나가면 마침내 이룸", category: "희망·노력" },
+  { id: 12, level: 1, word: "대기만성", hanja: "大器晩成", meaning: "큰 그릇은 늦게 만들어지듯, 크게 될 인물은 오랜 수련을 거쳐 늦게 이루어진다는 말", category: "희망·노력" },
+  { id: 13, level: 1, word: "자업자득", hanja: "自業自得", meaning: "자기가 저지른 일의 결과를 자기 스스로 돌려받음", category: "수양·반성" },
+  { id: 14, level: 1, word: "다다익선", hanja: "多多益善", meaning: "많으면 많을수록 더욱 좋음", category: "일상·비유" },
+  { id: 15, level: 1, word: "백문불여일견", hanja: "百聞不如一見", meaning: "백 번 듣는 것이 한 번 직접 눈으로 보는 것만 못함, 직접 경험하는 것의 중요성", category: "학문·경험" },
+  { id: 16, level: 1, word: "우왕좌왕", hanja: "右往左往", meaning: "오른쪽으로 갔다 왼쪽으로 갔다 하며 갈피를 잡지 못하고 헤맴", category: "일상·행동" },
+  { id: 17, level: 1, word: "설상가상", hanja: "雪上加霜", meaning: "눈 위에 서리가 덮이듯, 불행이나 어려운 일이 겹쳐서 일어남", category: "위기·곤경" },
+  { id: 18, level: 1, word: "동문서답", hanja: "東問西答", meaning: "동쪽을 묻는데 서쪽을 대답하듯, 질문과 전혀 상관없는 엉뚱한 대답을 함", category: "언행·대화" },
+  { id: 19, level: 1, word: "일취월장", hanja: "日就月將", meaning: "날마다 나아가고 달마다 발전하듯, 학업이나 실력이 끊임없이 크게 늘어남", category: "학문·노력" },
+  { id: 20, level: 1, word: "청출어람", hanja: "靑出於藍", meaning: "푸른색이 쪽풀에서 나왔으나 쪽빛보다 더 푸르듯 제자가 스승보다 더 뛰어남", category: "학문·성장" },
+  { id: 21, level: 1, word: "형설지공", hanja: "螢雪之功", meaning: "반딧불과 눈빛으로 글을 읽으며 고생 속에서 부지런히 학문을 닦은 보람", category: "학문·노력" },
+  { id: 22, level: 1, word: "주경야독", hanja: "晝耕夜讀", meaning: "낮에는 밭을 갈고 밤에는 책을 읽듯, 어려운 여건 속에서도 바쁜 틈을 쪼개어 열심히 공부함", category: "학문·노력" },
+  { id: 23, level: 1, word: "구사일생", hanja: "九死一生", meaning: "아홉 번 죽을 뻔하다가 한 번 살아나듯, 큰 고비를 넘기고 겨우 살아남", category: "위기·곤경" },
+  { id: 24, level: 1, word: "사면초가", hanja: "四面楚歌", meaning: "사방에서 초나라의 노랫소리가 들리듯, 아무에게도 도움을 받지 못하고 완전히 고립된 처지", category: "위기·곤경" },
+  { id: 25, level: 1, word: "속수무책", hanja: "束手無策", meaning: "손을 묶인 듯 어찌할 도리가 없어 꼼짝 못 하고 손쓸 방법이 없음", category: "위기·곤경" },
+  { id: 26, level: 1, word: "어부지리", hanja: "漁父之利", meaning: "도요새와 조개가 다투는 사이에 어부가 둘 다 잡듯, 두 사람이 싸우는 바람에 엉뚱한 제삼자가 이익을 챙김", category: "지혜·상황" },
+  { id: 27, level: 1, word: "오비이락", hanja: "烏飛梨落", meaning: "까마귀 날자 배 떨어지듯, 아무 관계없이 한 일이 공교롭게도 때가 같아 억울한 의심을 받게 됨", category: "상황·운명" },
+  { id: 28, level: 1, word: "조삼모사", hanja: "朝三暮四", meaning: "아침에 세 개, 저녁에 네 개라는 뜻으로, 간사한 꾀로 남을 속여 눈앞의 차이만 알게 함", category: "지혜·어리석음" },
+  { id: 29, level: 1, word: "죽마고우", hanja: "竹馬故友", meaning: "대나무 말을 타고 놀던 옛 친구라는 뜻으로, 어릴 때부터 같이 자란 허물없는 벗", category: "우정·관계" },
+  { id: 30, level: 1, word: "지기지우", hanja: "知己之友", meaning: "자기의 속마음과 가치를 누구보다 가장 잘 알아주는 참된 친구", category: "우정·관계" },
+  { id: 31, level: 1, word: "가담항설", hanja: "街談巷說", meaning: "길거리나 세상 사람들 사이에 떠도는 소문이나 이야기", category: "일상·사회" },
+  { id: 32, level: 1, word: "가인박명", hanja: "佳人薄命", meaning: "아름다운 사람은 운명이 기구하거나 수명이 짧다는 말", category: "인생·운명" },
+  { id: 33, level: 1, word: "가렴주구", hanja: "苛斂誅求", meaning: "세금을 가혹하게 거두어들이고 백성의 재물을 억지로 빼앗음", category: "일상·사회" },
+  { id: 34, level: 1, word: "각골난망", hanja: "刻骨難忘", meaning: "입은 은혜가 뼈에 새길 만큼 커서 결코 잊히지 않음", category: "마음·은혜" },
+  { id: 35, level: 1, word: "각골통한", hanja: "刻骨痛恨", meaning: "뼈에 사무칠 만큼 깊고원통한 한이나 원한", category: "마음·감정" },
+  { id: 36, level: 1, word: "각주구검", hanja: "刻舟求劍", meaning: "배에 표시를 해 두고 물에 빠진 칼을 찾듯, 융통성 없이 어리석게 행동함", category: "지혜·어리석음" },
+  { id: 37, level: 1, word: "간담상조", hanja: "肝膽相照", meaning: "간과 쓸개를 서로 내보일 만큼 마음을 터놓고 친밀하게 사귐", category: "우정·관계" },
+  { id: 38, level: 1, word: "감언이설", hanja: "甘言利說", meaning: "달콤한 말과 이로운 조건으로 남의 비위를 맞추어 속이는 말", category: "언행·태도" },
+  { id: 39, level: 1, word: "감지덕지", hanja: "感之德之", meaning: "분수에 넘치는 듯하여 매우 고맙고 황송하게 여김", category: "마음·은혜" },
+  { id: 40, level: 1, word: "갑남을녀", hanja: "甲男乙女", meaning: "특별할 것 없는 평범한 보통 사람들", category: "일상·사회" },
+  { id: 41, level: 1, word: "강구연월", hanja: "康衢煙月", meaning: "번화한 길거리의 달빛과 연기라는 뜻으로, 태평하고 평화로운 세상 풍경", category: "일상·사회" },
+  { id: 42, level: 1, word: "강유겸전", hanja: "剛柔兼全", meaning: "성품이 굳세고 강하면서도 동시에 부드러움을 고루 갖추고 있음", category: "성품·인격" },
+  { id: 43, level: 1, word: "개과천선", hanja: "改過遷善", meaning: "지난날의 잘못을 깊이 뉘우치고 고쳐서 착하고 바른길로 돌아섬", category: "수양·반성" },
+  { id: 44, level: 1, word: "거안제미", hanja: "擧案齊眉", meaning: "밥상을 눈썹 높이까지 들어 올린다는 뜻으로, 남편을 깍듯이 공경함", category: "가족·효도" },
+  { id: 45, level: 1, word: "거자필반", hanja: "去者必返", meaning: "떠난 사람은 언젠가 반드시 다시 돌아온다는 인생의 이치", category: "인생·운명" },
+  { id: 46, level: 1, word: "건곤일척", hanja: "乾坤一擲", meaning: "운명을 걸고 단판으로 승패나 성패를 겨룸", category: "도전·결단" },
+  { id: 47, level: 1, word: "격세지감", hanja: "隔世之感", meaning: "짧은 동안에 몰라보게 많이 변하여 마치 다른 세상이 된 듯한 느낌", category: "세월·변화" },
+  { id: 48, level: 1, word: "격물치지", hanja: "格物致知", meaning: "사물의 이치를 끝까지 파고들어 연구함으로써 앎에 이름", category: "학문·노력" },
+  { id: 49, level: 1, word: "견강부회", hanja: "牽强附會", meaning: "이치에 맞지 않는 말을 억지로 끌어다 붙여 자기에게 유리하게 조건을 맞춤", category: "언행·태도" },
+  { id: 50, level: 1, word: "견리사의", hanja: "見利思義", meaning: "눈앞의 이익을 보거든 먼저 그것이 의로운 것인가를 생각함", category: "수양·도덕" },
+  { id: 51, level: 1, word: "견물생심", hanja: "見物生心", meaning: "좋은 물건을 실제로 보면 그것을 갖고 싶은 욕심이 저절로 생김", category: "마음·감정" },
+  { id: 52, level: 1, word: "견원지간", hanja: "犬猿之間", meaning: "개와 원숭이의 사이라는 뜻으로, 서로 만나기만 하면 싸우는 매우 나쁜 사이", category: "우정·관계" },
+  { id: 53, level: 1, word: "견마지로", hanja: "犬馬之勞", meaning: "개나 말처럼 충성을 다하여 윗사람이나 나라를 위해 바치는 나의 수고", category: "성품·인격" },
+  { id: 54, level: 1, word: "결초보은", hanja: "結草報恩", meaning: "풀을 묶어 은혜를 갚는다는 뜻으로, 죽은 뒤에라도 입은 은혜를 잊지 않고 갚음", category: "마음·은혜" },
+  { id: 55, level: 1, word: "결자해지", hanja: "結者解之", meaning: "매듭을 묶은 사람이 풀어야 하듯, 일을 저지른 사람이 스스로 해결해야 함", category: "책임·처세" },
+  { id: 56, level: 1, word: "경국지색", hanja: "傾國之色", meaning: "임금이 반하여 나라가 기울어질 만큼 매우 뛰어난 미인", category: "인물·외모" },
+  { id: 57, level: 1, word: "경거망동", hanja: "輕擧妄動", meaning: "신중하지 못하고 가볍고 어리석게 행동함", category: "언행·태도" },
+  { id: 58, level: 1, word: "경천동지", hanja: "驚天動地", meaning: "하늘을 놀라게 하고 땅을 뒤흔들 만큼 세상을 깜짝 놀라게 함", category: "상황·변화" },
+  { id: 59, level: 1, word: "계란유골", hanja: "鷄卵有骨", meaning: "달걀에도 뼈가 있듯, 운이 나쁜 사람은 모처럼 좋은 기회가 와도 일이 잘 안 풀림", category: "인생·운명" },
+  { id: 60, level: 1, word: "계군일학", hanja: "鷄群一鶴", meaning: "닭의 무리 속에 있는 한 마리의 학처럼, 평범한 사람들 가운데서 단연 돋보이는 인물", category: "인물·재능" },
+  { id: 61, level: 1, word: "고립무원", hanja: "孤立無援", meaning: "외롭게 홀로 서서 아무에게도 도움을 받을 데가 없는 처지", category: "위기·곤경" },
+  { id: 62, level: 1, word: "고장난명", hanja: "孤掌難鳴", meaning: "외손뼉은 울릴 수 없듯, 혼자서는 어떤 일을 이루기 어렵거나 맞서 싸울 수 없음", category: "우정·협력" },
+  { id: 63, level: 1, word: "고식지계", hanja: "姑息之計", meaning: "근본적인 해결책이 아니라 당장 눈앞의 어려움만 잠시 모면하려는 꾀", category: "처세·태도" },
+  { id: 64, level: 1, word: "고육지계", hanja: "苦肉之計", meaning: "적을 속이기 위해 자기 몸을 상하게 하면서까지 꾸미는 절박한 계책", category: "지혜·계책" },
+  { id: 65, level: 1, word: "곡학아세", hanja: "曲學阿世", meaning: "바른 학문을 왜곡하여 세상 권력이나 시류에 아첨함", category: "언행·태도" },
+  { id: 66, level: 1, word: "골육상잔", hanja: "骨肉相殘", meaning: "뼈와 살을 나눈 부모 형제나 같은 민족끼리 서로 미워하고 싸움", category: "가족·사회" },
+  { id: 67, level: 1, word: "공명정대", hanja: "公明正大", meaning: "하는 일이나 태도가 사사로움 없이 공평하고 밝으며 정당함", category: "수양·도덕" },
+  { id: 68, level: 1, word: "공수래공수거", hanja: "空手來空手去", meaning: "빈손으로 왔다가 빈손으로 돌아간다는 뜻으로, 재물에 얽매이지 않는 인생의 무상함", category: "인생·운명" },
+  { id: 69, level: 1, word: "공중누각", hanja: "空中樓閣", meaning: "허공에 지은 누각처럼, 아무런 근거가 없는 허황된 생각이나 계획", category: "지혜·어리석음" },
+  { id: 70, level: 1, word: "관포지교", hanja: "管鮑之交", meaning: "관중과 포숙아의 사귐처럼, 끝까지 변치 않고 서로 깊이 믿어주는 참된 우정", category: "우정·관계" },
+  { id: 71, level: 1, word: "괄목상대", hanja: "刮目相對", meaning: "눈을 비비고 다시 본다는 뜻으로, 남의 학식이나 재주가 놀랍게 발전했음을 이르는 말", category: "학문·노력" },
+  { id: 72, level: 1, word: "교각살우", hanja: "矯角殺牛", meaning: "소의 뿔을 바로잡으려다 소를 죽이듯, 작은 흠을 고치려다 큰일을 그르침", category: "지혜·어리석음" },
+  { id: 73, level: 1, word: "교언영색", hanja: "巧言令色", meaning: "남의 환심을 사기 위해 교묘하게 꾸미는 말과 아첨하는 얼굴빛", category: "언행·태도" },
+  { id: 74, level: 1, word: "교학상장", hanja: "敎學相長", meaning: "가르치는 일과 배우는 일이 서로의 학업과 지혜를 함께 자라게 함", category: "학문·노력" },
+  { id: 75, level: 1, word: "구밀복검", hanja: "口蜜腹劍", meaning: "입에는 꿀을 바르고 뱃속에는 칼을 품듯, 겉으로는 친절하나 속으로는 해칠 생각을 함", category: "언행·태도" },
+  { id: 76, level: 1, word: "구상유취", hanja: "口尙乳臭", meaning: "입에서 아직 젖내가 난다는 뜻으로, 말이나 행동이 매우 유치하고 미숙함", category: "언행·태도" },
+  { id: 77, level: 1, word: "구우일모", hanja: "九牛一毛", meaning: "아홉 마리 소 가운데 털 한 가닥처럼, 매우 큰 것 속의 아주 작은 부분", category: "비유·수량" },
+  { id: 78, level: 1, word: "구절양장", hanja: "九折羊腸", meaning: "아홉 번 꺾인 양의 창자처럼, 꼬불꼬불하고 험한 산길이나 험난한 세상살이", category: "인생·운명" },
+  { id: 79, level: 1, word: "군계일학", hanja: "群鷄一鶴", meaning: "무리의 닭 속에 있는 한 마리의 학처럼, 평범한 사람들 속에서 단연 뛰어난 인물", category: "인물·재능" },
+  { id: 80, level: 1, word: "군맹무상", hanja: "群盲撫象", meaning: "여러 소경이 코끼리를 더듬듯, 전체를 보지 못하고 자기 좁은 소견만으로 사물을 판단함", category: "지혜·어리석음" },
+  { id: 81, level: 1, word: "권불십년", hanja: "權不十年", meaning: "아무리 막강한 권력이라도 십 년을 넘기지 못하듯, 권세는 오래가지 못함", category: "세월·변화" },
+  { id: 82, level: 1, word: "권선징악", hanja: "勸善懲惡", meaning: "착한 일을 권장하고 악한 일을 벌하여 바른 도리를 세움", category: "수양·도덕" },
+  { id: 83, level: 1, word: "권토중래", hanja: "捲土重來", meaning: "한 번 실패에 굴하지 않고 땅먼지를 일으키며 온 힘을 다해 다시 도전함", category: "도전·노력" },
+  { id: 84, level: 1, word: "극기복례", hanja: "克己復禮", meaning: "사사로운 욕심을 이겨내고 바른 예절과 도리로 돌아감", category: "수양·도덕" },
+  { id: 85, level: 1, word: "금란지교", hanja: "金蘭之交", meaning: "쇠처럼 단단하고 난초처럼 향기로운, 매우 두텁고 아름다운 벗 사이의 정", category: "우정·관계" },
+  { id: 86, level: 1, word: "금석맹약", hanja: "金石盟約", meaning: "쇠나 돌처럼 굳고 변하지 않을 다짐이나 굳은 약속", category: "우정·신뢰" },
+  { id: 87, level: 1, word: "금석지감", hanja: "今昔之感", meaning: "지금과 예전을 비교할 때 세상이 너무 많이 변하여 느끼는 남다른 감회", category: "세월·변화" },
+  { id: 88, level: 1, word: "금시초문", hanja: "今時初聞", meaning: "방금 처음 듣는 이야기라는 뜻으로, 전혀 몰랐던 놀라운 소식을 들었을 때 쓰는 말", category: "일상·대화" },
+  { id: 89, level: 1, word: "금의야행", hanja: "錦衣夜行", meaning: "비단옷을 입고 밤길을 걷듯, 훌륭한 일을 하고도 남이 전혀 알아주지 않아 보람이 없음", category: "상황·처세" },
+  { id: 90, level: 1, word: "금의환향", hanja: "錦衣還鄕", meaning: "비단옷을 입고 고향에 돌아오듯, 크게 성공하여 자랑스럽게 고향으로 돌아옴", category: "성공·기쁨" },
+  { id: 91, level: 1, word: "금지옥엽", hanja: "金枝玉葉", meaning: "금가지와 옥잎이라는 뜻으로, 임금의 일족이나 매우 귀하고 소중한 자손", category: "가족·효도" },
+  { id: 92, level: 1, word: "급전직하", hanja: "急轉直下", meaning: "정세나 어떤 일의 상황이 갑자기 바뀌어 곧바로 결말을 향해 치달음", category: "상황·변화" },
+  { id: 93, level: 1, word: "기상천외", hanja: "奇想天外", meaning: "생각이나 발상이 보통 사람이 상상하기 어려울 만큼 기발하고 엉뚱함", category: "인물·재능" },
+  { id: 94, level: 1, word: "기세등등", hanja: "氣勢騰騰", meaning: "기운과 세력이 하늘을 찌를 듯이 매우 왕성하고 당당함", category: "언행·태도" },
+  { id: 95, level: 1, word: "기진맥진", hanja: "氣盡脈盡", meaning: "기운과 맥이 모두 다 빠져 몸을 가누기 힘들 만큼 지침", category: "마음·상태" },
+  { id: 96, level: 1, word: "기호지세", hanja: "騎虎之勢", meaning: "호랑이 등에 올라탄 형세처럼, 이미 시작한 일을 중도에 그만둘 수 없는 상황", category: "위기·상황" },
+  { id: 97, level: 1, word: "기사회생", hanja: "起死回生", meaning: "죽을 고비에서 극적으로 다시 살아나거나 절망적인 일을 되살림", category: "위기·희망" },
+  { id: 98, level: 1, word: "근묵자흑", hanja: "近墨者黑", meaning: "먹을 가까이하면 검어지듯, 나쁜 사람과 어울리면 자연히 나쁜 버릇에 물듦", category: "수양·관계" },
+  { id: 99, level: 1, word: "근주자적", hanja: "近朱者赤", meaning: "붉은 인주를 가까이하면 붉어지듯, 착하고 훌륭한 벗과 사귀면 좋은 영향을 받음", category: "수양·관계" },
+  { id: 100, level: 1, word: "난공불락", hanja: "難攻不落", meaning: "공격하기가 매우 어려워 도무지 함락되지 않음, 또는 설득하기 매우 힘든 사람", category: "상황·태도" },
+  { id: 101, level: 1, word: "난형난제", hanja: "難兄難弟", meaning: "누구를 형이라 하고 누구를 아우라 하기 어려울 만큼 두 사람의 실력이 막상막하임", category: "인물·재능" },
+  { id: 102, level: 1, word: "남가일몽", hanja: "南柯一夢", meaning: "남쪽 나뭇가지 아래에서 꾼 한바탕 꿈처럼, 덧없이 지나간 한때의 부귀영화", category: "인생·운명" },
+  { id: 103, level: 1, word: "남부여대", hanja: "男負女戴", meaning: "남자는 등짐을 지고 여자는 머리에 인다는 뜻으로, 가난한 사람들이 살 곳을 찾아 떠도는 모습", category: "일상·사회" },
+  { id: 104, level: 1, word: "남선북마", hanja: "南船北馬", meaning: "남쪽에선 배를 타고 북쪽에선 말을 타듯, 사방으로 바쁘게 돌아다니며 활동함", category: "일상·활동" },
+  { id: 105, level: 1, word: "낭중지추", hanja: "囊中之錐", meaning: "주머니 속의 송곳은 가만히 있어도 끝이 뚫고 나오듯, 재능이 뛰어난 사람은 저절로 드러남", category: "인물·재능" },
+  { id: 106, level: 2, word: "내우외환", hanja: "內憂外患", meaning: "나라 안의 근심과 나라 밖의 걱정거리가 한꺼번에 겹친 어려운 상태", category: "위기·곤경" },
+  { id: 107, level: 2, word: "노심초사", hanja: "勞心焦思", meaning: "마음을 몹시 애태우며 속을 태우고 깊이 걱정함", category: "마음·감정" },
+  { id: 108, level: 2, word: "노마지지", hanja: "老馬之智", meaning: "늙은 말의 지혜라는 뜻으로, 연륜과 경험이 많은 사람은 그 나름의 뛰어난 지혜가 있음", category: "지혜·경험" },
+  { id: 109, level: 2, word: "노당익장", hanja: "老當益壯", meaning: "나이가 들어 늙어 갈수록 기력과 의욕이 오히려 더욱 씩씩하고 왕성함", category: "인생·건강" },
+  { id: 110, level: 2, word: "누란지위", hanja: "累卵之危", meaning: "층층이 쌓아 놓은 달걀처럼 금방이라도 무너질 듯한 매우 아슬아슬한 위기", category: "위기·곤경" },
+  { id: 111, level: 2, word: "능소능대", hanja: "能小能大", meaning: "작은 일이든 큰일이든 막힘없이 두루 능숙하게 잘 처리함", category: "인물·재능" },
+  { id: 112, level: 2, word: "다사다난", hanja: "多事多難", meaning: "여러 가지 사건도 많고 어려움이나 탈도 많음", category: "세월·변화" },
+  { id: 113, level: 2, word: "단도직입", hanja: "單刀直入", meaning: "군소리를 빼고 곧바로 핵심이나 본론으로 바로 들어감", category: "언행·대화" },
+  { id: 114, level: 2, word: "단사표음", hanja: "簞食瓢飮", meaning: "대그릇의 밥과 표주박의 물이라는 뜻으로, 소박하고 청빈한 생활을 즐김", category: "수양·처세" },
+  { id: 115, level: 2, word: "단장지애", hanja: "斷腸之哀", meaning: "창자가 끊어질 듯한 아픔처럼, 자식을 잃거나 사랑하는 이와 이별한 극심한 슬픔", category: "마음·감정" },
+  { id: 116, level: 2, word: "당구풍월", hanja: "堂狗風月", meaning: "서당 개 삼 년이면 풍월을 읊듯, 무식한 사람도 유식한 이들과 오래 어울리면 자연히 견문이 넓어짐", category: "학문·경험" },
+  { id: 117, level: 2, word: "당랑거철", hanja: "螳螂拒轍", meaning: "사마귀가 앞발을 들고 수레바퀴를 막아서듯, 자기 분수도 모르고 무모하게 덤빔", category: "언행·어리석음" },
+  { id: 118, level: 2, word: "대동소이", hanja: "大同小異", meaning: "큰 줄기는 같고 작은 부분만 조금 달라서, 전체적으로 거의 비슷함", category: "비유·비교" },
+  { id: 119, level: 2, word: "대의명분", hanja: "大義名分", meaning: "사람으로서 마땅히 지켜야 할 큰 도리와 명분", category: "수양·도덕" },
+  { id: 120, level: 2, word: "대경실색", hanja: "大驚失色", meaning: "몹시 깜짝 놀라 얼굴빛이 하얗게 질림", category: "마음·상태" },
+  { id: 121, level: 2, word: "도원결의", hanja: "桃園結義", meaning: "복숭아밭에서 의형제를 맺듯, 뜻을 같이하는 사람들이 함께 맹세하여 힘을 모음", category: "우정·신뢰" },
+  { id: 122, level: 2, word: "도탄지고", hanja: "塗炭之苦", meaning: "진흙탕에 빠지고 숯불에 타는 듯한, 백성들의 몹시 가혹하고 힘든 생활고", category: "위기·사회" },
+  { id: 123, level: 2, word: "독서삼도", hanja: "讀書三到", meaning: "책을 읽을 때는 눈으로 보고, 입으로 읽고, 마음으로 깨닫는 세 가지가 함께 이르러야 함", category: "학문·노력" },
+  { id: 124, level: 2, word: "독불장군", hanja: "獨不將軍", meaning: "혼자서는 장군이 될 수 없듯, 남과 타협하지 않고 자기 고집만 부리는 사람", category: "언행·태도" },
+  { id: 125, level: 2, word: "동병상련", hanja: "同病相憐", meaning: "같은 병을 앓는 사람끼리 서로 가엾게 여기듯, 어려운 처지에 있는 사람끼리 서로 동정하고 도우며 공감함", category: "마음·공감" },
+  { id: 126, level: 2, word: "동상이몽", hanja: "同床異夢", meaning: "같은 잠자리에서 서로 다른 꿈을 꾸듯, 겉으로는 함께 행동하면서도 속셈은 서로 다름", category: "우정·관계" },
+  { id: 127, level: 2, word: "동분서주", hanja: "東奔西走", meaning: "동쪽으로 뛰고 서쪽으로 달리듯, 바쁘게 이리저리 뛰어다님", category: "일상·활동" },
+  { id: 128, level: 2, word: "두문불출", hanja: "杜門不出", meaning: "집 문을 굳게 닫고 밖으로 나오지 않으며 세상일과 인연을 끊음", category: "처세·상태" },
+  { id: 129, level: 2, word: "등고자비", hanja: "登高自卑", meaning: "높은 곳에 오르려면 낮은 곳부터 시작해야 하듯, 모든 일은 기초부터 차례대로 밟아야 함", category: "학문·노력" },
+  { id: 130, level: 2, word: "등화가친", hanja: "燈火可親", meaning: "서늘한 가을밤에 등불을 가까이하여 책 읽기 좋은 시절", category: "학문·계절" },
+  { id: 131, level: 2, word: "등하불명", hanja: "燈下不明", meaning: "등잔 밑이 어둡듯, 가까이에서 일어난 일을 오히려 더 잘 모름", category: "지혜·일상" },
+  { id: 132, level: 2, word: "마부작침", hanja: "磨斧作針", meaning: "도끼를 갈아서 바늘을 만들듯, 아무리 어려운 일이라도 끊임없이 노력하면 반드시 이룰 수 있음", category: "희망·노력" },
+  { id: 133, level: 2, word: "막상막하", hanja: "莫上莫下", meaning: "위아래를 가릴 수 없을 만큼 두 사람이나 사물의 실력과 수준이 거의 비슷함", category: "비유·비교" },
+  { id: 134, level: 2, word: "막역지우", hanja: "莫逆之友", meaning: "서로 거스르는 일이 전혀 없을 만큼 마음이 잘 맞는 아주 허물없는 친구", category: "우정·관계" },
+  { id: 135, level: 2, word: "만사형통", hanja: "萬事亨通", meaning: "모든 일이 뜻한 바대로 막힘없이 순조롭게 잘 풀림", category: "행운·기쁨" },
+  { id: 136, level: 2, word: "만시지탄", hanja: "晩時之歎", meaning: "마땅히 해야 할 시기를 놓치고 뒤늦게 후회하며 한탄함", category: "세월·반성" },
+  { id: 137, level: 2, word: "망양지탄", hanja: "亡羊之歎", meaning: "갈림길이 너무 많아 잃어버린 양을 찾지 못하고 탄식하듯, 학문의 길이 다방면이어서 진리를 찾기 어려움을 한탄함", category: "학문·지혜" },
+  { id: 138, level: 2, word: "망양보뢰", hanja: "亡羊補牢", meaning: "양을 잃은 뒤에 우리를 고친다는 뜻으로, 실패한 뒤라도 급히 수습하면 늦지 않음을 이르는 말", category: "수양·처세" },
+  { id: 139, level: 2, word: "망운지정", hanja: "望雲之情", meaning: "멀리 떠난 자식이 구름을 바라보며 고향에 계신 어버이를 그리워하는 애틋한 마음", category: "가족·효도" },
+  { id: 140, level: 2, word: "맥수지탄", hanja: "麥秀之歎", meaning: "옛 궁터에 보리만 무성하게 자란 것을 보고 나라가 망한 것을 슬퍼하며 탄식함", category: "세월·역사" },
+  { id: 141, level: 2, word: "맹모삼천", hanja: "孟母三遷", meaning: "맹자의 어머니가 자식의 교육을 위해 세 번 이사했듯, 교육 환경과 부모의 정성이 매우 중요함", category: "가족·교육" },
+  { id: 142, level: 2, word: "맹인모상", hanja: "盲人摸象", meaning: "눈먼 사람이 코끼리의 일부분만 만져 보고 전체를 말하듯, 좁은 소견으로 그릇되게 판단함", category: "지혜·어리석음" },
+  { id: 143, level: 2, word: "면종복배", hanja: "面從腹背", meaning: "앞에서는 순종하는 척하고 돌아서서는 배신하거나 딴마음을 품음", category: "언행·태도" },
+  { id: 144, level: 2, word: "명경지수", hanja: "明鏡止水", meaning: "맑은 거울과 고요한 물처럼, 잡념이 전혀 없이 맑고 깨끗하며 고요한 마음 상태", category: "수양·마음" },
+  { id: 145, level: 2, word: "명불허전", hanja: "名不虛傳", meaning: "명성이나 좋은 평판이 헛되이 전해진 것이 아니라는 뜻으로, 과연 소문대로 훌륭함", category: "인물·재능" },
+  { id: 146, level: 2, word: "명약관화", hanja: "明若觀火", meaning: "불을 보듯이 훤하고 분명하여 조금도 의심할 여지가 없음", category: "상황·분명" },
+  { id: 147, level: 2, word: "자가당착", hanja: "自家撞着", meaning: "같은 사람의 말이나 행동이 앞뒤가 서로 맞지 않아 이치에 어긋남", category: "언행·논리" },
+  { id: 148, level: 2, word: "목불인견", hanja: "目不忍見", meaning: "눈으로 차마 볼 수 없을 만큼 몹시 비참하거나 딱한 광경", category: "상황·감정" },
+  { id: 149, level: 2, word: "무소불위", hanja: "無所不爲", meaning: "하지 못하는 일이 없다는 뜻으로, 권력을 휘둘러 마음대로 무엇이든 함", category: "권력·태도" },
+  { id: 150, level: 2, word: "무위도식", hanja: "無爲徒食", meaning: "하는 일 없이 빈둥거리며 놀고먹기만 함", category: "언행·태도" },
+  { id: 151, level: 2, word: "무용지물", hanja: "無用之物", meaning: "아무짝에도 쓸모가 없는 물건이나 사람", category: "비유·일상" },
+  { id: 152, level: 2, word: "문경지교", hanja: "刎頸之交", meaning: "목을 베어 줄 수 있을 정도로 생사를 함께할 만큼 깊고 두터운 벗 사이의 우정", category: "우정·관계" },
+  { id: 153, level: 2, word: "문일지십", hanja: "聞一知十", meaning: "하나를 들으면 열을 알 만큼 매우 총명하고 깨우침이 빠름", category: "인물·재능" },
+  { id: 154, level: 2, word: "문전성시", hanja: "門前成市", meaning: "집 문 앞이 시장을 이룬 듯이 찾아오는 손님이 아주 많아 북적거림", category: "성공·일상" },
+  { id: 155, level: 2, word: "물아일체", hanja: "物我一體", meaning: "외부 대상(자연)과 내가 하나로 어우러져 구별이 없는 높은 정신적 경지", category: "수양·자연" },
+  { id: 156, level: 2, word: "미생지신", hanja: "尾生之信", meaning: "미생이 다리 밑에서 애인을 기다리다 물에 빠져 죽었듯, 융통성 없이 약속만 고집스럽게 지킴", category: "우정·어리석음" },
+  { id: 157, level: 2, word: "박람강기", hanja: "博覽强記", meaning: "책을 널리 많이 읽고 기억력이 뛰어나 한번 본 것은 잊지 않음", category: "학문·재능" },
+  { id: 158, level: 2, word: "박학다식", hanja: "博學多識", meaning: "학문이 넓고 아는 것이 매우 많음", category: "학문·재능" },
+  { id: 159, level: 2, word: "반면교사", hanja: "反面敎師", meaning: "남의 잘못이나 실패를 거울삼아 나의 가르침이나 교훈으로 삼음", category: "수양·지혜" },
+  { id: 160, level: 2, word: "반신반의", hanja: "半信半疑", meaning: "반은 믿고 반은 의심하듯, 진실인지 아닌지 확신하지 못함", category: "마음·감정" },
+  { id: 161, level: 2, word: "반포지효", hanja: "反哺之孝", meaning: "까마귀가 자란 뒤에 늙은 어미에게 먹이를 물어다 주듯, 자식이 부모의 기르신 은혜에 보답하는 효성", category: "가족·효도" },
+  { id: 162, level: 2, word: "발본색원", hanja: "拔本塞源", meaning: "뿌리를 뽑고 근원을 막듯, 나쁜 일의 근본 원인을 완전히 없애 버림", category: "결단·처세" },
+  { id: 163, level: 2, word: "방약무인", hanja: "傍若無人", meaning: "곁에 아무도 없는 것처럼 주위 사람을 전혀 의식하지 않고 제멋대로 무례하게 행동함", category: "언행·태도" },
+  { id: 164, level: 2, word: "배수지진", hanja: "背水之陣", meaning: "강물을 등지고 진을 친다는 뜻으로, 물러설 곳 없이 죽기를 각오하고 맞섬", category: "도전·결단" },
+  { id: 165, level: 2, word: "배은망덕", hanja: "背恩忘德", meaning: "남에게 입은 은혜를 저버리고 베풀어 준 덕을 잊어버림", category: "언행·도덕" },
+  { id: 166, level: 2, word: "백골난망", hanja: "白骨難忘", meaning: "죽어서 백골이 되어도 잊을 수 없을 만큼 큰 은혜에 감사함", category: "마음·은혜" },
+  { id: 167, level: 2, word: "백년하청", hanja: "百年河淸", meaning: "황하의 물이 맑아지기를 백 년 동안 기다리듯, 아무리 기다려도 이루어질 가망이 전혀 없음", category: "상황·운명" },
+  { id: 168, level: 2, word: "백년해로", hanja: "百年偕老", meaning: "부부가 되어 한평생 화목하게 함께 살며 같이 늙어 감", category: "가족·사랑" },
+  { id: 169, level: 2, word: "백만장자", hanja: "百萬長者", meaning: "재산이 매우 많아 엄청나게 부유한 큰 부자", category: "일상·사회" },
+  { id: 170, level: 2, word: "백발백중", hanja: "百發百中", meaning: "백 번 쏘아 백 번 모두 맞히듯, 하는 일마다 모두 계획대로 정확히 들어맞음", category: "성공·재능" },
+  { id: 171, level: 2, word: "백전백승", hanja: "百戰百勝", meaning: "백 번 싸워 백 번 모두 이기듯, 싸울 때마다 늘 승리함", category: "성공·도전" },
+  { id: 172, level: 2, word: "백절불굴", hanja: "百折不屈", meaning: "백 번 꺾여도 결코 굴하지 않듯, 어떤 고난에도 굽히지 않는 굳센 의지", category: "희망·노력" },
+  { id: 173, level: 2, word: "백척간두", hanja: "百尺竿頭", meaning: "백 자나 되는 높은 장대 위에 올라선 것처럼, 더할 수 없이 위태롭고 어려운 지경", category: "위기·곤경" },
+  { id: 174, level: 2, word: "부창부수", hanja: "夫唱婦隨", meaning: "남편이 주장하면 아내가 이에 따르듯, 부부 사이에 뜻이 맞고 화목함", category: "가족·사랑" },
+  { id: 175, level: 2, word: "부화뇌동", hanja: "附和雷同", meaning: "우레 소리에 온 천지가 함께 울리듯, 뚜렷한 자기 소신 없이 남의 의견에 덩달아 따름", category: "언행·태도" },
+  { id: 176, level: 2, word: "분골쇄신", hanja: "粉骨碎身", meaning: "뼈가 가루가 되고 몸이 부서지도록 온 힘을 다해 노력하거나 충성을 다함", category: "희망·노력" },
+  { id: 177, level: 2, word: "불구대천", hanja: "不俱戴天", meaning: "같은 하늘을 이고 함께 살 수 없을 만큼 원한이 깊은 원수", category: "마음·감정" },
+  { id: 178, level: 2, word: "불로장생", hanja: "不老長生", meaning: "늙지 않고 오래오래 건강하게 삶", category: "인생·건강" },
+  { id: 179, level: 2, word: "불문곡직", hanja: "不問曲直", meaning: "옳고 그름을 따져 묻지도 않고 다짜고짜 일방적으로 처리함", category: "언행·태도" },
+  { id: 180, level: 2, word: "불원천리", hanja: "不遠千里", meaning: "천 리 길도 멀다 하지 않고 열성적으로 찾아감", category: "마음·열정" },
+  { id: 181, level: 2, word: "불철주야", hanja: "不撤晝夜", meaning: "낮과 밤을 가리지 않고 쉬지 않으며 한결같이 일에 힘씀", category: "희망·노력" },
+  { id: 182, level: 2, word: "불치하문", hanja: "不恥下問", meaning: "자신보다 지위나 나이가 아래인 사람에게 묻는 것을 부끄러워하지 않음", category: "학문·겸손" },
+  { id: 183, level: 2, word: "비몽사몽", hanja: "非夢似夢", meaning: "꿈인지 생시인지 분간하지 못할 정도로 정신이 어렴풋한 상태", category: "마음·상태" },
+  { id: 184, level: 2, word: "비일비재", hanja: "非一非再", meaning: "한두 번이 아니라는 뜻으로, 같은 일이 아주 흔하게 자주 일어남", category: "일상·상황" },
+  { id: 185, level: 2, word: "빙산일각", hanja: "氷山一角", meaning: "바다 위에 드러난 빙산의 한 귀퉁이처럼, 엄청나게 큰일 중 아주 작은 일부만 드러남", category: "비유·상황" },
+  { id: 186, level: 2, word: "사상누각", hanja: "沙上樓閣", meaning: "모래 위에 세운 누각처럼, 기초가 튼튼하지 못해 금방 무너질 일이나 계획", category: "지혜·어리석음" },
+  { id: 187, level: 2, word: "화사첨족", hanja: "畵蛇添足", meaning: "뱀을 그리고 난 뒤 쓸데없이 발을 덧붙이듯, 안 해도 될 일을 더하여 도리어 일을 그르침", category: "언행·어리석음" },
+  { id: 188, level: 2, word: "사필귀정", hanja: "事必歸正", meaning: "처음에는 그릇된 것처럼 보여도 모든 일은 결국 반드시 바른 이치대로 돌아감", category: "수양·도덕" },
+  { id: 189, level: 2, word: "산전수전", hanja: "山戰水戰", meaning: "산에서도 싸우고 물에서도 싸웠듯, 세상의 온갖 고생과 어려움을 다 겪어 경험이 풍부함", category: "인생·경험" },
+  { id: 190, level: 2, word: "살신성인", hanja: "殺身成仁", meaning: "자기의 목숨을 희생하여 정의와 어진 도리를 이룸", category: "수양·도덕" },
+  { id: 191, level: 2, word: "삼고초려", hanja: "三顧草廬", meaning: "인재를 맞아들이기 위해 초가집을 세 번이나 찾아가듯, 정성과 예를 다해 간곡히 청함", category: "성품·겸손" },
+  { id: 192, level: 2, word: "삼순구식", hanja: "三旬九食", meaning: "석 달(또는 한 달 30일) 동안 아홉 끼니밖에 먹지 못할 만큼 몹시 가난한 생활", category: "위기·사회" },
+  { id: 193, level: 2, word: "삼인성호", hanja: "三人成虎", meaning: "세 사람이 입을 맞추면 없는 호랑이도 만들어 내듯, 거짓말도 여러 사람이 말하면 진짜처럼 믿게 됨", category: "언행·사회" },
+  { id: 194, level: 2, word: "상전벽해", hanja: "桑田碧海", meaning: "뽕나무밭이 푸른 바다로 변하듯, 세상이 몰라보게 엄청나게 변함", category: "세월·변화" },
+  { id: 195, level: 2, word: "상부상조", hanja: "相扶相助", meaning: "서로 붙들어 주고 서로 도우며 어려움을 함께 이겨 냄", category: "우정·협력" },
+  { id: 196, level: 2, word: "색즉시공", hanja: "色卽是空", meaning: "눈에 보이는 모든 형상은 실체가 없는 공(空)과 같다는 불교의 진리", category: "수양·철학" },
+  { id: 197, level: 2, word: "생사기로", hanja: "生死岐路", meaning: "사느냐 죽느냐가 결정되는 매우 중대한 갈림길", category: "위기·상황" },
+  { id: 198, level: 2, word: "선견지명", hanja: "先見之明", meaning: "어떤 일이 일어나기 전에 미리 앞날을 내다보는 뛰어난 지혜", category: "지혜·재능" },
+  { id: 199, level: 2, word: "선남선녀", hanja: "善男善女", meaning: "마음씨가 착하고 어진 사람들, 또는 잘 어울리는 아름다운 남녀", category: "인물·사랑" },
+  { id: 200, level: 2, word: "선우후락", hanja: "先憂後樂", meaning: "세상의 근심할 일은 남보다 먼저 걱정하고, 즐거워할 일은 남보다 나중에 즐김 (참된 지도자의 자세)", category: "수양·도덕" },
+  { id: 201, level: 2, word: "섬섬옥수", hanja: "纖纖玉手", meaning: "가늘고 고운 옥 같은 손이라는 뜻으로, 여인의 곱고 아름다운 손을 이르는 말", category: "인물·외모" },
+  { id: 202, level: 2, word: "성동격서", hanja: "聲東擊西", meaning: "동쪽에서 소리를 내어 시선을 끈 뒤 서쪽을 공격하듯, 상대를 감쪽같이 속이는 전술", category: "지혜·계책" },
+  { id: 203, level: 2, word: "소탐대실", hanja: "小貪大失", meaning: "눈앞의 작은 이익을 탐내다가 도리어 큰 것을 잃어버림", category: "지혜·어리석음" },
+  { id: 204, level: 2, word: "솔선수범", hanja: "率先垂範", meaning: "남보다 앞장서서 행동하여 다른 사람들의 모범이 됨", category: "수양·도덕" },
+  { id: 205, level: 2, word: "송무백열", hanja: "松茂柏悅", meaning: "소나무가 무성해지면 잣나무가 기뻐하듯, 벗이 잘되는 것을 진심으로 기뻐함", category: "우정·관계" },
+  { id: 206, level: 2, word: "수구초심", hanja: "首邱初心", meaning: "여우가 죽을 때 자기가 살던 언덕으로 머리를 돌리듯, 고향이나 근본을 잊지 않고 그리워하는 마음", category: "가족·고향" },
+  { id: 207, level: 2, word: "수서양단", hanja: "首鼠兩端", meaning: "쥐가 구멍에서 머리만 내밀고 살피듯, 진퇴를 결정하지 못하고 눈치만 보며 망설임", category: "언행·태도" },
+  { id: 208, level: 2, word: "수수방관", hanja: "袖手傍觀", meaning: "소매 속에 손을 넣은 채 곁에서 구경만 하듯, 마땅히 도와야 할 일을 보고도 그냥 내버려 둠", category: "언행·태도" },
+  { id: 209, level: 2, word: "수어지교", hanja: "水魚之交", meaning: "물과 물고기의 관계처럼, 서로 떨어질 수 없는 아주 친밀하고 소중한 사이", category: "우정·관계" },
+  { id: 210, level: 2, word: "수주대토", hanja: "守株待兎", meaning: "우연히 토끼가 부딪혀 죽은 그루터기만 지키며 또 토끼가 오기를 기다리듯, 옛 관습에만 얽매여 융통성이 없음", category: "지혜·어리석음" },
+  { id: 211, level: 3, word: "순망치한", hanja: "脣亡齒寒", meaning: "입술이 없으면 이가 시리듯, 서로 도우며 의지하는 관계에서 한쪽이 망하면 다른 한쪽도 위태로워짐", category: "우정·협력" },
+  { id: 212, level: 3, word: "승승장구", hanja: "乘勝長驅", meaning: "싸움에서 이긴 기세를 몰아 계속해서 거침없이 나아감", category: "성공·도전" },
+  { id: 213, level: 3, word: "시시비비", hanja: "是是非非", meaning: "옳은 것은 옳다 하고 그른 것은 그르다 하여, 사리를 공정하게 가림", category: "수양·도덕" },
+  { id: 214, level: 3, word: "식자우환", hanja: "識字憂患", meaning: "글자를 아는 것이 도리어 근심을 부른다는 뜻으로, 어설프게 아는 지식이 오히려 걱정을 끼침", category: "학문·지혜" },
+  { id: 215, level: 3, word: "신출귀몰", hanja: "神出鬼沒", meaning: "귀신처럼 나타났다가 사라지듯, 움직임이 매우 빠르고 변화무쌍하여 헤아리기 어려움", category: "인물·재능" },
+  { id: 216, level: 3, word: "심기일전", hanja: "心機一轉", meaning: "이전의 마음가짐을 완전히 바꾸어 새로운 각오로 다시 시작함", category: "도전·마음" },
+  { id: 217, level: 3, word: "심심상인", hanja: "心心相印", meaning: "말을 하지 않아도 마음과 마음이 서로 통하여 뜻을 이심전심으로 전달함", category: "우정·사랑" },
+  { id: 218, level: 3, word: "십시일반", hanja: "十匙一飯", meaning: "열 사람이 밥 한 술씩 보태면 한 사람 먹을 분량이 되듯, 여러 사람이 조금씩 힘을 합치면 큰 도움이 됨", category: "우정·협력" },
+  { id: 219, level: 3, word: "십중팔구", hanja: "十中八九", meaning: "열 가운데 여덟이나 아홉 정도로 거의 예외 없이 확실함", category: "비유·수량" },
+  { id: 220, level: 3, word: "아전인수", hanja: "我田引水", meaning: "자기 논에만 물을 끌어 대듯, 모든 일을 자기에게만 이롭게 되도록 억지로 꾸미거나 고집함", category: "언행·태도" },
+  { id: 221, level: 3, word: "안하무인", hanja: "眼下無人", meaning: "눈 아래에 사람이 없는 것처럼, 남을 업신여기며 몹시 거만하고 방자하게 행동함", category: "언행·태도" },
+  { id: 222, level: 3, word: "안분지족", hanja: "安分知足", meaning: "자기의 분수를 편안히 지키며 욕심을 부리지 않고 만족할 줄 앎", category: "수양·마음" },
+  { id: 223, level: 3, word: "암중모색", hanja: "暗中摸索", meaning: "어둠 속에서 손으로 더듬어 찾듯, 어림잡아 일을 해결할 실마리를 찾아 나감", category: "도전·노력" },
+  { id: 224, level: 3, word: "애지중지", hanja: "愛之重之", meaning: "매우 사랑하고 소중히 여겨 정성껏 보살핌", category: "가족·사랑" },
+  { id: 225, level: 3, word: "약육강식", hanja: "弱肉强食", meaning: "약한 동물이 강한 동물의 먹이가 되듯, 힘없는 자가 힘센 자에게 희생되는 냉혹한 경쟁 사회", category: "일상·사회" },
+  { id: 226, level: 3, word: "양두구육", hanja: "羊頭狗肉", meaning: "양의 머리를 걸어 놓고 실제로는 개고기를 팔듯, 겉은 번지르르하게 꾸미고 속은 변변치 못한 것으로 속임", category: "언행·태도" },
+  { id: 227, level: 3, word: "양약고구", hanja: "良藥苦口", meaning: "좋은 약은 입에 쓰듯, 충성스럽고 바른 충고는 귀에 거슬리나 자신에게 큰 도움이 됨", category: "수양·지혜" },
+  { id: 228, level: 3, word: "언행일치", hanja: "言行一致", meaning: "입으로 한 말과 실제 행동이 조금도 어긋남 없이 하나로 같음", category: "수양·도덕" },
+  { id: 229, level: 3, word: "엄동설한", hanja: "嚴冬雪寒", meaning: "눈이 내리고 바람이 매서운 한겨울의 몹시 심한 추위", category: "계절·자연" },
+  { id: 230, level: 3, word: "여민동락", hanja: "與民同樂", meaning: "임금이나 지도자가 백성들과 아픔과 즐거움을 함께 나눔", category: "수양·사회" },
+  { id: 231, level: 3, word: "이여반장", hanja: "易如反掌", meaning: "손바닥을 뒤집는 것처럼 일이 매우 쉽고 간단함", category: "비유·일상" },
+  { id: 232, level: 3, word: "연목구어", hanja: "緣木求魚", meaning: "나무에 올라가서 물고기를 구하듯, 도무지 불가능한 일을 무리하게 하고자 함", category: "지혜·어리석음" },
+  { id: 233, level: 3, word: "염화미소", hanja: "拈華微笑", meaning: "석가모니가 연꽃을 들어 보이자 가섭이 미소로 답했듯, 말로 하지 않아도 마음에서 마음으로 진리를 전함", category: "수양·마음" },
+  { id: 234, level: 3, word: "오리무중", hanja: "五里霧中", meaning: "오 리나 되는 짙은 안개 속에 갇힌 듯, 일의 갈피나 행방을 도무지 알 길이 없음", category: "위기·상황" },
+  { id: 235, level: 3, word: "오매불망", hanja: "寤寐不忘", meaning: "자나 깨나 잊지 못할 만큼 늘 간절하게 그리워함", category: "마음·사랑" },
+  { id: 236, level: 3, word: "오월동주", hanja: "吳越同舟", meaning: "원수 사이인 오나라와 월나라 사람이 같은 배를 탔듯, 사이가 나쁜 사람들도 같은 위기에 처하면 서로 협력함", category: "우정·협력" },
+  { id: 237, level: 3, word: "오합지졸", hanja: "烏合之卒", meaning: "까마귀 떼처럼 급히 모인 병사라는 뜻으로, 규율도 없고 무질서하게 모인 무리", category: "일상·사회" },
+  { id: 238, level: 3, word: "옥석구분", hanja: "玉石俱焚", meaning: "옥과 돌이 함께 불에 타듯, 착한 사람과 악한 사람이 가릴 것 없이 함께 재앙을 당함", category: "위기·상황" },
+  { id: 239, level: 3, word: "온고지신", hanja: "溫故知新", meaning: "옛것을 익히고 연구하여 거기서 새로운 지식이나 도리를 깨달아 앎", category: "학문·지혜" },
+  { id: 240, level: 3, word: "와신상담", hanja: "臥薪嘗膽", meaning: "섶나무 위에서 자고 쓸개를 핥는다는 뜻으로, 목적이나 원수를 갚기 위해 온갖 고난을 참고 견딤", category: "도전·노력" },
+  { id: 241, level: 3, word: "완전무결", hanja: "完全無缺", meaning: "부족하거나 흠잡을 데가 전혀 없이 온전하고 훌륭함", category: "성공·상태" },
+  { id: 242, level: 3, word: "외유내강", hanja: "外柔內剛", meaning: "겉으로 보기에는 부드럽고 순하나 속마음은 꿋꿋하고 단단함", category: "성품·인격" },
+  { id: 243, level: 3, word: "외화내빈", hanja: "外華內貧", meaning: "겉모습은 화려해 보이지만 속은 비어 있고 실속이 없음", category: "언행·비유" },
+  { id: 244, level: 3, word: "요산요수", hanja: "樂山樂水", meaning: "산과 물을 즐기듯, 자연을 사랑하며 유유자적하게 도를 즐기는 어진 마음", category: "수양·자연" },
+  { id: 245, level: 3, word: "용두사미", hanja: "龍頭蛇尾", meaning: "머리는 용인데 꼬리는 뱀이라는 뜻으로, 시작은 거창하고 훌륭했으나 끝은 흐지부지하고 보잘것없음", category: "언행·반성" },
+  { id: 246, level: 3, word: "용호상박", hanja: "龍虎相搏", meaning: "용과 호랑이가 서로 싸우듯, 두 강자가 승패를 예측하기 어렵게 팽팽히 맞서 싸움", category: "도전·비교" },
+  { id: 247, level: 3, word: "우유부단", hanja: "優柔不斷", meaning: "어물거리기만 하고 결단력이 없어 일을 딱 잘라 결정하지 못함", category: "언행·태도" },
+  { id: 248, level: 3, word: "우이독경", hanja: "牛耳讀經", meaning: "쇠귀에 경 읽기처럼, 아무리 가르치고 일러 주어도 전혀 알아듣지 못하거나 효과가 없음", category: "언행·대화" },
+  { id: 249, level: 3, word: "우후죽순", hanja: "雨後竹筍", meaning: "비 온 뒤에 대나무 순이 솟아나듯, 어떤 일이 한때에 무수히 많이 생겨남", category: "상황·변화" },
+  { id: 250, level: 3, word: "운산무소", hanja: "雲散霧消", meaning: "구름이 흩어지고 안개가 사라지듯, 근심과 걱정이 흔적도 없이 말끔히 사라짐", category: "희망·기쁨" },
+  { id: 251, level: 3, word: "유구무언", hanja: "有口無言", meaning: "입은 있어도 할 말이 없다는 뜻으로, 잘못이 명백하여 변명할 말이 전혀 없음", category: "수양·반성" },
+  { id: 252, level: 3, word: "유수불부", hanja: "流水不腐", meaning: "흐르는 물은 썩지 않듯, 끊임없이 움직이고 노력하는 사람은 퇴보하지 않음", category: "학문·노력" },
+  { id: 253, level: 3, word: "유유상종", hanja: "類類相從", meaning: "끼리끼리 서로 사귀어 모이듯, 성품이나 취향이 비슷한 사람들끼리 어울림", category: "우정·관계" },
+  { id: 254, level: 3, word: "유유자적", hanja: "悠悠自適", meaning: "속세에 얽매이지 않고 한가롭고 여유롭게 자기 뜻대로 삶을 즐김", category: "인생·자연" },
+  { id: 255, level: 3, word: "유언비어", hanja: "流言蜚語", meaning: "아무런 근거 없이 세상 사람들 입에 널리 퍼져 떠도는 소문", category: "일상·사회" },
+  { id: 256, level: 3, word: "유전무죄", hanja: "有錢無罪", meaning: "돈이 있으면 죄가 안 된다는 뜻으로, 재력에 따라 법이 불공평하게 적용되는 세태를 꼬집는 말", category: "일상·사회" },
+  { id: 257, level: 3, word: "유시유종", hanja: "有始有終", meaning: "시작이 있으면 끝도 있듯, 시작한 일을 중도에 포기하지 않고 끝까지 잘 마무리함", category: "희망·노력" },
+  { id: 258, level: 3, word: "은인자중", hanja: "隱忍自重", meaning: "괴로움이나 감정을 밖으로 드러내지 않고 속으로 참으며 신중하게 행동함", category: "수양·처세" },
+  { id: 259, level: 3, word: "읍참마속", hanja: "泣斬馬謖", meaning: "제갈량이 눈물을 머금고 아끼던 부하 마속의 목을 베었듯, 큰 원칙과 기강을 위해 사사로운 정을 끊음", category: "결단·도덕" },
+  { id: 260, level: 3, word: "인과응보", hanja: "因果應報", meaning: "원인과 결과는 서로 맞물려 있듯, 착한 일을 하면 복을 받고 나쁜 일을 하면 벌을 받음", category: "수양·도덕" },
+  { id: 261, level: 3, word: "인산인해", hanja: "人山人海", meaning: "사람이 산과 바다를 이룬 듯이 엄청나게 많이 모인 모습", category: "일상·비유" },
+  { id: 262, level: 3, word: "인자무적", hanja: "仁者無敵", meaning: "어질고 덕이 많은 사람은 모든 이가 따르므로 세상에 맞설 적이 없음", category: "성품·인격" },
+  { id: 263, level: 3, word: "적재적소", hanja: "適材適所", meaning: "어떤 일에 알맞은 재능을 가진 사람을 그에 알맞은 자리에 씀", category: "지혜·처세" },
+  { id: 264, level: 3, word: "일거양득", hanja: "一擧兩得", meaning: "한 가지 일을 하여 두 가지 이익을 동시에 얻음", category: "행운·지혜" },
+  { id: 265, level: 3, word: "일기당천", hanja: "一騎當千", meaning: "한 사람의 기병이 천 명을 당해 낼 만큼 실력과 용맹이 비할 데 없이 뛰어남", category: "인물·재능" },
+  { id: 266, level: 3, word: "일망타진", hanja: "一網打盡", meaning: "그물을 한 번 쳐서 물고기를 모조리 잡듯, 나쁜 무리를 한꺼번에 빠짐없이 다 잡음", category: "상황·결단" },
+  { id: 267, level: 3, word: "일맥상통", hanja: "一脈相通", meaning: "생각이나 성질, 처지 따위가 서로 한 줄기로 이어져 통함", category: "우정·비교" },
+  { id: 268, level: 3, word: "일목요연", hanja: "一目瞭然", meaning: "한눈에 보아도 환하게 다 알 수 있을 만큼 정리되어 분명하고 뚜렷함", category: "학문·분명" },
+  { id: 269, level: 3, word: "일벌백계", hanja: "一罰百戒", meaning: "한 사람의 잘못을 엄하게 벌하여 수많은 다른 사람들에게 경계가 되게 함", category: "결단·사회" },
+  { id: 270, level: 3, word: "일사천리", hanja: "一瀉千里", meaning: "강물이 한 번에 천 리를 쏟아져 내려가듯, 어떤 일이 거침없이 아주 빠르게 진행됨", category: "성공·상황" },
+  { id: 271, level: 3, word: "일심동체", hanja: "一心同體", meaning: "한마음 한몸이라는 뜻으로, 두 사람 이상이 굳게 뭉쳐서 한 몸처럼 행동함", category: "우정·가족" },
+  { id: 272, level: 3, word: "일장춘몽", hanja: "一場春夢", meaning: "한바탕의 봄꿈처럼, 인생의 부귀영화가 덧없이 사라짐을 비유하는 말", category: "인생·운명" },
+  { id: 273, level: 3, word: "일체유심조", hanja: "一切唯心造", meaning: "세상의 모든 일은 오직 마음먹기에 달려 있음", category: "수양·마음" },
+  { id: 274, level: 3, word: "일촉즉발", hanja: "一觸卽發", meaning: "살짝 건드리기만 해도 곧 폭발할 것 같은 매우 아슬아슬하고 긴박한 순간", category: "위기·상황" },
+  { id: 275, level: 3, word: "일편단심", hanja: "一片丹心", meaning: "오직 한 조각의 붉은 마음이라는 뜻으로, 진심에서 우러나오는 변치 않는 참된 정성", category: "마음·신뢰" },
+  { id: 276, level: 3, word: "일패도지", hanja: "一敗塗地", meaning: "한 번 싸움에 패하여 땅바닥에 진흙처럼 짓밟히듯, 다시 일어나기 힘들 만큼 크게 패함", category: "위기·곤경" },
+  { id: 277, level: 3, word: "일희일비", hanja: "一喜一悲", meaning: "한편으로는 기뻐하고 한편으로는 슬퍼하듯, 상황 변화에 따라 감정이 이리저리 흔들림", category: "마음·감정" },
+  { id: 278, level: 3, word: "임기응변", hanja: "臨機應變", meaning: "그때그때 처한 뜻밖의 상황에 맞추어 즉석에서 슬기롭게 대처함", category: "지혜·재능" },
+  { id: 279, level: 3, word: "임전무퇴", hanja: "臨戰無退", meaning: "싸움에 임하여 물러서지 않는다는 뜻으로, 어떤 어려움 앞에서도 굴하지 않는 용기", category: "도전·결단" },
+  { id: 280, level: 3, word: "입신양명", hanja: "立身揚名", meaning: "사회에서 출세하여 자기 몸을 세우고 세상에 이름을 널리 떨침", category: "성공·노력" },
+  { id: 281, level: 3, word: "자강불식", hanja: "自强不息", meaning: "스스로 힘쓰고 가다듬어 조금도 쉬지 않고 꾸준히 정진함", category: "희망·노력" },
+  { id: 282, level: 3, word: "자격지심", hanja: "自激之心", meaning: "자기가 한 일에 대하여 스스로 미흡하게 여겨 기죽어 하는 마음", category: "마음·감정" },
+  { id: 283, level: 3, word: "자급자족", hanja: "自給自足", meaning: "자기가 필요한 물건을 스스로 만들어 쓰고 채움", category: "일상·처세" },
+  { id: 284, level: 3, word: "자승자박", hanja: "自繩自縛", meaning: "자기가 만든 줄로 자기 몸을 스스로 묶듯, 자기가 한 말과 행동에 의해 스스로 곤경에 빠짐", category: "언행·반성" },
+  { id: 285, level: 3, word: "자포자기", hanja: "自暴自棄", meaning: "절망에 빠져 자기 자신을 스스로 돌보지 않고 돌아보지 않으며 버림", category: "마음·반성" },
+  { id: 286, level: 3, word: "자화자찬", hanja: "自畵自讚", meaning: "자기가 그린 그림을 스스로 칭찬하듯, 자기가 한 일을 자기 입으로 자랑함", category: "언행·태도" },
+  { id: 287, level: 3, word: "전광석화", hanja: "電光石火", meaning: "번갯불이나 부싯돌의 불꽃처럼, 동작이나 세월이 눈 깜짝할 사이에 매우 빠름", category: "상황·세월" },
+  { id: 288, level: 3, word: "전대미문", hanja: "前代未聞", meaning: "지금까지의 역사상 한 번도 들어 본 적이 없을 만큼 매우 새롭고 놀라운 일", category: "상황·변화" },
+  { id: 289, level: 3, word: "전전긍긍", hanja: "戰戰兢兢", meaning: "무서움이나 조심스러움으로 몸을 벌벌 떨며 마음을 졸임", category: "마음·상태" },
+  { id: 290, level: 3, word: "전전반측", hanja: "輾轉反側", meaning: "누워서 이리 뒤척 저리 뒤척하며 근심이나 그리움 때문에 잠을 이루지 못함", category: "마음·감정" },
+  { id: 291, level: 3, word: "절체절명", hanja: "絶體絶命", meaning: "몸도 목숨도 다 궁지에 몰려 도무지 빠져나갈 수 없는 절박한 위기", category: "위기·곤경" },
+  { id: 292, level: 3, word: "절치부심", hanja: "切齒腐心", meaning: "이를 갈고 마음을 썩이듯, 몹시 분하여 속을 태우며 복수나 재기를 다짐함", category: "도전·마음" },
+  { id: 293, level: 3, word: "점입가경", hanja: "漸入佳境", meaning: "들어갈수록 경치가 점점 더 좋아지듯, 일이 갈수록 재미있고 훌륭해짐", category: "행운·상황" },
+  { id: 294, level: 3, word: "정저지와", hanja: "井底之蛙", meaning: "우물 안 개구리처럼, 넓은 세상을 알지 못하고 자기 좁은 소견만 옳다고 여기는 사람", category: "지혜·어리석음" },
+  { id: 295, level: 3, word: "조강지처", hanja: "糟糠之妻", meaning: "술지게미와 쌀겨로 끼니를 잇던 가난한 시절을 함께 고생하며 살아온 소중한 아내", category: "가족·사랑" },
+  { id: 296, level: 3, word: "조령모개", hanja: "朝令暮改", meaning: "아침에 내린 명령을 저녁에 다시 고치듯, 법령이나 결정이 자꾸 바뀌어 믿을 수 없음", category: "언행·사회" },
+  { id: 297, level: 3, word: "조족지혈", hanja: "鳥足之血", meaning: "새 발의 피라는 뜻으로, 비교할 수 없을 만큼 분량이 매우 적고 하찮음", category: "비유·수량" },
+  { id: 298, level: 3, word: "좌고우면", hanja: "左顧右眄", meaning: "왼쪽을 돌아보고 오른쪽을 살피듯, 앞뒤 눈치만 살피며 결단을 내리지 못하고 망설임", category: "언행·태도" },
+  { id: 299, level: 3, word: "좌충우돌", hanja: "左衝右突", meaning: "이리 부딪치고 저리 부딪치며 거침없이 맞서거나 함부로 날뜀", category: "도전·활동" },
+  { id: 300, level: 3, word: "주마가편", hanja: "走馬加鞭", meaning: "달리는 말에 채찍질을 더하듯, 잘하고 있는 사람에게 더욱 잘하라고 격려하고 북돋아 줌", category: "희망·노력" },
+  { id: 301, level: 3, word: "주마간산", hanja: "走馬看山", meaning: "말을 타고 달리면서 산을 구경하듯, 바쁘게 대강대강 겉만 훑어보고 지나침", category: "언행·태도" },
+  { id: 302, level: 3, word: "주객전도", hanja: "主客顚倒", meaning: "주인과 손님의 입장이 서로 뒤바뀌듯, 사물의 경중이나 앞뒤가 거꾸로 됨", category: "상황·비유" },
+  { id: 303, level: 3, word: "중구난방", hanja: "衆口難防", meaning: "여러 사람의 입은 막기 어렵듯, 막무가내로 떠들어 대어 걷잡을 수 없음", category: "일상·대화" },
+  { id: 304, level: 3, word: "수불석권", hanja: "手不釋卷", meaning: "손에서 책을 놓지 않고 언제나 열심히 글을 읽고 공부함", category: "학문·노력" },
+  { id: 305, level: 3, word: "절차탁마", hanja: "切磋琢磨", meaning: "옥이나 돌을 자르고 줄로 쓸고 쪼고 갈듯 학문이나 인격을 부지런히 갈고닦음", category: "학문·수양" },
+  { id: 306, level: 3, word: "타산지석", hanja: "他山之石", meaning: "다른 산의 나쁜 돌이라도 내 옥을 가는 데 쓰듯 남의 허물도 내 수양에 도움이 됨", category: "수양·지혜" },
+  { id: 307, level: 3, word: "박학심문", hanja: "博學審問", meaning: "널리 배우고 자세히 물어서 지식을 깊이 있게 탐구함", category: "학문·노력" },
+  { id: 308, level: 3, word: "학이시습", hanja: "學而時習", meaning: "배우고 때때로 그것을 반복해 익히면 마음에 참된 기쁨이 차오름", category: "학문·노력" },
+  { id: 309, level: 3, word: "독서백편", hanja: "讀書百遍", meaning: "책을 백 번 반복해서 읽으면 아무리 어려운 글도 그 뜻이 저절로 통하게 됨", category: "학문·노력" },
+  { id: 310, level: 3, word: "삼여지공", hanja: "三餘之功", meaning: "겨울과 밤과 비 오는 날 등 남는 시간을 알뜰히 활용해 공부한 공로", category: "학문·노력" },
+  { id: 311, level: 3, word: "위편삼절", hanja: "韋編三絶", meaning: "책의 가죽 끈이 세 번이나 끊어질 정도로 한 권의 책을 깊이 파고들어 읽음", category: "학문·노력" },
+  { id: 312, level: 3, word: "우생마사", hanja: "牛生馬死", meaning: "홍수에 소는 살고 말은 죽듯 잔꾀를 부리기보다 우직하게 성실히 노력하는 것이 나음", category: "인생·지혜" },
+  { id: 313, level: 3, word: "점적천석", hanja: "點滴穿石", meaning: "작은 물방울도 끊임없이 떨어지면 마침내 단단한 돌에 구멍을 뚫음", category: "희망·노력" },
+  { id: 314, level: 3, word: "적토성산", hanja: "積土成山", meaning: "작은 흙이 쌓여 큰 산을 이루듯 작은 노력도 꾸준히 모이면 큰 성취를 이룸", category: "희망·노력" },
+  { id: 315, level: 3, word: "적수성연", hanja: "積水成淵", meaning: "작은 물방울이 모여 깊은 연못을 이루듯 날마다 실력을 쌓으면 큰 인물이 됨", category: "희망·노력" },
+  { id: 316, level: 4, word: "불광불급", hanja: "不狂不及", meaning: "미칠 듯이 열정을 쏟지 않으면 목표한 경지에 도달하지 못함", category: "도전·노력" },
+  { id: 317, level: 4, word: "각고면려", hanja: "刻苦勉勵", meaning: "온갖 고생을 무릅쓰고 몸과 마음을 다하여 부지런히 노력함", category: "희망·노력" },
+  { id: 318, level: 4, word: "고군분투", hanja: "孤軍奮鬪", meaning: "도와주는 사람 없이 혼자 힘으로 꿋꿋하게 어려움을 이겨내며 최선을 다함", category: "도전·노력" },
+  { id: 319, level: 4, word: "칠전팔기", hanja: "七顚八起", meaning: "일곱 번 넘어져도 여덟 번 일어나듯 실패에 굴하지 않고 끝까지 다시 도전함", category: "도전·노력" },
+  { id: 320, level: 4, word: "백절불요", hanja: "百折不撓", meaning: "백 번 꺾여도 결코 휘어지지 않는다는 뜻으로 어떤 난관에도 굴하지 않음", category: "도전·결단" },
+  { id: 321, level: 4, word: "유지경성", hanja: "有志竟成", meaning: "확고한 뜻을 가지고 포기하지 않고 노력하면 마침내 목표를 반드시 이룸", category: "희망·노력" },
+  { id: 322, level: 4, word: "정신일도", hanja: "精神一到", meaning: "정신을 한곳으로 온전히 집중하면 무슨 일이든 이루지 못할 것이 없음", category: "학문·마음" },
+  { id: 323, level: 4, word: "하석불천", hanja: "何石不穿", meaning: "정신을 집중해 활을 쏘면 어떤 단단한 바위인들 뚫지 못하겠느냐는 굳은 의지", category: "도전·노력" },
+  { id: 324, level: 4, word: "발분망식", hanja: "發憤忘食", meaning: "끼니를 먹는 것조차 잊을 정도로 분발하여 학문이나 맡은 일에 몰두함", category: "학문·노력" },
+  { id: 325, level: 4, word: "촌음석음", hanja: "寸陰惜陰", meaning: "아주 짧은 시간도 아껴 쓰며 부지런히 학업과 자기 계발에 정진함", category: "학문·세월" },
+  { id: 326, level: 4, word: "지란지교", hanja: "芝蘭之交", meaning: "영지와 난초처럼 향기롭고 고결한 벗 사이의 맑고 두터운 우정", category: "우정·관계" },
+  { id: 327, level: 4, word: "단금지교", hanja: "斷金之交", meaning: "두 사람이 마음을 합치면 그 날카로움이 쇠라도 끊을 수 있는 굳은 우정", category: "우정·관계" },
+  { id: 328, level: 4, word: "교칠지교", hanja: "膠漆之交", meaning: "아교와 옻칠처럼 서로 단단히 붙어 절대 떨어지지 않는 아주 친밀한 우정", category: "우정·관계" },
+  { id: 329, level: 4, word: "붕우유신", hanja: "朋友有信", meaning: "친구와 친구 사이에는 반드시 서로를 향한 믿음과 신의가 있어야 함", category: "우정·도덕" },
+  { id: 330, level: 4, word: "백아절현", hanja: "伯牙絶絃", meaning: "자기의 거문고 소리를 알아주던 친구 종자기가 죽자 백아가 줄을 끊었듯 참된 벗을 잃은 슬픔", category: "우정·관계" },
+  { id: 331, level: 4, word: "지음지교", hanja: "知音之交", meaning: "거문고 소리만 듣고도 속마음을 알아주는 것처럼 서로 마음이 깊이 통하는 우정", category: "우정·관계" },
+  { id: 332, level: 4, word: "거립지교", hanja: "車笠之交", meaning: "부유하든 가난하든 신분이나 처지의 차이를 떠나 변치 않고 맺는 참된 우정", category: "우정·관계" },
+  { id: 333, level: 4, word: "망년지교", hanja: "忘年之交", meaning: "나이나 학년의 차이를 잊고 인격과 뜻으로 허물없이 사귀는 우정", category: "우정·관계" },
+  { id: 334, level: 4, word: "총각지호", hanja: "總角之好", meaning: "어릴 적부터 함께 자라며 정을 쌓아 온 오랜 소꿉친구 사이의 우정", category: "우정·관계" },
+  { id: 335, level: 4, word: "해로동혈", hanja: "偕老同穴", meaning: "함께 늙고 죽어서도 같은 곳에 묻힐 만큼 변함없는 부부의 깊은 사랑", category: "가족·사랑" },
+  { id: 336, level: 4, word: "이심전심", hanja: "以心傳心", meaning: "말이나 글로 설명하지 않아도 마음에서 마음으로 서로 뜻이 통함", category: "우정·공감" },
+  { id: 337, level: 4, word: "불언지교", hanja: "不言之敎", meaning: "말로 일일이 따져 가르치지 않아도 행동과 모범으로 보여주는 가르침", category: "수양·교육" },
+  { id: 338, level: 4, word: "혼정신성", hanja: "昏定晨省", meaning: "밤에는 부모님의 잠자리를 봐 드리고 아침에는 문안을 드리는 지극한 효성", category: "가족·효도" },
+  { id: 339, level: 4, word: "풍수지탄", hanja: "風樹之歎", meaning: "효도를 다하지 못했는데 부모님이 돌아가셔서 뒤늦게 슬퍼하며 한탄함", category: "가족·효도" },
+  { id: 340, level: 4, word: "자오지정", hanja: "慈烏之情", meaning: "까마귀가 어미에게 먹이를 물어다 주듯 부모님을 향한 자식의 지극한 효심", category: "가족·효도" },
+  { id: 341, level: 4, word: "출필고반", hanja: "出必告反", meaning: "외출할 때는 반드시 부모님께 행선지를 말씀드리고 돌아와서는 인사를 드림", category: "가족·효도" },
+  { id: 342, level: 4, word: "형우제공", hanja: "兄友弟恭", meaning: "형은 아우를 사랑으로 보살피고 아우는 형을 공경하며 화목하게 지냄", category: "가족·효도" },
+  { id: 343, level: 4, word: "수족지의", hanja: "手足之義", meaning: "손과 발처럼 서로 뗄 수 없는 형제자매 사이의 돈독한 우애", category: "가족·우정" },
+  { id: 344, level: 4, word: "가화만사", hanja: "家和萬事", meaning: "집안이 화목하고 평안하면 하는 모든 일이 저절로 잘 풀림", category: "가족·일상" },
+  { id: 345, level: 4, word: "부자유친", hanja: "父子有親", meaning: "부모와 자식 사이에는 마땅히 친애하고 사랑하는 정이 있어야 함", category: "가족·효도" },
+  { id: 346, level: 4, word: "장유유서", hanja: "長幼有序", meaning: "어른과 아이 사이에는 마땅히 지켜야 할 차례와 예절이 있음", category: "수양·예절" },
+  { id: 347, level: 4, word: "동방예의", hanja: "東方禮義", meaning: "동쪽에 있는 예의 바른 나라라는 뜻으로 예절을 중시하는 우리나라를 이르는 말", category: "일상·사회" },
+  { id: 348, level: 4, word: "예자성인", hanja: "禮者成人", meaning: "예절을 바르게 갖추고 실천하는 사람이 비로소 성숙한 인격자가 됨", category: "수양·예절" },
+  { id: 349, level: 4, word: "언충신행", hanja: "言忠信行", meaning: "말은 진실하고 믿음직하게 하며 행동은 성실하고 공경스럽게 함", category: "수양·도덕" },
+  { id: 350, level: 4, word: "삼사일언", hanja: "三思一言", meaning: "세 번 깊이 생각한 뒤에 한 번 말하듯 말을 하기 전에 신중하게 헤아림", category: "언행·지혜" },
+  { id: 351, level: 4, word: "사불급설", hanja: "駟不及舌", meaning: "네 마리 말이 끄는 빠른 수레도 한번 내뱉은 말은 따라잡지 못하므로 말조심해야 함", category: "언행·반성" },
+  { id: 352, level: 4, word: "구화지문", hanja: "口禍之門", meaning: "입은 재앙을 불러들이는 문이 될 수 있으므로 언제나 말을 삼가고 신중해야 함", category: "언행·처세" },
+  { id: 353, level: 4, word: "침묵금언", hanja: "沈默金言", meaning: "때로는 침묵을 지키는 것이 황금처럼 귀한 말보다 더 가치 있음", category: "언행·처세" },
+  { id: 354, level: 4, word: "화이부동", hanja: "和而不同", meaning: "남과 화목하게 어울리되 자기의 소신과 원칙까지 맹목적으로 휩쓸리지는 않음", category: "수양·처세" },
+  { id: 355, level: 4, word: "동이불화", hanja: "同而不和", meaning: "겉으로는 남과 같은 편인 척 따라 하지만 속으로는 진정으로 화합하지 못함", category: "언행·태도" },
+  { id: 356, level: 4, word: "군자대로", hanja: "君子大路", meaning: "마음이 바르고 떳떳한 사람은 숨어서 꼼수를 쓰지 않고 큰길로 당당히 걸어감", category: "수양·도덕" },
+  { id: 357, level: 4, word: "대도무문", hanja: "大道無門", meaning: "사람이 마땅히 걸어야 할 큰 도리나 정당한 길에는 거칠 것이나 막힌 문이 없음", category: "수양·도덕" },
+  { id: 358, level: 4, word: "호연지기", hanja: "浩然之氣", meaning: "하늘과 땅 사이에 가득 찬 넓고 크며 떳떳하고 바른 기운", category: "수양·마음" },
+  { id: 359, level: 4, word: "청렴결백", hanja: "淸廉潔白", meaning: "마음이 맑고 깨끗하며 욕심이 전혀 없이 바르고 떳떳함", category: "수양·도덕" },
+  { id: 360, level: 4, word: "멸사봉공", hanja: "滅私奉公", meaning: "개인의 사사로운 이익을 버리고 나라와 공동체의 이익을 위해 힘써 일함", category: "수양·사회" },
+  { id: 361, level: 4, word: "선공후사", hanja: "先公後私", meaning: "공동체와 공공의 일을 먼저 생각하고 개인의 사사로운 일은 뒤로 미룸", category: "수양·사회" },
+  { id: 362, level: 4, word: "공평무사", hanja: "公平無私", meaning: "어느 한쪽으로 치우침이 없이 공평하고 사사로운 욕심이 전혀 없음", category: "수양·도덕" },
+  { id: 363, level: 4, word: "신상필벌", hanja: "信賞必罰", meaning: "공로가 있는 사람에게는 반드시 상을 주고 잘못한 사람에게는 공정하게 벌을 줌", category: "결단·사회" },
+  { id: 364, level: 4, word: "불편부당", hanja: "不偏不黨", meaning: "어느 한쪽 편으로 치우치거나 편들지 않고 아주 공정하고 바름", category: "수양·도덕" },
+  { id: 365, level: 4, word: "중용지도", hanja: "中庸之道", meaning: "지나치거나 모자람이 없이 한쪽으로 치우치지 않는 바른 도리", category: "수양·지혜" },
+  { id: 366, level: 4, word: "지피지기", hanja: "知彼知己", meaning: "상대방의 형편과 나의 실력을 정확히 알면 어떤 승부에서도 위태롭지 않음", category: "지혜·계책" },
+  { id: 367, level: 4, word: "백전불태", hanja: "百戰不殆", meaning: "상대와 나를 잘 알고 철저히 준비하면 백 번을 겨루어도 위험에 빠지지 않음", category: "지혜·계책" },
+  { id: 368, level: 4, word: "병귀신속", hanja: "兵貴神速", meaning: "중요한 승부나 일 처리에서는 망설이지 않고 신속하게 움직이는 것이 귀중함", category: "도전·결단" },
+  { id: 369, level: 4, word: "선발제인", hanja: "先發制人", meaning: "남보다 먼저 앞장서서 행동함으로써 상대방의 기선을 제압함", category: "도전·결단" },
+  { id: 370, level: 4, word: "출기불의", hanja: "出其不意", meaning: "상대방이 전혀 예상하지 못한 틈을 타서 기습적으로 행동함", category: "지혜·계책" },
+  { id: 371, level: 4, word: "공기무비", hanja: "攻其無備", meaning: "상대방이 아무런 방비를 하지 않은 허점을 정확히 파고들어 공략함", category: "지혜·계책" },
+  { id: 372, level: 4, word: "일망무제", hanja: "一望無際", meaning: "한눈에 바라보기에 끝이 없을 정도로 들판이나 바다가 아득하고 넓음", category: "계절·자연" },
+  { id: 373, level: 4, word: "산자수명", hanja: "山紫水明", meaning: "산빛은 곱고 물은 맑다는 뜻으로 자연 경치가 더할 나위 없이 아름다움", category: "계절·자연" },
+  { id: 374, level: 4, word: "명승고적", hanja: "名勝古蹟", meaning: "경치가 빼어나게 아름답기로 이름난 곳과 역사적 자취가 남아 있는 유적", category: "계절·자연" },
+  { id: 375, level: 4, word: "춘하추동", hanja: "春夏秋冬", meaning: "봄, 여름, 가을, 겨울의 네 계절 또는 일 년 내내를 이르는 말", category: "계절·자연" },
+  { id: 376, level: 4, word: "화조월석", hanja: "花朝月夕", meaning: "꽃 피는 아침과 달 밝은 저녁이라는 뜻으로 경치 좋은 아름다운 시절", category: "계절·자연" },
+  { id: 377, level: 4, word: "천고마비", hanja: "天高馬肥", meaning: "하늘은 높고 말은 살찐다는 뜻으로 날씨가 맑고 곡식이 풍성한 가을철", category: "계절·자연" },
+  { id: 378, level: 4, word: "추풍낙엽", hanja: "秋風落葉", meaning: "가을바람에 떨어지는 낙엽처럼 세력이나 기세가 갑자기 힘없이 흩어지고 무너짐", category: "상황·비유" },
+  { id: 379, level: 4, word: "춘풍추상", hanja: "春風秋霜", meaning: "남을 대할 때는 봄바람처럼 따뜻하게 하고 자기 자신에게는 가을 서리처럼 엄격하게 함", category: "수양·처세" },
+  { id: 380, level: 4, word: "설중송백", hanja: "雪中松柏", meaning: "눈 속에 서 있는 소나무와 잣나무처럼 역경 속에서도 변치 않는 굳은 절개", category: "성품·인격" },
+  { id: 381, level: 4, word: "세한고절", hanja: "歲寒孤節", meaning: "한겨울 추위 속에서도 홀로 푸르름을 지키는 대나무나 소나무 같은 절개", category: "성품·인격" },
+  { id: 382, level: 4, word: "송백지절", hanja: "松柏之節", meaning: "눈보라 속에서도 시들지 않는 소나무와 잣나무처럼 굳고 변함없는 지조", category: "성품·인격" },
+  { id: 383, level: 4, word: "매란국죽", hanja: "梅蘭菊竹", meaning: "매화, 난초, 국화, 대나무의 사군자로 선비의 맑고 곧은 기상을 비유함", category: "성품·자연" },
+  { id: 384, level: 4, word: "청풍명월", hanja: "淸風明月", meaning: "맑은 바람과 밝은 달이라는 뜻으로 깨끗하고 결백한 성품이나 평화로운 풍경", category: "성품·자연" },
+  { id: 385, level: 4, word: "강호지락", hanja: "江湖之樂", meaning: "자연을 벗 삼아 조용하고 한가롭게 지내는 풍류와 즐거움", category: "인생·자연" },
+  { id: 386, level: 4, word: "일엽지추", hanja: "一葉知秋", meaning: "나뭇잎 하나가 떨어지는 것을 보고 가을이 왔음을 알듯 작은 조짐으로 큰 변화를 미리 앎", category: "지혜·상황" },
+  { id: 387, level: 4, word: "견미지저", hanja: "見微知著", meaning: "아주 작고 미세한 징조만 보고도 앞으로 드러날 큰 결과를 미리 내다봄", category: "지혜·재능" },
+  { id: 388, level: 4, word: "거안사위", hanja: "居安思危", meaning: "평안할 때일수록 장차 닥쳐올지 모를 위험과 어려움을 미리 생각하고 대비함", category: "지혜·처세" },
+  { id: 389, level: 4, word: "망우보뢰", hanja: "亡牛補牢", meaning: "소를 잃고 나서야 외양간을 고치듯 이미 일을 그르친 뒤에 뒤늦게 손을 씀", category: "지혜·반성" },
+  { id: 390, level: 4, word: "사후약방", hanja: "死後藥方", meaning: "사람이 죽은 뒤에 약방문을 쓰듯 때가 이미 지난 뒤에 대책을 세워 소용없음", category: "지혜·어리석음" },
+  { id: 391, level: 4, word: "임갈굴정", hanja: "臨渴掘井", meaning: "목이 말라야 비로소 우물을 파듯 미리 준비하지 않고 일이 닥쳐서야 허둥지둥함", category: "지혜·어리석음" },
+  { id: 392, level: 4, word: "유비무우", hanja: "有備無憂", meaning: "미리미리 철저하게 준비해 두면 나중에 근심하거나 걱정할 일이 없음", category: "지혜·처세" },
+  { id: 393, level: 4, word: "전차복철", hanja: "前車覆轍", meaning: "앞선 수레가 뒤집힌 자국이라는 뜻으로 앞사람의 실패를 거울삼아 조심해야 함", category: "수양·지혜" },
+  { id: 394, level: 4, word: "타인작비", hanja: "他人作非", meaning: "남이 저지른 잘못을 보고 나의 잘못을 고치는 반성의 거울로 삼음", category: "수양·지혜" },
+  { id: 395, level: 4, word: "자성자각", hanja: "自省自覺", meaning: "자기 자신의 말과 행동을 스스로 되돌아보고 잘못을 깨우침", category: "수양·반성" },
+  { id: 396, level: 4, word: "오비삼척", hanja: "吾鼻三尺", meaning: "내 코가 석 자라는 뜻으로 내 사정이 너무 급하고 어려워 남을 돌볼 여유가 없음", category: "위기·곤경" },
+  { id: 397, level: 4, word: "진퇴양난", hanja: "進退兩難", meaning: "앞으로 나아갈 수도 없고 뒤로 물러설 수도 없는 매우 난처한 처지", category: "위기·곤경" },
+  { id: 398, level: 4, word: "진퇴유곡", hanja: "進退維谷", meaning: "나아갈 길도 막히고 물러설 길도 막혀 골짜기에 갇힌 듯한 절박한 궁지", category: "위기·곤경" },
+  { id: 399, level: 4, word: "사면팔방", hanja: "四面八方", meaning: "동서남북 네 방향과 그사이의 여덟 방향을 합쳐 온 세상 모든 곳", category: "일상·비유" },
+  { id: 400, level: 4, word: "전후좌우", hanja: "前後左右", meaning: "앞뒤와 왼쪽 오른쪽, 즉 사방의 모든 주변 사정과 맥락", category: "일상·비유" },
+  { id: 401, level: 4, word: "이열치열", hanja: "以熱治熱", meaning: "열은 열로써 다스린다는 뜻으로 힘이나 어려움을 오히려 같은 방법으로 이겨냄", category: "지혜·일상" },
+  { id: 402, level: 4, word: "이독제독", hanja: "以毒制毒", meaning: "독으로써 독을 제압하듯 강한 수단을 이용해 다른 해로운 문제를 해결함", category: "지혜·계책" },
+  { id: 403, level: 4, word: "동가홍상", hanja: "同價紅裳", meaning: "같은 값이면 다홍치마라는 뜻으로 조건이 같다면 더 좋은 것을 고름", category: "일상·처세" },
+  { id: 404, level: 4, word: "촌철살인", hanja: "寸鐵殺人", meaning: "한 치의 짧은 쇠붙이로도 급소를 찌르듯 짧고 핵심을 찌르는 한마디 말로 큰 감동을 줌", category: "언행·재능" },
+  { id: 405, level: 4, word: "어불성설", hanja: "語不成說", meaning: "하는 말이 조금도 이치에 맞지 않아 도무지 말도 안 됨", category: "언행·논리" },
+  { id: 406, level: 4, word: "언어도단", hanja: "言語道斷", meaning: "말문이 막힐 정도로 너무 어이가 없거나 기가 막혀 말로 표현할 수 없음", category: "언행·상황" },
+  { id: 407, level: 4, word: "적반하장", hanja: "賊反荷杖", meaning: "도둑이 도리어 매를 든다는 뜻으로 잘못한 사람이 오히려 큰소리치며 나무람", category: "언행·태도" },
+  { id: 408, level: 4, word: "후안무치", hanja: "厚顔無恥", meaning: "얼굴 가죽이 두꺼워 부끄러움이 없듯 뻔뻔스럽게 남에게 미안해할 줄 모름", category: "언행·태도" },
+  { id: 409, level: 4, word: "심사숙고", hanja: "深思熟考", meaning: "일을 결정하기 전에 여러 번 깊이 생각하고 신중하게 헤아림", category: "지혜·태도" },
+  { id: 410, level: 4, word: "일도양단", hanja: "一刀兩斷", meaning: "칼로 한 번에 두 동강을 내듯 망설이지 않고 일을 과감하고 명쾌하게 결정함", category: "결단·처세" },
+  { id: 411, level: 4, word: "쾌도난마", hanja: "快刀亂麻", meaning: "잘 드는 칼로 엉킨 삼실을 베듯 복잡하게 얽힌 문제를 시원하고 명쾌하게 해결함", category: "결단·재능" },
+  { id: 412, level: 4, word: "파죽지세", hanja: "破竹之勢", meaning: "대나무를 쪼갤 때 첫 몇 마디만 쪼개면 나머지는 저절로 갈라지듯 거침없이 몰아치는 기세", category: "도전·성공" },
+  { id: 413, level: 4, word: "질풍노도", hanja: "疾風怒濤", meaning: "거센 바람과 성난 파도처럼 매우 격렬하고 거침없이 몰아치는 기세", category: "도전·상황" },
+  { id: 414, level: 4, word: "욱일승천", hanja: "旭日昇天", meaning: "아침 해가 하늘로 떠오르듯 기운이나 세력이 날로 왕성하게 뻗어 나감", category: "성공·희망" },
+  { id: 415, level: 4, word: "기염만장", hanja: "氣焰萬丈", meaning: "타오르는 불길이 만 길이나 솟구치듯 의욕과 기세가 더할 나위 없이 드높음", category: "도전·태도" },
+  { id: 416, level: 4, word: "의기양양", hanja: "意氣揚揚", meaning: "뜻한 바가 이루어져 기분이 매우 좋고 자랑스러운 태도가 얼굴에 가득함", category: "마음·태도" },
+  { id: 417, level: 4, word: "의기소침", hanja: "意氣銷沈", meaning: "기운이나 자신감이 꺾여 풀이 죽고 마음이 가라앉음", category: "마음·상태" },
+  { id: 418, level: 4, word: "일발역전", hanja: "一發逆轉", meaning: "단 한 번의 기회나 시도로 불리했던 판세를 단숨에 뒤집어 승리함", category: "도전·성공" },
+  { id: 419, level: 4, word: "전패위승", hanja: "轉敗爲勝", meaning: "지고 있던 불리한 상황을 바꾸어 마침내 값진 승리를 거둠", category: "도전·성공" },
+  { id: 420, level: 4, word: "좌불안석", hanja: "坐不安席", meaning: "자리에 앉아도 마음이 불안하고 초조하여 가만히 있지를 못함", category: "마음·상태" },
+  { id: 421, level: 5, word: "침소봉대", hanja: "針小棒大", meaning: "바늘만 한 작은 일을 몽둥이만 하게 부풀려 과장해서 말함", category: "언행·태도" },
+  { id: 422, level: 5, word: "허장성세", hanja: "虛張聲勢", meaning: "실속이나 진짜 실력은 없으면서 겉으로만 기세를 부려 큰소리침", category: "언행·태도" },
+  { id: 423, level: 5, word: "유명무실", hanja: "有名無實", meaning: "이름만 그럴듯하게 있을 뿐이고 실제 내용은 전혀 없어 실속이 없음", category: "상황·비유" },
+  { id: 424, level: 5, word: "허유기표", hanja: "虛有其表", meaning: "겉으로 보이는 모양만 그럴듯할 뿐 내실이 전혀 없음", category: "상황·비유" },
+  { id: 425, level: 5, word: "외빈내부", hanja: "外貧內富", meaning: "겉모습은 소박해 보여도 속은 알차고 실력과 지혜가 꽉 차 있음", category: "성품·인격" },
+  { id: 426, level: 5, word: "표리부동", hanja: "表裏不同", meaning: "겉으로 드러나는 말과 속으로 품은 마음이 서로 달라 믿을 수 없음", category: "언행·태도" },
+  { id: 427, level: 5, word: "표리일체", hanja: "表裏一體", meaning: "겉과 속이 조금도 다르지 않고 한결같이 진실하고 투명함", category: "성품·인격" },
+  { id: 428, level: 5, word: "일언이폐", hanja: "一言以蔽", meaning: "길고 복잡한 내용을 한마디 말로 핵심만 정확하게 요약하여 말함", category: "언행·대화" },
+  { id: 429, level: 5, word: "요언불번", hanja: "要言不煩", meaning: "중요한 핵심을 담은 말은 길고 번거롭지 않고 간결함", category: "언행·대화" },
+  { id: 430, level: 5, word: "일어탁수", hanja: "一魚濁水", meaning: "물고기 한 마리가 온 강물을 흐려 놓듯 한 사람의 잘못이 전체 집단에 피해를 줌", category: "일상·사회" },
+  { id: 431, level: 5, word: "백옥유하", hanja: "白玉有瑕", meaning: "새하얀 구슬에도 작은 티가 있듯 아무리 훌륭한 사람에게도 작은 흠은 있을 수 있음", category: "성품·비유" },
+  { id: 432, level: 5, word: "옥중유하", hanja: "玉中有瑕", meaning: "매우 훌륭하고 완벽한 것 속에 섞여 있는 아까운 작은 흠결", category: "성품·비유" },
+  { id: 433, level: 5, word: "전인미답", hanja: "前人未踏", meaning: "지금까지 아무도 발을 디뎌 본 적이 없는 새로운 분야나 경지", category: "도전·성공" },
+  { id: 434, level: 5, word: "독보천하", hanja: "獨步天下", meaning: "남이 따라올 수 없을 만큼 뛰어난 실력으로 세상에서 홀로 우뚝함", category: "인물·재능" },
+  { id: 435, level: 5, word: "천하일품", hanja: "天下一品", meaning: "세상에서 둘도 없이 가장 뛰어나고 훌륭한 작품이나 솜씨", category: "인물·재능" },
+  { id: 436, level: 5, word: "금과옥조", hanja: "金科玉條", meaning: "금이나 옥처럼 귀중하게 여겨 반드시 지키고 따라야 할 소중한 규칙이나 교훈", category: "수양·도덕" },
+  { id: 437, level: 5, word: "철두철미", hanja: "徹頭徹尾", meaning: "머리부터 꼬리까지 철저하다는 뜻으로 처음부터 끝까지 빈틈없이 완벽함", category: "성품·태도" },
+  { id: 438, level: 5, word: "용의주도", hanja: "用意周到", meaning: "마음을 쓰는 것이 두루 미쳐 작은 부분까지도 빈틈없이 치밀하게 준비함", category: "지혜·태도" },
+  { id: 439, level: 5, word: "일사불란", hanja: "一絲不亂", meaning: "실 한 올도 어지럽지 않듯 질서가 정연하여 조금도 흐트러짐이 없음", category: "일상·협력" },
+  { id: 440, level: 5, word: "중과부적", hanja: "衆寡不敵", meaning: "적은 인원으로는 많은 수의 상대를 맞서 싸워 이기기가 어려움", category: "위기·상황" },
+  { id: 441, level: 5, word: "다기망양", hanja: "多岐亡羊", meaning: "갈림길이 너무 많아 양을 잃어버리듯 방침이나 학문의 갈래가 너무 많아 갈피를 못 잡음", category: "학문·지혜" },
+  { id: 442, level: 5, word: "일희일우", hanja: "一喜一憂", meaning: "한 번 기뻐하고 한 번 근심하듯 결과에 따라 마음이 조마조마하게 흔들림", category: "마음·감정" },
+  { id: 443, level: 5, word: "노발대발", hanja: "怒發大發", meaning: "불같이 화를 내며 몹시 성을 내고 크게 화를 냄", category: "마음·감정" },
+  { id: 444, level: 5, word: "천진난만", hanja: "天眞爛漫", meaning: "조금도 꾸밈이나 거짓이 없이 있는 그대로 순수하고 해맑음", category: "성품·인격" },
+  { id: 445, level: 5, word: "화기애애", hanja: "和氣靄靄", meaning: "모임이나 교실의 분위기가 따뜻하고 화목하며 정겨움이 넘침", category: "가족·우정" },
+  { id: 446, level: 5, word: "흥진비래", hanja: "興盡悲來", meaning: "즐거운 일이 다하면 슬픈 일이 찾아온다는 뜻으로 세상일이 돌고 돎", category: "인생·운명" },
+  { id: 447, level: 5, word: "호사다마", hanja: "好事多魔", meaning: "좋은 일에는 흔히 방해되는 일이나 탈이 끼어들기 쉬우니 끝까지 조심해야 함", category: "인생·지혜" },
+  { id: 448, level: 5, word: "고목생화", hanja: "枯木生花", meaning: "마른 나무에 꽃이 피듯 어려운 처지에서 벗어나 뜻밖의 행운과 새 희망을 맞이함", category: "희망·행운" },
+  { id: 449, level: 5, word: "설중송탄", hanja: "雪中送炭", meaning: "눈 내리는 추운 밤에 숯을 보내 주듯 친구가 가장 어렵고 힘들 때 꼭 필요한 도움을 줌", category: "우정·은혜" },
+  { id: 450, level: 5, word: "한중진미", hanja: "閑中眞味", meaning: "바쁜 일상 속에서도 조용하고 한가로운 틈에 느끼는 참된 삶의 멋과 즐거움", category: "인생·자연" },
+  { id: 451, level: 5, word: "망중한가", hanja: "忙中閑暇", meaning: "매우 바쁜 일과 속에서도 잠깐 짬을 내어 누리는 한가로운 여유", category: "일상·휴식" },
+  { id: 452, level: 5, word: "일취지몽", hanja: "一炊之夢", meaning: "기장밥 한솥을 짓는 짧은 동안에 꾼 꿈처럼 덧없이 지나간 한때의 영화", category: "인생·운명" },
+  { id: 453, level: 5, word: "한단지보", hanja: "邯鄲之步", meaning: "분수에 맞지 않게 남의 겉모습만 흉내 내다가 자기 본래의 장점마저 잃음", category: "지혜·어리석음" },
+  { id: 454, level: 5, word: "동시효빈", hanja: "東施效顰", meaning: "남이 하는 것이 좋아 보인다고 자기에게 맞지도 않는 것을 무작정 따라 함", category: "지혜·어리석음" },
+  { id: 455, level: 5, word: "귤화위지", hanja: "橘化爲枳", meaning: "강남의 귤을 강북에 옮겨 심으면 탱자가 되듯 환경에 따라 사람의 성품도 달라짐", category: "학문·교육" },
+  { id: 456, level: 5, word: "청렴공정", hanja: "淸廉公正", meaning: "성품이 맑고 욕심이 없으며 모든 일을 공평하고 바르게 처리함", category: "수양·도덕" },
+  { id: 457, level: 5, word: "일거일동", hanja: "一擧一動", meaning: "손 하나 들고 발 하나 움직이는 것까지 사람의 사소한 행동 하나하나", category: "언행·태도" },
+  { id: 458, level: 5, word: "일언반구", hanja: "一言半句", meaning: "한마디의 말이나 반 구절의 짧은 말조차 꺼내지 않음", category: "언행·대화" },
+  { id: 459, level: 5, word: "함구무언", hanja: "緘口無言", meaning: "입을 다물고 아무 말도 하지 않으며 침묵을 지킴", category: "언행·태도" },
+  { id: 460, level: 5, word: "묵묵부답", hanja: "默默不答", meaning: "아무런 말도 하지 않고 조용히 입을 다문 채 대답하지 않음", category: "언행·대화" },
+  { id: 461, level: 5, word: "수문수답", hanja: "隨問隨答", meaning: "질문을 받는 대로 지체 없이 막힘없이 척척 대답함", category: "학문·재능" },
+  { id: 462, level: 5, word: "현하지변", hanja: "懸河之辯", meaning: "쏟아지는 강물처럼 거침없고 매우 유창하게 말을 잘하는 언변", category: "언행·재능" },
+  { id: 463, level: 5, word: "청산유수", hanja: "靑山流水", meaning: "푸른 산에 흐르는 맑은 물처럼 막힘없이 아주 술술 말을 잘함", category: "언행·재능" },
+  { id: 464, level: 5, word: "일필휘지", hanja: "一筆揮之", meaning: "붓을 한 번 들어 단숨에 글씨나 그림을 거침없이 시원하게 써 내려감", category: "학문·재능" },
+  { id: 465, level: 5, word: "용사비등", hanja: "龍蛇飛騰", meaning: "용과 뱀이 살아 날아오르듯 글씨나 붓놀림이 매우 힘차고 생동감이 넘침", category: "학문·재능" },
+  { id: 466, level: 5, word: "화룡점정", hanja: "畵龍點睛", meaning: "용을 그린 뒤 마지막으로 눈동자를 그려 넣듯 가장 중요한 핵심을 완성하여 마무리함", category: "성공·재능" },
+  { id: 467, level: 5, word: "유종지미", hanja: "有終之美", meaning: "시작한 일을 끝까지 포기하지 않고 훌륭하게 마무리하여 거두는 아름다운 결실", category: "성공·노력" },
+  { id: 468, level: 5, word: "금석위개", hanja: "金石爲開", meaning: "온 정성을 다해 활을 쏘면 쇠와 돌도 뚫리듯 정신을 집중하면 어떤 난관도 돌파함", category: "도전·노력" },
+  { id: 469, level: 5, word: "일념통천", hanja: "一念通天", meaning: "한결같은 마음으로 간절히 노력하면 하늘도 감동하여 마침내 이루어진다는 말", category: "희망·노력" },
+  { id: 470, level: 5, word: "지성감천", hanja: "至誠感天", meaning: "지극한 정성을 다하면 하늘도 감동하여 좋은 결과를 얻게 됨", category: "희망·노력" },
+  { id: 471, level: 5, word: "진인사대", hanja: "盡人事待", meaning: "자기가 할 수 있는 모든 노력을 다하고 결과를 차분히 기다림", category: "수양·노력" },
+  { id: 472, level: 5, word: "자력갱생", hanja: "自力更生", meaning: "남에게 의존하지 않고 자기 자신의 힘으로 어려움을 헤쳐 나가 새로운 길을 개척함", category: "도전·노력" },
+  { id: 473, level: 5, word: "독립자존", hanja: "獨立自存", meaning: "남에게 기대지 않고 스스로의 힘으로 당당하게 서서 자존을 지킴", category: "성품·결단" },
+  { id: 474, level: 5, word: "불굴지지", hanja: "不屈之志", meaning: "아무리 힘든 역경이 닥쳐도 꺾이지 않는 단단한 의지", category: "도전·마음" },
+  { id: 475, level: 5, word: "초지일관", hanja: "初志一貫", meaning: "처음에 세운 뜻과 목표를 흔들림 없이 끝까지 밀고 나감", category: "도전·노력" },
+  { id: 476, level: 5, word: "시종일관", hanja: "始終一貫", meaning: "처음부터 끝까지 한결같은 태도와 정성으로 변함없이 밀고 나감", category: "성품·노력" },
+  { id: 477, level: 5, word: "시종여일", hanja: "始終如一", meaning: "처음부터 끝까지 변함없이 늘 한결같이 성실함", category: "성품·노력" },
+  { id: 478, level: 5, word: "지행합일", hanja: "知行合一", meaning: "아는 것에 그치지 않고 반드시 행동으로 옮겨 지식과 실천을 하나로 만듦", category: "수양·도덕" },
+  { id: 479, level: 5, word: "실사구시", hanja: "實事求是", meaning: "공허한 이론보다 실제 사실에 바탕을 두어 진리와 해답을 탐구함", category: "학문·지혜" },
+  { id: 480, level: 5, word: "이용후생", hanja: "利用厚生", meaning: "도구를 편리하게 쓰고 생활을 넉넉하게 하여 사람들의 삶을 풍요롭게 함", category: "일상·사회" },
+  { id: 481, level: 5, word: "법고창신", hanja: "法古創新", meaning: "옛것의 좋은 점을 본받아 익히되 시대에 맞게 새로운 것을 창조해 냄", category: "학문·지혜" },
+  { id: 482, level: 5, word: "수기치인", hanja: "修己治人", meaning: "먼저 자기 자신의 인격과 실력을 바르게 닦은 뒤에 남과 세상을 도움", category: "수양·도덕" },
+  { id: 483, level: 5, word: "정심성의", hanja: "正心誠意", meaning: "마음을 바르게 가지고 뜻을 참되고 정성스럽게 함", category: "수양·마음" },
+  { id: 484, level: 5, word: "수신제가", hanja: "修身齊家", meaning: "자기 몸과 마음을 바르게 닦은 뒤 집안을 화목하고 바르게 가꿈", category: "가족·수양" },
+  { id: 485, level: 5, word: "박시제중", hanja: "博施濟衆", meaning: "널리 은혜와 나눔을 베풀어 어려움에 처한 많은 사람을 도움", category: "수양·사회" },
+  { id: 486, level: 5, word: "홍익인간", hanja: "弘益人間", meaning: "널리 인간 세상을 이롭게 한다는 뜻으로 더불어 살아가는 공동체 정신", category: "수양·사회" },
+  { id: 487, level: 5, word: "경천애인", hanja: "敬天愛人", meaning: "하늘의 도리를 존중하고 모든 사람을 진심으로 사랑하고 아낌", category: "수양·도덕" },
+  { id: 488, level: 5, word: "애인여기", hanja: "愛人如己", meaning: "다른 사람을 내 몸처럼 아끼고 소중하게 존중함", category: "수양·공감" },
+  { id: 489, level: 5, word: "측은지심", hanja: "惻隱之心", meaning: "어려움에 처한 친구를 보면 가엾게 여기고 도와주고 싶어 하는 따뜻한 마음", category: "마음·공감" },
+  { id: 490, level: 5, word: "수오지심", hanja: "羞惡之心", meaning: "자기의 잘못을 부끄러워하고 옳지 못한 행동을 멀리하는 바른 마음", category: "수양·도덕" },
+  { id: 491, level: 5, word: "사양지심", hanja: "辭讓之心", meaning: "남을 배려하여 겸손하게 양보할 줄 아는 예의 바른 마음", category: "수양·예절" },
+  { id: 492, level: 5, word: "시비지심", hanja: "是非之心", meaning: "무엇이 옳고 무엇이 그른지를 분명하게 가려낼 줄 아는 지혜로운 마음", category: "수양·지혜" },
+  { id: 493, level: 5, word: "호학불권", hanja: "好學不倦", meaning: "배우는 것을 좋아하여 아무리 공부해도 지치거나 게을러지지 않음", category: "학문·노력" },
+  { id: 494, level: 5, word: "교인불권", hanja: "敎人不倦", meaning: "친구나 후배를 가르치고 도와주는 일에 늘 정성을 다하고 싫증 내지 않음", category: "학문·교육" },
+  { id: 495, level: 5, word: "선학후교", hanja: "先學後敎", meaning: "먼저 스스로 충분히 배우고 익힌 뒤에 남을 가르침", category: "학문·교육" },
+  { id: 496, level: 5, word: "일취월신", hanja: "日就月新", meaning: "날마다 나아가고 달마다 새로워져 실력이 몰라보게 향상됨", category: "학문·성장" },
+  { id: 497, level: 5, word: "자중자애", hanja: "自重自愛", meaning: "스스로 자기 몸과 마음가짐을 소중히 여기고 신중하게 행동함", category: "수양·건강" },
+  { id: 498, level: 5, word: "만전지책", hanja: "萬全之策", meaning: "조금의 허점이나 실패할 위험도 없이 아주 안전하고 완전한 계획", category: "지혜·계책" },
+  { id: 499, level: 5, word: "백년대계", hanja: "百年大計", meaning: "당장 눈앞의 이익이 아니라 백 년 앞의 먼 미래까지 내다보고 세우는 큰 계획", category: "지혜·교육" },
+  { id: 500, level: 5, word: "원려심모", hanja: "遠慮深謀", meaning: "먼 앞날까지 내다보며 깊고 신중하게 생각하여 세우는 계획", category: "지혜·처세" },
+  { id: 501, level: 5, word: "인무원려", hanja: "人無遠慮", meaning: "사람이 먼 앞날을 미리 내다보고 준비하지 않으면 가까운 근심이 생김", category: "지혜·처세" },
+  { id: 502, level: 5, word: "필유근우", hanja: "必有近憂", meaning: "미리 앞날을 대비하지 않으면 곧 눈앞에 걱정거리가 닥치게 됨", category: "지혜·처세" },
+  { id: 503, level: 5, word: "안거위사", hanja: "安居危思", meaning: "편안하게 지낼 때일수록 위기가 닥칠 때를 생각하며 미리 준비함", category: "지혜·처세" },
+  { id: 504, level: 5, word: "방미두점", hanja: "防微杜漸", meaning: "나쁜 습관이나 잘못은 아주 작을 때 미리 막아 커지지 않게 함", category: "지혜·처세" },
+  { id: 505, level: 5, word: "일실일득", hanja: "一失一得", meaning: "한 가지 손해가 있으면 다른 한 가지 얻는 것도 있음", category: "인생·지혜" },
+  { id: 506, level: 5, word: "득롱망촉", hanja: "得隴望蜀", meaning: "하나를 얻고 나면 또 더 큰 것을 탐내듯 사람의 욕심이 끝이 없음", category: "마음·반성" },
+  { id: 507, level: 5, word: "지족자부", hanja: "知足者富", meaning: "현재 자기가 가진 것에 만족할 줄 아는 사람이 진정으로 마음이 부유한 사람임", category: "수양·마음" },
+  { id: 508, level: 5, word: "소욕지족", hanja: "少欲知足", meaning: "지나친 욕심을 줄이고 작은 것에도 감사하며 만족할 줄 앎", category: "수양·마음" },
+  { id: 509, level: 5, word: "청빈낙도", hanja: "淸貧樂道", meaning: "물질에 욕심내지 않고 깨끗하고 소박하게 살면서 바른 도리를 즐김", category: "수양·마음" },
+  { id: 510, level: 5, word: "무욕청정", hanja: "無欲淸淨", meaning: "사사로운 욕심이 없어 마음이 맑고 깨끗하며 평화로움", category: "수양·마음" },
+  { id: 511, level: 5, word: "화광동진", hanja: "和光同塵", meaning: "자기의 뛰어난 재능을 자랑하지 않고 주변 친구들과 겸손하게 어울림", category: "수양·겸손" },
+  { id: 512, level: 5, word: "실수수두", hanja: "實穗垂頭", meaning: "알곡이 꽉 찬 벼 이삭일수록 고개를 숙이듯 실력이 뛰어난 사람일수록 겸손함", category: "수양·겸손" },
+  { id: 513, level: 5, word: "교자필패", hanja: "驕者必敗", meaning: "자만하고 교만한 사람은 방심하다가 결국 실패하게 됨", category: "수양·반성" },
+  { id: 514, level: 5, word: "만초손겸", hanja: "滿招損謙", meaning: "교만하여 스스로 완벽하다고 여기면 손해를 부르고 겸손하면 이익을 얻음", category: "수양·겸손" },
+  { id: 515, level: 5, word: "상선약수", hanja: "上善若水", meaning: "최고의 선은 물과 같다는 뜻으로 물처럼 모두를 이롭게 하고 다투지 않는 겸손한 자세", category: "수양·철학" },
+  { id: 516, level: 5, word: "적선지가", hanja: "積善之家", meaning: "착한 일을 꾸준히 쌓는 집안에는 반드시 기쁜 일과 복이 찾아옴", category: "가족·도덕" },
+  { id: 517, level: 5, word: "필유여경", hanja: "必有餘慶", meaning: "선행을 베풀면 자신뿐 아니라 주변과 후손에게까지 기쁜 일이 이어짐", category: "가족·도덕" },
+  { id: 518, level: 5, word: "심신단련", hanja: "心身鍛鍊", meaning: "마음과 몸을 부지런히 갈고닦아 튼튼하고 강인하게 기름", category: "인생·건강" },
+  { id: 519, level: 5, word: "박학다문", hanja: "博學多聞", meaning: "학식이 넓고 보고 들은 견문이 매우 풍부함", category: "학문·재능" },
+  { id: 520, level: 5, word: "언행신중", hanja: "言行愼重", meaning: "말 한마디와 행동 하나를 할 때도 가볍게 하지 않고 조심스럽게 함", category: "언행·태도" },
+  { id: 521, level: 5, word: "공명정직", hanja: "公明正直", meaning: "사사로운 치우침 없이 공평하고 밝으며 마음이 곧고 정직함", category: "수양·도덕" },
+  { id: 522, level: 5, word: "자주독립", hanja: "自主獨立", meaning: "남의 간섭에 흔들리지 않고 자기 일을 스스로 결정하며 당당히 일어섬", category: "성품·결단" },
+  { id: 523, level: 5, word: "상호존중", hanja: "相互尊重", meaning: "서로의 인격과 의견을 소중히 여기고 예의를 갖추어 존중함", category: "우정·예절" },
+  { id: 524, level: 5, word: "학업정진", hanja: "學業精進", meaning: "배우는 일에 온 마음을 다하여 조금도 게으름 없이 꾸준히 나아감", category: "학문·노력" },
+  { id: 525, level: 5, word: "과감결단", hanja: "果敢決斷", meaning: "망설이거나 두려워하지 않고 용기 있게 일을 결정하여 실행함", category: "도전·결단" }
+];
+
+// ==========================================================================
+// 중학생 맞춤형 한자별 음/뜻 분해, 쉬운 해설, 실생활 예문, 유래 및 상황 문제 생성기
+// ==========================================================================
+
+// 특정 사자성어에 대한 맞춤형 특별 상황·예문·유래 사전
+const SPECIAL_IDIOM_CONTEXT = {
+  "일석이조": {
+    easy: "돌 한 개를 던져서 새 두 마리를 동시에 잡는다는 뜻으로, 한 가지 일을 해서 두 가지 이득을 한꺼번에 얻을 때 써요.",
+    example: "주말에 영어 원서로 독서록 숙제도 하고 영어 독해 실력도 늘렸더니 그야말로 일석이조였다!",
+    story: "서양 속담 'Kill two birds with one stone'이 동양의 한자 문화권으로 전해지면서 만들어진 성어예요. 비슷한 말로 '일거양득(一擧兩得)'이 있어요.",
+    situation: "도서관에서 봉사활동 시간도 채우고 시험공부까지 마쳐 한 가지 일로 두 가지 이득을 얻었다."
+  },
+  "전화위복": {
+    easy: "안 좋은 일이나 실패가 오히려 계기가 되어 더 좋은 결과나 행운으로 바뀐다는 뜻이에요.",
+    example: "중간고사에서 실수로 한 문제를 틀렸지만, 오답 노트를 만든 덕분에 기말고사에서 100점을 맞아 전화위복이 되었다.",
+    story: "전국시대 연나라 재상 소진이 위기를 오히려 기회로 바꾸어 나라를 구한 고사(전국책)에서 유래했어요.",
+    situation: "버스에서 내려 길을 잘못 들었는데, 우연히 그 길에서 잃어버렸던 지갑을 다시 찾게 되었다."
+  },
+  "유비무환": {
+    easy: "미리미리 철저하게 준비해 두면 나중에 걱정하거나 당황할 일이 전혀 없다는 뜻이에요.",
+    example: "수행평가 발표 자료를 일주일 전에 미리 만들어 두었더니 유비무환이라 발표 당일에 전혀 떨리지 않았다.",
+    story: "춘추시대 진(晉)나라의 명재상 위강이 임금에게 '편안할 때일수록 위험을 대비해야 걱정이 없습니다'라고 조언한 데서 유래했어요.",
+    situation: "갑자기 소나기가 쏟아졌지만, 아침에 일기예보를 보고 가방에 우산을 챙겨 와서 비를 맞지 않았다."
+  },
+  "작심삼일": {
+    easy: "단단히 먹은 마음이 사흘(3일)을 넘기지 못하고 금방 흐지부지해지는 것을 말해요.",
+    example: "새 학기마다 매일 아침 영어 단어 30개씩 외우겠다고 다짐하지만 작심삼일이 되지 않도록 달력에 체크하고 있다.",
+    story: "사람의 결심이 사흘을 넘기기 어렵다는 옛 속담이 한자로 정착된 말로, 꾸준한 습관의 중요성을 일깨워 줘요.",
+    situation: "다이어트를 하겠다고 굳게 결심했지만, 이틀 만에 야식으로 치킨을 시켜 먹고 말았다."
+  },
+  "고진감래": {
+    easy: "쓴 것이 다 지나가면 단 것이 찾아온다는 뜻으로, 힘든 고생을 이겨 내면 반드시 즐겁고 보람찬 결과가 온다는 말이에요.",
+    example: "체육대회 줄다리기 연습으로 손바닥에 물집이 잡혔지만, 우리 반이 우승 트로피를 들어 올리니 고진감래라는 말이 실감 났다.",
+    story: "매운 고비와 쓴 약초를 견뎌낸 뒤에 달콤한 열매를 맛본다는 옛 사람들의 삶의 지혜에서 나온 말이에요.",
+    situation: "한 달 동안 매일 방과 후에 남아 힘들게 춤 연습을 한 끝에 학교 축제 무대에서 큰 박수를 받았다."
+  },
+  "동고동락": {
+    easy: "괴로운 일도 함께 견디고 즐거운 일도 함께 나누며 모든 순간을 같이한다는 뜻이에요.",
+    example: "1년 동안 같은 반에서 동고동락한 친구들과 학년 말에 롤링페이퍼를 쓰며 소중한 추억을 나누었다.",
+    story: "전쟁터에서 장수가 병사들과 추위와 배고픔, 승리의 기쁨을 똑같이 나누며 신뢰를 쌓았다는 이야기에서 유래했어요.",
+    situation: "친구가 어려운 상황에 처했을 때 외면하지 않고 끝까지 곁에서 함께 도와주며 기쁨과 슬픔을 나누었다."
+  },
+  "새옹지마": {
+    easy: "인생에서 좋은 일과 나쁜 일은 언제 어떻게 바뀔지 모르니, 눈앞의 결과에 너무 자만하거나 좌절하지 말라는 뜻이에요.",
+    example: "동아리 오디션에 떨어져 슬펐는데 덕분에 더 잘 맞는 밴드부에 들어가게 되었으니 인생은 참 새옹지마 같다.",
+    story: "북쪽 변방(塞)에 사는 노인(翁)의 말(馬)이 도망갔다가 준마를 데려오고, 아들이 말에서 떨어져 다리가 부러졌으나 그 덕분에 전쟁에 끌려가지 않아 목숨을 구했다는《회남자》의 이야기예요.",
+    situation: "경품 추첨에서 아쉽게 탈락해 속상했는데, 대신 참가상으로 받은 복권이 1등에 당첨되었다."
+  },
+  "금상첨화": {
+    easy: "아름다운 비단 위에 예쁜 꽃까지 더한다는 뜻으로, 좋은 일에 또 좋은 일이 겹쳐서 더욱 완벽할 때 써요.",
+    example: "시험이 끝나 기분이 최고인데 급식에 내가 가장 좋아하는 메뉴까지 나오니 금상첨화였다!",
+    story: "송나라 시인 왕안석의 시에서 비단(錦) 위에 꽃(花)을 수놓듯 좋은 것에 아름다움을 더한다는 표현에서 유래했어요.",
+    situation: "생일 선물로 갖고 싶던 운동화를 받아서 기쁜데, 용돈까지 듬뿍 받게 되어 기쁨이 두 배가 되었다."
+  },
+  "과유불급": {
+    easy: "정도가 지나친 것은 오히려 모자란 것만큼이나 좋지 않으니, 무엇이든 적당하고 균형 잡힌 것이 중요하다는 뜻이에요.",
+    example: "시험 전날 무리해서 밤을 새우면 정작 시험 시간에 졸게 되니, 공부도 수면도 과유불급을 기억해야 한다.",
+    story: "《논어》에서 공자가 제자 자장과 자하 중 누가 더 나은지 묻는 질문에 '지나친 것(過)은 미치지 못한 것(不及)과 같다'고 답한 데서 유래했어요.",
+    situation: "건강에 좋다는 비타민도 하루 권장량을 넘어 너무 많이 먹으면 오히려 몸에 해로울 수 있다."
+  },
+  "역지사지": {
+    easy: "내 입장과 상대방의 입장을 서로 바꾸어 놓고 상대방의 마음을 헤아려 생각해 보라는 뜻이에요.",
+    example: "모둠 과제에서 친구와 의견이 다를 때 역지사지의 자세로 친구의 이야기를 끝까지 들어 주었다.",
+    story: "《맹자》에서 태평성대를 이룬 우임금과 후직, 안회가 서로 처지(地)를 바꾸어(易) 놓아도 똑같이 어질게 행동했을 것이라는 말씀에서 나왔어요.",
+    situation: "내 말에 상처받았을 친구의 입장이 되어 내가 만약 그 말을 들었다면 어땠을지 진지하게 생각해 보았다."
+  },
+  "우공이산": {
+    easy: "남들이 보기엔 불가능해 보이는 큰일이라도 포기하지 않고 끝까지 노력하면 마침내 이룰 수 있다는 뜻이에요.",
+    example: "처음엔 수학 기초가 부족했지만 매일 다섯 문제씩 꾸준히 풀었더니 우공이산처럼 성적이 크게 올랐다.",
+    story: "《열자》에 나오는 90세 노인 우공(愚公)이 집 앞을 가로막은 거대한 두 산을 자손 대대로 흙을 파서 옮기려 하자, 하늘의 신이 감동해 산을 옮겨 주었다는 고사예요.",
+    situation: "모두가 무리라고 했지만 매일 조금씩 코딩을 독학하여 마침내 나만의 스마트폰 앱을 완성해 냈다."
+  },
+  "대기만성": {
+    easy: "큰 그릇은 만드는 데 오랜 시간이 걸리듯, 크게 될 사람은 남보다 조금 늦더라도 오랜 노력을 거쳐 훌륭하게 성공한다는 뜻이에요.",
+    example: "지금 당장 결과가 눈에 보이지 않아도 대기만성을 믿고 나의 꿈을 향해 차근차근 실력을 쌓고 있다.",
+    story: "《노자》도덕경에서 '큰 네모는 모서리가 없고, 큰 그릇(大器)은 늦게 이루어진다(晩成)'고 한 말에서 유래했어요.",
+    situation: "초반에는 성적이 빨리 오르지 않아 조급했지만, 포기하지 않고 기초를 다져 3학년 때 전교 상위권에 올랐다."
+  },
+  "자업자득": {
+    easy: "자기가 저지른 일의 결과를 자기 스스로 돌려받는다는 뜻으로, 주로 좋지 않은 행동의 결과를 겪을 때 써요.",
+    example: "숙제를 미루고 게임만 하다가 주말 내내 책상 앞에 앉아 있게 된 것은 순전히 나의 자업자득이다.",
+    story: "불교 경전에서 자신이 지은 업(業)에 따라 스스로 그 과보를 얻는다(得)고 가르친 데서 널리 쓰이게 되었어요.",
+    situation: "평소에 친구들에게 거짓말을 자주 하더니, 정작 중요한 순간에 아무도 그 친구의 말을 믿어 주지 않았다."
+  },
+  "다다익선": {
+    easy: "많으면 많을수록 더욱 좋다는 뜻이에요.",
+    example: "학교 플리마켓 행사에 기부할 학용품과 도서는 다다익선이니 많은 학생의 참여를 바랍니다.",
+    story: "한나라 명장 한신이 유방에게 '장군으로서 병사를 거느리는 것은 다다익선(많을수록 더욱 좋다)'이라고 답한《사기》의 고사에서 유래했어요.",
+    situation: "캠핑 가서 쓸 건전지와 생수는 비상시를 대비해 많으면 많을수록 더 좋다."
+  },
+  "백문불여일견": {
+    easy: "백 번 말로만 듣는 것보다 직접 눈으로 한 번 보는 것이 훨씬 더 확실하고 이해하기 쉽다는 뜻이에요.",
+    example: "과학 책으로만 읽던 현미경 세포 구조를 실험실에서 직접 관찰해 보니 역시 백문불여일견이었다!",
+    story: "한나라 장군 조충국이 전쟁터의 상황을 설명하며 '백 번 듣는 것이 한 번 직접 보는 것만 못하다'고 말한《한서》의 기록에서 유래했어요.",
+    situation: "수영하는 법을 말로만 백 번 설명 듣는 것보다 직접 물에 들어가 한 번 배워 보는 것이 훨씬 빠르다."
+  },
+  "우왕좌왕": {
+    easy: "오른쪽으로 갔다 왼쪽으로 갔다 하며 어떻게 해야 할지 몰라 당황해서 이리저리 헤매는 모습이에요.",
+    example: "갑자기 화재 대피 훈련 사이렌이 울렸지만, 미리 대피 경로를 배워 둔 덕분에 우왕좌왕하지 않고 운동장으로 모였다.",
+    story: "방향을 정하지 못하고 오른쪽(右)과 왼쪽(左)으로 왔다 갔다(往)하며 갈피를 못 잡는 모습을 생생하게 묘사한 성어예요.",
+    situation: "낯선 지하철역에서 출구를 찾지 못해 이리저리 당황하며 헤매고 다녔다."
+  },
+  "설상가상": {
+    easy: "눈이 내린 위에 서리까지 덮인다는 뜻으로, 어려운 일이나 불행이 엎친 데 덮친 격으로 연달아 일어날 때 써요.",
+    example: "늦잠을 자서 지각할 위기인데 설상가상으로 자전거 타이어에 펑크까지 났다.",
+    story: "추운 겨울 눈(雪) 위에 차가운 서리(霜)가 더해진다(加)는 송나라 시문에서 유래한 말이에요.",
+    situation: "비에 젖어 감기에 걸렸는데, 집에 오는 길에 휴대폰까지 떨어뜨려 액정이 깨지고 말았다."
+  }
+};
+
+// 한자 4글자와 한글 4글자를 결합하여 글자별 [한자, 음, 훈(뜻)] 배열 반환
+function getCharBreakdown(idiom) {
+  const chars = [];
+  const hLen = idiom.hanja.length;
+  const wLen = idiom.word.length;
+  for (let i = 0; i < hLen; i++) {
+    const hChar = idiom.hanja[i];
+    const sound = i < wLen ? idiom.word[i] : "";
+    const hun = HANJA_HUN_MAP[hChar] || "뜻";
+    chars.push({
+      hanja: hChar,
+      sound: sound,
+      hun: hun,
+      fullLabel: `${hun} ${sound}`
+    });
+  }
+  return chars;
+}
+
+// 사자성어의 중학생 맞춤형 학습 카드 데이터(쉬운 설명, 예문, 유래, 상황 문제) 생성
+function getEnrichedIdiom(idiom) {
+  const breakdown = getCharBreakdown(idiom);
+  const literalMeaning = breakdown.map(c => `'${c.hun}(${c.hanja})'`).join(" + ");
+  const special = SPECIAL_IDIOM_CONTEXT[idiom.word];
+
+  if (special) {
+    return {
+      ...idiom,
+      breakdown,
+      easyExplanation: special.easy,
+      exampleSentence: special.example,
+      originStory: special.story,
+      situationPrompt: special.situation
+    };
+  }
+
+  // 카테고리별 자연스러운 중학생 맞춤 예문 및 유래 생성
+  let example = "";
+  let situation = "";
+  const cat = idiom.category || "";
+
+  if (cat.includes("학문") || cat.includes("노력") || cat.includes("성장") || cat.includes("희망")) {
+    example = `기말고사 목표를 세우고 '${idiom.word}(${idiom.hanja})'의 자세로 꾸준히 실천한 끝에 성적이 크게 올랐다.`;
+    situation = `학교생활에서 '${idiom.meaning}'의 자세로 포기하지 않고 목표를 향해 정진하는 상황.`;
+  } else if (cat.includes("우정") || cat.includes("관계") || cat.includes("협력") || cat.includes("공감")) {
+    example = `모둠 프로젝트를 함께 해결하면서 친구들과 '${idiom.word}(${idiom.hanja})'의 소중한 의미를 깊이 깨달았다.`;
+    situation = `친구들과의 관계에서 '${idiom.meaning}'에 어울리는 모습을 보여 준 상황.`;
+  } else if (cat.includes("언행") || cat.includes("대화") || cat.includes("태도") || cat.includes("반성")) {
+    example = `국어 시간 토론 수업에서 '${idiom.word}(${idiom.hanja})'이라는 성어를 인용해 내 주장을 설득력 있게 발표했다.`;
+    situation = `일상 대화나 행동 중에 '${idiom.meaning}'의 모습이 나타난 상황.`;
+  } else if (cat.includes("위기") || cat.includes("곤경") || cat.includes("상황")) {
+    example = `동아리 대회 준비 중 예상치 못한 문제가 생겨 '${idiom.word}(${idiom.hanja})'의 상황에 놓였지만 침착하게 해결했다.`;
+    situation = `예상치 못한 일이 벌어져 '${idiom.meaning}'에 처하게 된 상황.`;
+  } else if (cat.includes("가족") || cat.includes("효도") || cat.includes("사랑")) {
+    example = `가족들과 주말 저녁을 함께하며 '${idiom.word}(${idiom.hanja})'의 따뜻한 가르침을 다시금 되새겼다.`;
+    situation = `가정이나 가족 사이에서 '${idiom.meaning}'의 마음이 잘 드러난 상황.`;
+  } else {
+    example = `오늘 역사 책에서 배운 '${idiom.word}(${idiom.hanja})'의 뜻을 떠올리며 일기장에 내 생각을 정리해 보았다.`;
+    situation = `일상생활이나 학교에서 '${idiom.meaning}'이라고 표현하기에 가장 알맞은 상황.`;
+  }
+
+  const easyExp = `한자 글자 그대로 풀면 ${literalMeaning}의 결합으로, 쉽게 말해 "${idiom.meaning}"라는 뜻이에요.`;
+  const storyExp = `${breakdown.map(c => `${c.hanja}(${c.hun} ${c.sound})`).join("·")} 네 글자가 합쳐진 성어로, 옛 선현들의 지혜와 역사 이야기 속에서 유래하여 오늘날 [${idiom.category}] 분야의 핵심 표현으로 널리 쓰여요.`;
+
+  return {
+    ...idiom,
+    breakdown,
+    easyExplanation: easyExp,
+    exampleSentence: example,
+    originStory: storyExp,
+    situationPrompt: situation
+  };
+}
+
+</script>
+  <script>
+/**
+ * 사자성어 마스터! - 중학교 1~3학년 인터랙티브 사자성어 학습 게임 엔진 (app.js)
+ * - 525개 사자성어 + 838개 한자 훈·음 분해 데이터 연동
+ * - LEVEL 1 ~ LEVEL 5 잠금 해제 및 별(★) 획득 시스템
+ * - STEP 1(학습하기), STEP 2(객관식 퀴즈), STEP 3(한자 빈칸 타임어택), STEP 4(상황별 찾기), STEP 5(최종 도전 10문항)
+ * - 점수(기본 10점 + 연속 콤보 보너스 + 제한 시간 스피드 보너스) 및 칭호(새싹~마스터) 시스템
+ * - 오늘의 사자성어, 틀린 문제 다시 풀기, 학습한 사자성어 모아보기, 실시간 뜻·해설 찬스 모달
+ */
+
+(function () {
+  "use strict";
+
+  // ==========================================================================
+  // 1. 레벨 정의 및 칭호 기준
+  // ==========================================================================
+  const LEVEL_CONFIGS = [
+    {
+      level: 1,
+      title: "LEVEL 1: 기초 사자성어",
+      subtitle: "중학생이라면 꼭 알아야 할 필수 기초 성어 105선",
+      icon: "🌱",
+      passScore: 60
+    },
+    {
+      level: 2,
+      title: "LEVEL 2: 일상생활 사자성어",
+      subtitle: "대화, 감정, 친구 관계에서 자주 쓰는 성어 105선",
+      icon: "🧭",
+      passScore: 60
+    },
+    {
+      level: 3,
+      title: "LEVEL 3: 학교·교과 사자성어",
+      subtitle: "국어·역사·도덕 교과서와 시험에 자주 나오는 성어 105선",
+      icon: "🏫",
+      passScore: 60
+    },
+    {
+      level: 4,
+      title: "LEVEL 4: 고난도 사자성어",
+      subtitle: "어휘력과 문해력을 한 단계 높여 주는 심화 성어 105선",
+      icon: "⚔️",
+      passScore: 60
+    },
+    {
+      level: 5,
+      title: "LEVEL 5: 사자성어 마스터 도전",
+      subtitle: "최고 난이도 성어와 종합 응용력을 겨루는 마스터 코스 105선",
+      icon: "👑",
+      passScore: 70
+    }
+  ];
+
+  // 점수 구간별 칭호 부여 (프롬프트 기준 반영)
+  function getTitleByScore(score) {
+    if (score >= 91) return { icon: "👑", name: "사자성어 마스터", grade: "S등급", min: 91 };
+    if (score >= 71) return { icon: "🔥", name: "사자성어 고수", grade: "A등급", min: 71 };
+    if (score >= 51) return { icon: "⚔️", name: "사자성어 도전자", grade: "B등급", min: 51 };
+    if (score >= 31) return { icon: "🧭", name: "사자성어 탐험가", grade: "C등급", min: 31 };
+    return { icon: "🌱", name: "사자성어 새싹", grade: "D등급", min: 0 };
+  }
+
+  // ==========================================================================
+  // 2. 상태 관리 및 LocalStorage 연동
+  // ==========================================================================
+  const STORAGE_KEY = "middle_idiom_master_save_v1";
+  const PUBLIC_GAME_URL = "https://litter.catbox.moe/jgu9ed.html";
+
+  const state = {
+    currentView: "start", // 'start' | 'play' | 'result'
+    currentLevel: 1,
+    unlockedLevel: 1,
+    levelStars: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }, // 각 레벨별 별 0~3개
+    levelBestScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+
+    totalScore: 0,
+    bestSingleScore: 0,
+    totalAnswered: 0,
+    totalCorrect: 0,
+
+    learnedIds: new Set(),
+    wrongNotes: {}, // { [id]: { count: number, updatedAt: string } }
+    soundEnabled: true,
+
+    todayIdiom: null,
+
+    // 현재 플레이 중인 STEP 세션
+    session: {
+      step: 1,            // 1 ~ 5
+      isWrongRetry: false,
+      items: [],          // STEP 1 학습용 아이템 배열 (10개)
+      questions: [],      // STEP 2~5 문제 배열 (10개)
+      currentIndex: 0,
+      stepScore: 0,
+      correctCount: 0,
+      combo: 0,
+      maxCombo: 0,
+      answered: false,
+      wrongIdsThisRound: [],
+      // STEP 3 빈칸 타이머 상태
+      timerId: null,
+      timeLeft: 15.0,
+      maxTime: 15.0
+    },
+
+    // 도감 모달 필터 상태
+    collectionFilter: "all",
+    collectionSearch: ""
+  };
+
+  function loadSaveData() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data.unlockedLevel) state.unlockedLevel = data.unlockedLevel;
+      if (data.currentLevel) state.currentLevel = Math.min(data.currentLevel, state.unlockedLevel);
+      if (data.levelStars) state.levelStars = { ...state.levelStars, ...data.levelStars };
+      if (data.levelBestScores) state.levelBestScores = { ...state.levelBestScores, ...data.levelBestScores };
+      if (typeof data.totalScore === "number") state.totalScore = data.totalScore;
+      if (typeof data.bestSingleScore === "number") state.bestSingleScore = data.bestSingleScore;
+      if (typeof data.totalAnswered === "number") state.totalAnswered = data.totalAnswered;
+      if (typeof data.totalCorrect === "number") state.totalCorrect = data.totalCorrect;
+      if (Array.isArray(data.learnedIds)) state.learnedIds = new Set(data.learnedIds);
+      if (data.wrongNotes) state.wrongNotes = data.wrongNotes;
+      if (typeof data.soundEnabled === "boolean") state.soundEnabled = data.soundEnabled;
+    } catch (e) {
+      console.warn("저장 데이터 로드 오류:", e);
+    }
+  }
+
+  function saveGameData() {
+    try {
+      const payload = {
+        unlockedLevel: state.unlockedLevel,
+        currentLevel: state.currentLevel,
+        levelStars: state.levelStars,
+        levelBestScores: state.levelBestScores,
+        totalScore: state.totalScore,
+        bestSingleScore: state.bestSingleScore,
+        totalAnswered: state.totalAnswered,
+        totalCorrect: state.totalCorrect,
+        learnedIds: [...state.learnedIds],
+        wrongNotes: state.wrongNotes,
+        soundEnabled: state.soundEnabled
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    } catch (e) {}
+    updateHUD();
+  }
+
+  // ==========================================================================
+  // 3. Web Audio API 아케이드 효과음 엔진
+  // ==========================================================================
+  let audioCtx = null;
+  function getAudioCtx() {
+    if (!audioCtx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (Ctx) audioCtx = new Ctx();
+    }
+    if (audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume().catch(() => {});
+    }
+    return audioCtx;
+  }
+
+  const Sound = {
+    click() {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(580, now);
+      osc.frequency.exponentialRampToValueAtTime(760, now + 0.04);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.05);
+    },
+    correct(combo = 1) {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const baseNotes = [523.25, 659.25, 783.99, 1046.5];
+      const pitchShift = Math.min(1.25, 1 + (combo - 1) * 0.04);
+      const now = ctx.currentTime;
+      baseNotes.forEach((f, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const t = now + i * 0.07;
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(f * pitchShift, t);
+        gain.gain.setValueAtTime(0.001, t);
+        gain.gain.linearRampToValueAtTime(0.2, t + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.24);
+      });
+    },
+    wrong() {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const notes = [300, 235];
+      const now = ctx.currentTime;
+      notes.forEach((f, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const t = now + i * 0.14;
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(f, t);
+        gain.gain.setValueAtTime(0.001, t);
+        gain.gain.linearRampToValueAtTime(0.13, t + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.24);
+      });
+    },
+    fanfare() {
+      if (!state.soundEnabled) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+      const now = ctx.currentTime;
+      notes.forEach((f, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const t = now + i * 0.1;
+        const dur = i === notes.length - 1 ? 0.45 : 0.18;
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(f, t);
+        gain.gain.setValueAtTime(0.001, t);
+        gain.gain.linearRampToValueAtTime(0.22, t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + dur + 0.02);
+      });
+    }
+  };
+
+  function speakIdiom(idiom) {
+    if (!("speechSynthesis" in window)) {
+      showToast("이 브라우저에서는 음성 읽기를 지원하지 않아요.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(`${idiom.word}. ${idiom.meaning}`);
+    u.lang = "ko-KR";
+    u.rate = 0.96;
+    window.speechSynthesis.speak(u);
+    showToast(`🔊 [${idiom.word}] 발음과 뜻을 읽어 드려요!`);
+  }
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  let toastTimeout = null;
+  function showToast(msg) {
+    const el = document.getElementById("toastMessage");
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove("hidden");
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => el.classList.add("hidden"), 2500);
+  }
+
+  // ==========================================================================
+  // 4. 상단 HUD 및 시작 화면 렌더링
+  // ==========================================================================
+  function updateHUD() {
+    const titleObj = getTitleByScore(state.bestSingleScore);
+    document.getElementById("hudRankBadge").textContent = `${titleObj.icon} ${titleObj.name}`;
+    document.getElementById("hudLevelText").textContent = state.currentLevel;
+    document.getElementById("hudScoreText").textContent = state.totalScore.toLocaleString();
+
+    const totalStars = Object.values(state.levelStars).reduce((a, b) => a + b, 0);
+    document.getElementById("hudStarsText").textContent = `${totalStars} / 15`;
+    document.getElementById("hudLearnedCount").textContent = state.learnedIds.size;
+
+    const wrongCount = Object.keys(state.wrongNotes).length;
+    const startWrongEl = document.getElementById("startWrongCount");
+    if (startWrongEl) startWrongEl.textContent = wrongCount;
+
+    const soundBtn = document.getElementById("soundToggleBtn");
+    const soundIcon = document.getElementById("soundIcon");
+    if (soundBtn && soundIcon) {
+      soundBtn.classList.toggle("active", state.soundEnabled);
+      soundIcon.textContent = state.soundEnabled ? "🔊" : "🔇";
+    }
+  }
+
+  function renderTodayIdiom() {
+    const raw = IDIOMS_DATA[Math.floor(Math.random() * IDIOMS_DATA.length)];
+    const enriched = getEnrichedIdiom(raw);
+    state.todayIdiom = enriched;
+
+    document.getElementById("todayHanja").textContent = enriched.hanja;
+    document.getElementById("todayWord").textContent = enriched.word;
+    document.getElementById("todayLevelTag").textContent = `LEVEL ${enriched.level}`;
+    document.getElementById("todayMeaning").textContent = enriched.meaning;
+    document.getElementById("todayExample").textContent = `💬 예문: ${enriched.exampleSentence}`;
+  }
+
+  function renderLevelSelectGrid() {
+    const grid = document.getElementById("levelGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+
+    LEVEL_CONFIGS.forEach((cfg) => {
+      const isUnlocked = cfg.level <= state.unlockedLevel;
+      const isCurrent = cfg.level === state.currentLevel;
+      const stars = state.levelStars[cfg.level] || 0;
+      const best = state.levelBestScores[cfg.level] || 0;
+      const starStr = "⭐".repeat(stars) + "☆".repeat(3 - stars);
+
+      const card = document.createElement("div");
+      card.className = `level-card ${isUnlocked ? "unlocked" : "locked"} ${isCurrent ? "current-level" : ""}`;
+
+      card.innerHTML = `
+        <div>
+          <div class="lv-top">
+            <span class="lv-badge">${cfg.icon} LEVEL ${cfg.level}</span>
+            <span class="lv-stars" title="획득한 별">${starStr}</span>
+          </div>
+          <h4 class="lv-title">${cfg.title.replace(/^LEVEL \d+:\s*/, "")}</h4>
+          <p class="lv-desc">${cfg.subtitle}</p>
+        </div>
+        <div>
+          <p class="lv-count-tag">최고 기록: ${best}점 (통과 기준: ${cfg.passScore}점)</p>
+          <button type="button" class="lv-play-btn" ${!isUnlocked ? "disabled" : ""}>
+            ${isUnlocked ? (isCurrent ? "🚀 이 레벨 플레이" : "⚡ 선택하고 시작") : "🔒 이전 레벨 통과 시 열림"}
+          </button>
+        </div>
+      `;
+
+      if (isUnlocked) {
+        card.querySelector(".lv-play-btn").addEventListener("click", () => {
+          Sound.click();
+          state.currentLevel = cfg.level;
+          saveGameData();
+          enterLevelPlay(cfg.level, 1);
+        });
+      }
+
+      grid.appendChild(card);
+    });
+  }
+
+  // ==========================================================================
+  // 5. 뷰 전환 및 STEP 1 ~ STEP 5 진입 엔진
+  // ==========================================================================
+  function switchView(viewName) {
+    stopBlankTimer();
+    state.currentView = viewName;
+    document.querySelectorAll(".game-view").forEach((v) => {
+      v.classList.toggle("active", v.id === `view-${viewName}`);
+    });
+    if (viewName === "start") {
+      renderLevelSelectGrid();
+      updateHUD();
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function getLevelPool(level) {
+    const pool = IDIOMS_DATA.filter((it) => it.level === level);
+    return pool.length > 0 ? pool : IDIOMS_DATA;
+  }
+
+  function enterLevelPlay(level, step = 1, isWrongRetry = false) {
+    stopBlankTimer();
+    state.currentLevel = level;
+    const cfg = LEVEL_CONFIGS.find((c) => c.level === level) || LEVEL_CONFIGS[0];
+
+    document.getElementById("playLevelBanner").textContent = isWrongRetry
+      ? "📝 틀린 문제 집중 복습 모드"
+      : `${cfg.icon} ${cfg.title}`;
+
+    switchView("play");
+    startStep(step, isWrongRetry);
+  }
+
+  function startStep(stepNum, isWrongRetry = false) {
+    stopBlankTimer();
+
+    // 탭 활성화 표시
+    document.querySelectorAll("#stepTabs .step-tab").forEach((btn) => {
+      btn.classList.toggle("active", Number(btn.dataset.step) === stepNum);
+    });
+
+    // 서브 뷰 전환
+    document.getElementById("step-view-1").classList.toggle("hidden", stepNum !== 1);
+    document.getElementById("step-view-blank").classList.toggle("hidden", stepNum !== 3);
+    document.getElementById("step-view-quiz").classList.toggle("hidden", stepNum === 1 || stepNum === 3);
+
+    // 출제 풀 준비
+    let pool = [];
+    if (isWrongRetry) {
+      const wrongIds = Object.keys(state.wrongNotes).map(Number);
+      pool = IDIOMS_DATA.filter((it) => wrongIds.includes(it.id));
+      if (pool.length === 0) {
+        showToast("🎉 틀린 문제가 없습니다! 일반 레벨 퀴즈로 시작합니다.");
+        isWrongRetry = false;
+        pool = getLevelPool(state.currentLevel);
+      }
+    } else if (stepNum === 5) {
+      // STEP 5 최종 도전 퀴즈: 현재 레벨 70% + 다른 난이도 30% 혼합하여 난이도별 10문제 출제
+      const lvPool = shuffle(getLevelPool(state.currentLevel));
+      const otherPool = shuffle(IDIOMS_DATA.filter((it) => it.level <= state.currentLevel));
+      pool = [...lvPool.slice(0, 7), ...otherPool.slice(0, 10)];
+    } else {
+      pool = getLevelPool(state.currentLevel);
+    }
+
+    const picked = shuffle(pool).slice(0, 10).map((it) => getEnrichedIdiom(it));
+
+    state.session = {
+      step: stepNum,
+      isWrongRetry,
+      items: picked,
+      questions: [],
+      currentIndex: 0,
+      stepScore: 0,
+      correctCount: 0,
+      combo: 0,
+      maxCombo: 0,
+      answered: false,
+      wrongIdsThisRound: [],
+      timerId: null,
+      timeLeft: 15.0,
+      maxTime: 15.0
+    };
+
+    if (stepNum === 1) {
+      renderStudyStepCard();
+    } else if (stepNum === 3) {
+      state.session.questions = buildBlankQuestions(picked);
+      renderBlankQuestion();
+    } else {
+      state.session.questions = buildMultipleChoiceQuestions(picked, stepNum);
+      renderQuizQuestion();
+    }
+  }
+
+  function updateStepProgressUI() {
+    const s = state.session;
+    const total = s.step === 1 ? s.items.length : s.questions.length;
+    const current = s.currentIndex + 1;
+    const pct = total > 0 ? Math.round((current / total) * 100) : 0;
+
+    const stepNames = {
+      1: "STEP 1 · 사자성어 학습하기",
+      2: "STEP 2 · 객관식 퀴즈",
+      3: "STEP 3 · 한자 빈칸 타임어택",
+      4: "STEP 4 · 상황별 사자성어 찾기",
+      5: "STEP 5 · 최종 마스터 도전 퀴즈"
+    };
+
+    document.getElementById("progressStepLabel").textContent =
+      `${stepNames[s.step]} (${current} / ${total})`;
+    document.getElementById("stepScoreText").textContent = s.stepScore;
+    document.getElementById("stepProgressBar").style.width = `${pct}%`;
+
+    const comboBadge = document.getElementById("comboBadge");
+    if (s.combo >= 2) {
+      comboBadge.textContent = `🔥 ${s.combo}연속 정답! (+${Math.min(10, s.combo * 2)}점 보너스)`;
+      comboBadge.classList.remove("hidden");
+    } else {
+      comboBadge.classList.add("hidden");
+    }
+  }
+
+  // ==========================================================================
+  // 6. STEP 1: 사자성어 학습하기 (한자별 훈음 분해 + 쉬운 설명 + 예문 + 유래)
+  // ==========================================================================
+  function renderStudyStepCard() {
+    updateStepProgressUI();
+    const s = state.session;
+    const item = s.items[s.currentIndex];
+    if (!item) return;
+
+    // 학습 카드를 본 사자성어는 자동으로 학습 완료 도감에 등록
+    state.learnedIds.add(item.id);
+    saveGameData();
+
+    document.getElementById("studyCategoryChip").textContent = `LEVEL ${item.level} · ${item.category}`;
+    document.getElementById("studyWord").textContent = item.word;
+    document.getElementById("studyHanja").textContent = item.hanja;
+
+    // 한자 4글자 분해 카드
+    const grid = document.getElementById("studyBreakdownGrid");
+    grid.innerHTML = "";
+    item.breakdown.forEach((b) => {
+      const box = document.createElement("div");
+      box.className = "hanja-char-card";
+      box.innerHTML = `
+        <span class="hc-char">${b.hanja}</span>
+        <span class="hc-hun-sound">${b.hun} <strong>${b.sound}</strong></span>
+      `;
+      grid.appendChild(box);
+    });
+
+    document.getElementById("studyMeaning").textContent = item.meaning;
+    document.getElementById("studyEasyExp").textContent = item.easyExplanation;
+    document.getElementById("studyExample").textContent = item.exampleSentence;
+    document.getElementById("studyStory").textContent = item.originStory;
+
+    const bookmarkBtn = document.getElementById("studyBookmarkBtn");
+    bookmarkBtn.classList.toggle("active", state.learnedIds.has(item.id));
+    bookmarkBtn.textContent = "⭐ 학습 완료됨";
+
+    const prevBtn = document.getElementById("prevStudyCardBtn");
+    prevBtn.disabled = s.currentIndex === 0;
+
+    const nextBtn = document.getElementById("nextStudyCardBtn");
+    nextBtn.textContent =
+      s.currentIndex + 1 >= s.items.length
+        ? "🎯 STEP 2 객관식 퀴즈로 이동 ➡️"
+        : "다음 사자성어 ➡️";
+  }
+
+  // ==========================================================================
+  // 7. STEP 2, 4, 5: 객관식 퀴즈 / 상황별 사자성어 찾기 / 최종 도전 퀴즈
+  // ==========================================================================
+  function buildMultipleChoiceQuestions(items, stepNum) {
+    return items.map((target, idx) => {
+      let qMode = "word_to_meaning";
+      if (stepNum === 2) {
+        // STEP 2: 뜻 묻기, 사자성어 맞히기, 상황 맞히기 골고루 출제
+        const modes = ["word_to_meaning", "meaning_to_word", "situation_to_word"];
+        qMode = modes[idx % 3];
+      } else if (stepNum === 4) {
+        // STEP 4: 100% 일상·학교생활 상황별 사자성어 찾기
+        qMode = "situation_to_word";
+      } else if (stepNum === 5) {
+        // STEP 5: 최종 도전 10문항 (난이도별 종합 출제)
+        const modes = ["word_to_meaning", "meaning_to_word", "situation_to_word", "example_blank"];
+        qMode = modes[idx % 4];
+      }
+
+      const distractors = shuffle(
+        IDIOMS_DATA.filter((it) => it.id !== target.id)
+      ).slice(0, 3).map((it) => getEnrichedIdiom(it));
+
+      const choices = shuffle([target, ...distractors]);
+
+      return {
+        target,
+        qMode,
+        choices
+      };
+    });
+  }
+
+  function renderQuizQuestion() {
+    updateStepProgressUI();
+    const s = state.session;
+    const q = s.questions[s.currentIndex];
+    if (!q) return;
+
+    s.answered = false;
+    const t = q.target;
+
+    const typeChip = document.getElementById("qTypeChip");
+    const instruction = document.getElementById("qInstruction");
+    const mainPrompt = document.getElementById("qMainPrompt");
+    const subPrompt = document.getElementById("qSubPrompt");
+    const charHint = document.getElementById("qCharHint");
+
+    const breakdownText = t.breakdown.map((b) => `${b.hanja}(${b.hun} ${b.sound})`).join(" · ");
+
+    if (q.qMode === "word_to_meaning") {
+      typeChip.textContent = "📜 사자성어 뜻 맞히기";
+      instruction.textContent = "다음 사자성어의 알맞은 뜻은 무엇일까요?";
+      mainPrompt.className = "q-main-prompt";
+      mainPrompt.textContent = `${t.word} (${t.hanja})`;
+      subPrompt.textContent = `분류: ${t.category}`;
+      charHint.textContent = `💡 한자 풀이: ${breakdownText}`;
+    } else if (q.qMode === "meaning_to_word") {
+      typeChip.textContent = "💡 뜻 보고 사자성어 맞히기";
+      instruction.textContent = "다음 뜻풀이에 해당하는 알맞은 사자성어를 고르세요!";
+      mainPrompt.className = "q-main-prompt text-prompt";
+      mainPrompt.textContent = `“${t.meaning}”`;
+      subPrompt.textContent = `힌트 분류: ${t.category}`;
+      charHint.textContent = `💡 첫 글자 힌트: '${t.breakdown[0].hun} ${t.breakdown[0].sound}(${t.breakdown[0].hanja})'(으)로 시작해요.`;
+    } else if (q.qMode === "situation_to_word") {
+      typeChip.textContent = "🏫 상황별 사자성어 찾기";
+      instruction.textContent = "다음 일상·학교생활 상황에 가장 어울리는 사자성어는 무엇일까요?";
+      mainPrompt.className = "q-main-prompt text-prompt";
+      mainPrompt.textContent = `“${t.situationPrompt}”`;
+      subPrompt.textContent = `상황 주제: ${t.category}`;
+      charHint.textContent = `💡 상황에 담긴 핵심 의미: ${t.meaning}`;
+    } else {
+      // example_blank (예문 빈칸 추론)
+      typeChip.textContent = "👑 실전 예문 빈칸 완성";
+      instruction.textContent = "다음 문장의 빈칸 ( ㉠ )에 들어갈 가장 적절한 사자성어는?";
+      const maskedExample = t.exampleSentence
+        .replace(new RegExp(`${t.word}\\(${t.hanja}\\)`, "g"), "( ㉠ )")
+        .replace(new RegExp(t.word, "g"), "( ㉠ )");
+      mainPrompt.className = "q-main-prompt text-prompt";
+      mainPrompt.textContent = `“${maskedExample}”`;
+      subPrompt.textContent = `문맥 힌트: ${t.meaning}`;
+      charHint.textContent = "";
+    }
+
+    const choicesGrid = document.getElementById("quizChoicesGrid");
+    choicesGrid.innerHTML = "";
+
+    const circleNums = ["①", "②", "③", "④"];
+    q.choices.forEach((ch, idx) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quiz-choice-btn";
+      btn.dataset.id = ch.id;
+
+      const labelHtml =
+        q.qMode === "word_to_meaning"
+          ? `<span>${ch.meaning}</span>`
+          : `<span><strong>${ch.word}</strong> (${ch.hanja})</span>`;
+
+      btn.innerHTML = `
+        <span class="choice-index">${circleNums[idx] || idx + 1}</span>
+        ${labelHtml}
+      `;
+
+      btn.addEventListener("click", () => handleQuizChoice(ch));
+      choicesGrid.appendChild(btn);
+    });
+
+    document.getElementById("quizFeedbackBox").classList.add("hidden");
+  }
+
+  function handleQuizChoice(selected) {
+    const s = state.session;
+    if (s.answered) return;
+    s.answered = true;
+
+    const q = s.questions[s.currentIndex];
+    const target = q.target;
+    const isCorrect = selected.id === target.id;
+
+    state.totalAnswered += 1;
+    state.learnedIds.add(target.id);
+
+    const buttons = document.querySelectorAll("#quizChoicesGrid .quiz-choice-btn");
+    buttons.forEach((btn) => {
+      btn.disabled = true;
+      const cid = Number(btn.dataset.id);
+      if (cid === target.id) btn.classList.add("correct");
+      else if (cid === selected.id && !isCorrect) btn.classList.add("wrong");
+    });
+
+    let earnedPoints = 0;
+    let comboBonus = 0;
+
+    if (isCorrect) {
+      state.totalCorrect += 1;
+      s.correctCount += 1;
+      s.combo += 1;
+      if (s.combo > s.maxCombo) s.maxCombo = s.combo;
+
+      comboBonus = s.combo >= 2 ? Math.min(10, (s.combo - 1) * 2) : 0;
+      earnedPoints = 10 + comboBonus;
+      s.stepScore += earnedPoints;
+      state.totalScore += earnedPoints;
+
+      // 오답 복습 모드에서 맞히면 오답노트에서 졸업
+      if (s.isWrongRetry && state.wrongNotes[target.id]) {
+        delete state.wrongNotes[target.id];
+      }
+
+      Sound.correct(s.combo);
+    } else {
+      s.combo = 0;
+      if (!s.wrongIdsThisRound.includes(target.id)) {
+        s.wrongIdsThisRound.push(target.id);
+      }
+      const prev = state.wrongNotes[target.id]?.count || 0;
+      state.wrongNotes[target.id] = {
+        count: prev + 1,
+        updatedAt: new Date().toLocaleDateString("ko-KR")
+      };
+      Sound.wrong();
+    }
+
+    saveGameData();
+    updateStepProgressUI();
+
+    // 피드백 박스 표시
+    const fbBox = document.getElementById("quizFeedbackBox");
+    const fbHeader = document.getElementById("fbHeader");
+    const fbEmoji = document.getElementById("fbEmoji");
+    const fbTitle = document.getElementById("fbTitle");
+    const fbSub = document.getElementById("fbSub");
+
+    const praiseMessages = [
+      "정답입니다! 어휘력 센스가 정말 대단해요!",
+      "완벽해요! 사자성어의 핵심을 정확히 꿰뚫었네요!",
+      "최고예요! 사자성어 마스터에 한 걸음 더 가까워졌어요!"
+    ];
+
+    if (isCorrect) {
+      fbHeader.className = "fb-header is-correct";
+      fbEmoji.textContent = "🎉";
+      const praise = praiseMessages[s.currentIndex % praiseMessages.length];
+      fbTitle.textContent = `${praise} (+${earnedPoints}점)`;
+      fbSub.textContent =
+        comboBonus > 0
+          ? `🔥 ${s.combo}연속 정답 콤보 보너스 +${comboBonus}점이 추가되었어요!`
+          : "기본 정답 점수 +10점을 획득했어요!";
+    } else {
+      fbHeader.className = "fb-header is-wrong";
+      fbEmoji.textContent = "💡";
+      fbTitle.textContent = `아쉬워요! 정답은 [${target.word}(${target.hanja})]입니다.`;
+      fbSub.textContent = `내가 고른 [${selected.word}]은(는) “${selected.meaning}”라는 뜻이에요.`;
+    }
+
+    document.getElementById("fbWord").textContent = `${target.word} (${target.hanja})`;
+    document.getElementById("fbBreakdown").textContent =
+      target.breakdown.map((b) => `${b.hanja}(${b.hun} ${b.sound})`).join(" · ");
+    document.getElementById("fbMeaning").textContent = `📌 뜻: ${target.meaning}`;
+    document.getElementById("fbReason").textContent =
+      q.qMode === "situation_to_word"
+        ? `✅ 상황에 알맞은 이유: "${target.situationPrompt}" 상황은 '${target.meaning}'을(를) 뜻하는 [${target.word}]와(과) 정확히 일치하기 때문이에요!`
+        : `🦊 쉬운 해설: ${target.easyExplanation}`;
+    document.getElementById("fbExample").textContent = `💬 활용 예문: ${target.exampleSentence}`;
+
+    const isLast = s.currentIndex + 1 >= s.questions.length;
+    const nextLabel = isLast ? "🏁 결과 및 점수 확인하기 ➡️" : "다음 문제로 넘어가기 ➡️";
+    document.getElementById("fbNextTopBtn").textContent = isLast ? "🏁 결과 보기 ➡️" : "다음 문제 ➡️";
+    document.getElementById("fbNextBottomBtn").textContent = nextLabel;
+
+    fbBox.classList.remove("hidden");
+    setTimeout(() => {
+      fbBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 50);
+  }
+
+  // ==========================================================================
+  // 8. STEP 3: 한자 빈칸 채우기 타임어택 게임
+  // ==========================================================================
+  function buildBlankQuestions(items) {
+    const allChars = Object.keys(HANJA_HUN_MAP);
+    return items.map((target) => {
+      const blankIdx = Math.floor(Math.random() * 4);
+      const answerCharObj = target.breakdown[blankIdx];
+
+      // 오답 한자 3개 추출
+      const distractorChars = [];
+      while (distractorChars.length < 3) {
+        const randH = allChars[Math.floor(Math.random() * allChars.length)];
+        if (randH !== answerCharObj.hanja && !distractorChars.some((d) => d.hanja === randH)) {
+          distractorChars.push({
+            hanja: randH,
+            hun: HANJA_HUN_MAP[randH] || "뜻"
+          });
+        }
+      }
+
+      const options = shuffle([
+        { hanja: answerCharObj.hanja, hun: answerCharObj.hun, isAnswer: true },
+        ...distractorChars.map((d) => ({ ...d, isAnswer: false }))
+      ]);
+
+      return {
+        target,
+        blankIdx,
+        answerCharObj,
+        options
+      };
+    });
+  }
+
+  function stopBlankTimer() {
+    if (state.session.timerId) {
+      clearInterval(state.session.timerId);
+      state.session.timerId = null;
+    }
+  }
+
+  function startBlankTimer() {
+    stopBlankTimer();
+    const s = state.session;
+    s.timeLeft = s.maxTime;
+    updateBlankTimerUI();
+
+    s.timerId = setInterval(() => {
+      if (s.answered) {
+        stopBlankTimer();
+        return;
+      }
+      s.timeLeft = Math.max(0, +(s.timeLeft - 0.1).toFixed(1));
+      updateBlankTimerUI();
+
+      if (s.timeLeft <= 0) {
+        stopBlankTimer();
+        handleBlankOptionSelect(null, true); // 시간 초과
+      }
+    }, 100);
+  }
+
+  function updateBlankTimerUI() {
+    const s = state.session;
+    const textEl = document.getElementById("blankTimerText");
+    const barEl = document.getElementById("blankTimerBar");
+    if (textEl) textEl.textContent = `${s.timeLeft.toFixed(1)}초`;
+    if (barEl) {
+      const pct = Math.max(0, (s.timeLeft / s.maxTime) * 100);
+      barEl.style.width = `${pct}%`;
+    }
+  }
+
+  function renderBlankQuestion() {
+    updateStepProgressUI();
+    const s = state.session;
+    const q = s.questions[s.currentIndex];
+    if (!q) return;
+
+    s.answered = false;
+    const t = q.target;
+
+    document.getElementById("blankMeaningText").textContent = `“${t.meaning}”`;
+
+    // 4개 슬롯 렌더링
+    const slotsRow = document.getElementById("blankSlotsRow");
+    slotsRow.innerHTML = "";
+    t.breakdown.forEach((b, idx) => {
+      const slot = document.createElement("div");
+      const isBlank = idx === q.blankIdx;
+      slot.className = `blank-slot ${isBlank ? "target-blank" : ""}`;
+      slot.id = isBlank ? "activeBlankSlot" : "";
+      slot.innerHTML = `
+        <span class="slot-hanja">${isBlank ? "?" : b.hanja}</span>
+        <span class="slot-sound">${b.hun} <strong>${b.sound}</strong></span>
+      `;
+      slotsRow.appendChild(slot);
+    });
+
+    // 4개 한자 보기 렌더링
+    const optsGrid = document.getElementById("blankOptionsGrid");
+    optsGrid.innerHTML = "";
+    q.options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "blank-opt-btn";
+      btn.dataset.hanja = opt.hanja;
+      btn.innerHTML = `
+        <span class="bo-hanja">${opt.hanja}</span>
+        <span class="bo-hun">뜻: ${opt.hun}</span>
+      `;
+      btn.addEventListener("click", () => handleBlankOptionSelect(opt, false));
+      optsGrid.appendChild(btn);
+    });
+
+    document.getElementById("blankFeedbackBox").classList.add("hidden");
+    startBlankTimer();
+  }
+
+  function handleBlankOptionSelect(selectedOpt, isTimeout = false) {
+    const s = state.session;
+    if (s.answered) return;
+    s.answered = true;
+    stopBlankTimer();
+
+    const q = s.questions[s.currentIndex];
+    const target = q.target;
+    const isCorrect = !isTimeout && selectedOpt && selectedOpt.isAnswer;
+
+    state.totalAnswered += 1;
+    state.learnedIds.add(target.id);
+
+    // 슬롯에 정답 한자 채워 넣기
+    const activeSlot = document.getElementById("activeBlankSlot");
+    if (activeSlot) {
+      activeSlot.querySelector(".slot-hanja").textContent = q.answerCharObj.hanja;
+      activeSlot.classList.add(isCorrect ? "filled-correct" : "filled-wrong");
+    }
+
+    document.querySelectorAll("#blankOptionsGrid .blank-opt-btn").forEach((btn) => {
+      btn.disabled = true;
+      if (btn.dataset.hanja === q.answerCharObj.hanja) {
+        btn.classList.add("correct");
+      } else if (selectedOpt && btn.dataset.hanja === selectedOpt.hanja && !isCorrect) {
+        btn.classList.add("wrong");
+      }
+    });
+
+    let earned = 0;
+    let timeBonus = 0;
+    let comboBonus = 0;
+
+    if (isCorrect) {
+      state.totalCorrect += 1;
+      s.correctCount += 1;
+      s.combo += 1;
+      if (s.combo > s.maxCombo) s.maxCombo = s.combo;
+
+      timeBonus = Math.ceil((s.timeLeft / s.maxTime) * 5); // 제한시간 스피드 보너스 1~5점
+      comboBonus = s.combo >= 2 ? Math.min(10, (s.combo - 1) * 2) : 0;
+      earned = 10 + timeBonus + comboBonus;
+      s.stepScore += earned;
+      state.totalScore += earned;
+
+      Sound.correct(s.combo);
+    } else {
+      s.combo = 0;
+      if (!s.wrongIdsThisRound.includes(target.id)) {
+        s.wrongIdsThisRound.push(target.id);
+      }
+      const prev = state.wrongNotes[target.id]?.count || 0;
+      state.wrongNotes[target.id] = {
+        count: prev + 1,
+        updatedAt: new Date().toLocaleDateString("ko-KR")
+      };
+      Sound.wrong();
+    }
+
+    saveGameData();
+    updateStepProgressUI();
+
+    const fbBox = document.getElementById("blankFeedbackBox");
+    const fbHeader = document.getElementById("blankFbHeader");
+    const fbEmoji = document.getElementById("blankFbEmoji");
+    const fbTitle = document.getElementById("blankFbTitle");
+    const fbSub = document.getElementById("blankFbSub");
+
+    if (isCorrect) {
+      fbHeader.className = "fb-header is-correct";
+      fbEmoji.textContent = "⚡";
+      fbTitle.textContent = `정답입니다! [${q.answerCharObj.hanja}(${q.answerCharObj.hun} ${q.answerCharObj.sound})] (+${earned}점)`;
+      fbSub.textContent = `기본 10점 + 스피드 보너스 +${timeBonus}점${comboBonus > 0 ? ` + 콤보 보너스 +${comboBonus}점` : ""} 획득!`;
+    } else {
+      fbHeader.className = "fb-header is-wrong";
+      fbEmoji.textContent = isTimeout ? "⏰" : "💡";
+      fbTitle.textContent = isTimeout
+        ? `시간 초과! 빈칸의 정답은 [${q.answerCharObj.hanja}(${q.answerCharObj.hun} ${q.answerCharObj.sound})]입니다.`
+        : `아쉬워요! 빈칸의 정답은 [${q.answerCharObj.hanja}(${q.answerCharObj.hun} ${q.answerCharObj.sound})]입니다.`;
+      fbSub.textContent = `완성된 사자성어: ${target.word} (${target.hanja})`;
+    }
+
+    document.getElementById("blankFbWord").textContent = `${target.word} (${target.hanja})`;
+    document.getElementById("blankFbBreakdown").textContent =
+      target.breakdown.map((b) => `${b.hanja}(${b.hun} ${b.sound})`).join(" · ");
+    document.getElementById("blankFbMeaning").textContent = `📌 뜻: ${target.meaning}`;
+    document.getElementById("blankFbExample").textContent = `💬 예문: ${target.exampleSentence}`;
+
+    const isLast = s.currentIndex + 1 >= s.questions.length;
+    document.getElementById("blankNextTopBtn").textContent = isLast ? "🏁 결과 보기 ➡️" : "다음 문제 ➡️";
+    document.getElementById("blankNextBottomBtn").textContent = isLast ? "🏁 빈칸 게임 결과 확인 ➡️" : "다음 빈칸 문제로 ➡️";
+
+    fbBox.classList.remove("hidden");
+    setTimeout(() => {
+      fbBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 50);
+  }
+
+  // ==========================================================================
+  // 9. 다음 문제 이동 및 단계 완료 결과 화면 (레벨 통과·별·칭호 판정)
+  // ==========================================================================
+  function advanceQuestion() {
+    Sound.click();
+    const s = state.session;
+    if (s.currentIndex + 1 < s.questions.length) {
+      s.currentIndex += 1;
+      if (s.step === 3) renderBlankQuestion();
+      else renderQuizQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      showStepResultScreen();
+    }
+  }
+
+  function showStepResultScreen() {
+    stopBlankTimer();
+    Sound.fanfare();
+
+    const s = state.session;
+    const total = s.questions.length;
+    const correct = s.correctCount;
+    const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const rawHundredScore = accuracy; // 10문제 기준 100점 환산 점수
+    const totalEarnedScore = s.stepScore;
+
+    if (totalEarnedScore > state.bestSingleScore) {
+      state.bestSingleScore = totalEarnedScore;
+    }
+    if (totalEarnedScore > (state.levelBestScores[state.currentLevel] || 0)) {
+      state.levelBestScores[state.currentLevel] = totalEarnedScore;
+    }
+
+    // 별 개수 계산 (90% 이상 별 3개, 70% 이상 별 2개, 60% 이상 별 1개)
+    let earnedStars = 0;
+    if (accuracy >= 90) earnedStars = 3;
+    else if (accuracy >= 70) earnedStars = 2;
+    else if (accuracy >= 60) earnedStars = 1;
+
+    if (earnedStars > (state.levelStars[state.currentLevel] || 0)) {
+      state.levelStars[state.currentLevel] = earnedStars;
+    }
+
+    // 레벨 통과 및 다음 레벨 오픈 판정 (60% 이상이거나 STEP 5에서 기준 점수 이상)
+    const cfg = LEVEL_CONFIGS.find((c) => c.level === state.currentLevel) || LEVEL_CONFIGS[0];
+    const passed = accuracy >= 60 || totalEarnedScore >= cfg.passScore;
+    let newlyUnlocked = false;
+
+    if (passed && state.currentLevel === state.unlockedLevel && state.unlockedLevel < 5) {
+      state.unlockedLevel += 1;
+      newlyUnlocked = true;
+    }
+
+    saveGameData();
+    switchView("result");
+
+    const titleInfo = getTitleByScore(Math.max(rawHundredScore, Math.min(100, totalEarnedScore)));
+
+    document.getElementById("resTrophyIcon").textContent = passed ? "🏆" : "💪";
+    document.getElementById("resStepBadge").textContent = s.isWrongRetry
+      ? "📝 틀린 문제 복습 퀴즈 완료!"
+      : `LEVEL ${state.currentLevel} · STEP ${s.step} 완료!`;
+
+    if (newlyUnlocked) {
+      document.getElementById("resHeading").textContent =
+        `🎉 축하합니다! LEVEL ${state.currentLevel} 통과! LEVEL ${state.unlockedLevel}이 열렸습니다!`;
+    } else if (passed) {
+      document.getElementById("resHeading").textContent =
+        `훌륭해요! ${titleInfo.icon} [${titleInfo.name}] 실력을 증명했어요!`;
+    } else {
+      document.getElementById("resHeading").textContent =
+        "아깝게 통과 점수에 못 미쳤어요! 다시 한번 도전해 볼까요?";
+    }
+
+    document.getElementById("resDesc").textContent =
+      `총 ${total}문제 중 ${correct}문제를 맞혀 총점 ${totalEarnedScore}점(보너스 포함)을 획득했습니다!`;
+
+    // 별 렌더링
+    const starsRow = document.getElementById("resStarsRow");
+    starsRow.innerHTML = "";
+    for (let i = 1; i <= 3; i++) {
+      const span = document.createElement("span");
+      span.className = `res-star ${i <= earnedStars ? "earned" : "empty"}`;
+      span.textContent = "⭐";
+      starsRow.appendChild(span);
+    }
+
+    document.getElementById("resTitleName").textContent = `${titleInfo.icon} ${titleInfo.name}`;
+    document.getElementById("resGradeText").textContent = titleInfo.grade;
+
+    document.getElementById("resCorrectText").textContent = `${correct} / ${total}`;
+    document.getElementById("resAccuracyText").textContent = `${accuracy}%`;
+    document.getElementById("resMaxComboText").textContent = `${s.maxCombo}연속`;
+    document.getElementById("resTotalScoreText").textContent = `${totalEarnedScore}점`;
+
+    // 다음 단계 버튼 설정
+    const nextActionBtn = document.getElementById("resNextActionBtn");
+    if (s.step < 5) {
+      nextActionBtn.textContent = `🚀 STEP ${s.step + 1} 단계로 이어서 진행 ➡️`;
+      nextActionBtn.onclick = () => {
+        Sound.click();
+        enterLevelPlay(state.currentLevel, s.step + 1, false);
+      };
+    } else if (state.currentLevel < state.unlockedLevel) {
+      nextActionBtn.textContent = `🚀 다음 LEVEL ${state.currentLevel + 1} 도전하기 ➡️`;
+      nextActionBtn.onclick = () => {
+        Sound.click();
+        enterLevelPlay(state.currentLevel + 1, 1, false);
+      };
+    } else {
+      nextActionBtn.textContent = "👑 최종 도전 퀴즈 한 번 더 플레이";
+      nextActionBtn.onclick = () => {
+        Sound.click();
+        enterLevelPlay(state.currentLevel, 5, false);
+      };
+    }
+
+    // 틀린 문제 다시 풀기 버튼 표시 여부
+    const reviewWrongBtn = document.getElementById("resReviewWrongBtn");
+    const wrongCount = Object.keys(state.wrongNotes).length;
+    if (wrongCount > 0) {
+      reviewWrongBtn.classList.remove("hidden");
+      reviewWrongBtn.textContent = `📝 틀린 문제 다시 풀기 (${wrongCount}문제)`;
+    } else {
+      reviewWrongBtn.classList.add("hidden");
+    }
+  }
+
+  // ==========================================================================
+  // 10. 모달 1: 525선 사자성어 도감 & 학습한 단어 & 오답노트
+  // ==========================================================================
+  function openCollectionModal(defaultFilter = "all") {
+    state.collectionFilter = defaultFilter;
+    document.querySelectorAll("#collectionFilterTabs .m-tab").forEach((t) => {
+      t.classList.toggle("active", t.dataset.filter === defaultFilter);
+    });
+    document.getElementById("modal-collection").classList.remove("hidden");
+    renderCollectionList();
+  }
+
+  function renderCollectionList() {
+    const grid = document.getElementById("collectionListGrid");
+    const query = state.collectionSearch.trim().toLowerCase();
+    const filter = state.collectionFilter;
+
+    const wrongIds = Object.keys(state.wrongNotes).map(Number);
+    const startWrongQuizBtn = document.getElementById("startWrongQuizFromModalBtn");
+    if (startWrongQuizBtn) {
+      startWrongQuizBtn.classList.toggle("hidden", wrongIds.length === 0);
+    }
+
+    const filtered = IDIOMS_DATA.filter((it) => {
+      if (filter === "learned" && !state.learnedIds.has(it.id)) return false;
+      if (filter === "wrong" && !state.wrongNotes[it.id]) return false;
+      if (filter.startsWith("lv")) {
+        const lv = Number(filter.replace("lv", ""));
+        if (it.level !== lv) return false;
+      }
+      if (query) {
+        return (
+          it.word.toLowerCase().includes(query) ||
+          it.hanja.toLowerCase().includes(query) ||
+          it.meaning.toLowerCase().includes(query) ||
+          it.category.toLowerCase().includes(query)
+        );
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 2rem; font-weight:700; color:#64748b;">조건에 맞는 사자성어가 없어요.</p>`;
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+    filtered.forEach((it) => {
+      const isLearned = state.learnedIds.has(it.id);
+      const isWrong = Boolean(state.wrongNotes[it.id]);
+
+      const card = document.createElement("div");
+      card.className = `col-card ${isLearned ? "is-learned" : ""} ${isWrong ? "is-wrong" : ""}`;
+      card.innerHTML = `
+        <div>
+          <div class="col-top">
+            <span>LEVEL ${it.level} · #${it.id}</span>
+            <span>${isWrong ? `❗오답 ${state.wrongNotes[it.id].count}회` : isLearned ? "⭐학습완료" : it.category}</span>
+          </div>
+          <div class="col-word-line">
+            <strong class="col-word">${it.word}</strong>
+            <span class="col-hanja">${it.hanja}</span>
+          </div>
+          <p class="col-meaning">${it.meaning}</p>
+        </div>
+        <div style="display:flex; gap:0.35rem; margin-top:0.35rem;">
+          <button type="button" class="mini-action-btn col-detail-btn" style="flex:1;">📖 상세 풀이·유래</button>
+          <button type="button" class="mini-action-btn col-speak-btn">🔊</button>
+        </div>
+      `;
+
+      card.querySelector(".col-detail-btn").addEventListener("click", () => {
+        Sound.click();
+        openHintModalForIdiom(getEnrichedIdiom(it));
+      });
+      card.querySelector(".col-speak-btn").addEventListener("click", () => {
+        speakIdiom(it);
+      });
+
+      frag.appendChild(card);
+    });
+
+    grid.innerHTML = "";
+    grid.appendChild(frag);
+  }
+
+  // ==========================================================================
+  // 11. 모달 2: 나의 학습 결과 & 칭호 리포트
+  // ==========================================================================
+  function openStatsModal() {
+    const titleObj = getTitleByScore(state.bestSingleScore);
+    document.getElementById("statsRankIcon").textContent = titleObj.icon;
+    document.getElementById("statsRankTitle").textContent = titleObj.name;
+    document.getElementById("statsRankDesc").textContent =
+      `최고 도전 점수 ${state.bestSingleScore}점으로 [${titleObj.grade}] 칭호를 보유 중입니다!`;
+
+    document.getElementById("stTotalScore").textContent = `${state.totalScore.toLocaleString()}점`;
+    document.getElementById("stBestScore").textContent = `${state.bestSingleScore}점`;
+    const acc = state.totalAnswered > 0 ? Math.round((state.totalCorrect / state.totalAnswered) * 100) : 0;
+    document.getElementById("stAccuracy").textContent = `${acc}% (${state.totalCorrect}/${state.totalAnswered})`;
+    document.getElementById("stLearnedCount").textContent = `${state.learnedIds.size} / ${IDIOMS_DATA.length}개`;
+
+    document.getElementById("modal-stats").classList.remove("hidden");
+  }
+
+  // ==========================================================================
+  // 12. 모달 3: 게임 중 언제든지 뜻과 해설을 확인하는 [뜻·해설 찬스 모달]
+  // ==========================================================================
+  function openHintModalForIdiom(enriched) {
+    if (!enriched) return;
+    const body = document.getElementById("hintModalBody");
+
+    const charBoxesHtml = enriched.breakdown
+      .map(
+        (b) => `
+        <div class="hanja-char-card">
+          <span class="hc-char">${b.hanja}</span>
+          <span class="hc-hun-sound">${b.hun} <strong>${b.sound}</strong></span>
+        </div>`
+      )
+      .join("");
+
+    body.innerHTML = `
+      <div style="text-align:center; margin-bottom:0.85rem;">
+        <span class="chip-badge primary">LEVEL ${enriched.level} · ${enriched.category}</span>
+        <h3 style="font-size:1.75rem; font-weight:900; margin-top:0.35rem;">${enriched.word} <span style="font-family:'Noto Serif KR',serif; color:#4f46e5;">(${enriched.hanja})</span></h3>
+      </div>
+      <div class="hanja-breakdown-grid" style="margin-bottom:0.9rem;">
+        ${charBoxesHtml}
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.65rem;">
+        <div class="study-info-box primary-box">
+          <div class="info-label">📌 전체 사자성어 의미</div>
+          <p class="info-text strong-text">${enriched.meaning}</p>
+        </div>
+        <div class="study-info-box easy-box">
+          <div class="info-label">🦊 쉬운 중학생 설명</div>
+          <p class="info-text">${enriched.easyExplanation}</p>
+        </div>
+        <div class="study-info-box example-box">
+          <div class="info-label">💬 일상·학교생활 예문</div>
+          <p class="info-text">${enriched.exampleSentence}</p>
+        </div>
+        <div class="study-info-box story-box">
+          <div class="info-label">📜 유래 및 이야기</div>
+          <p class="info-text">${enriched.originStory}</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("modal-hint").classList.remove("hidden");
+  }
+
+  function openCurrentQuestionHintModal() {
+    const s = state.session;
+    let target = null;
+    if (s.step === 1) {
+      target = s.items[s.currentIndex];
+    } else {
+      target = s.questions[s.currentIndex]?.target;
+    }
+    if (target) {
+      openHintModalForIdiom(target);
+    }
+  }
+
+  // ==========================================================================
+  // 13. 이벤트 바인딩 및 초기화
+  // ==========================================================================
+  function bindEvents() {
+    // 상단 HUD 홈 버튼
+    document.getElementById("hudHomeBtn").addEventListener("click", () => {
+      Sound.click();
+      switchView("start");
+    });
+
+    // 사운드 토글
+    document.getElementById("soundToggleBtn").addEventListener("click", () => {
+      state.soundEnabled = !state.soundEnabled;
+      saveGameData();
+      if (state.soundEnabled) Sound.click();
+      showToast(state.soundEnabled ? "🔊 게임 효과음이 켜졌어요!" : "🔇 효과음이 꺼졌어요.");
+    });
+
+    // 게임 공유 버튼
+    document.getElementById("shareGameBtn").addEventListener("click", async () => {
+      Sound.click();
+      const targetUrl = window.location.protocol.startsWith("http")
+        ? window.location.href
+        : PUBLIC_GAME_URL;
+      const shareData = {
+        title: "🏆 사자성어 마스터! - 중학생 525선 인터랙티브 게임",
+        text: "STEP 1 학습부터 빈칸 타임어택, 상황별 퀴즈, 최종 마스터 도전까지! 함께 도전해 봐요!",
+        url: targetUrl
+      };
+      if (navigator.share && window.location.protocol.startsWith("http")) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (e) {}
+      }
+      try {
+        await navigator.clipboard.writeText(targetUrl);
+        showToast("📋 카카오톡 공유용 인터넷 주소가 복사되었어요! 채팅방에 붙여넣기 하세요!");
+      } catch (e) {
+        showToast("게임 주소: " + targetUrl);
+      }
+    });
+
+    // 오늘의 사자성어 새로고침 & 상세 보기
+    document.getElementById("todayRefreshBtn").addEventListener("click", () => {
+      Sound.click();
+      renderTodayIdiom();
+    });
+    document.getElementById("todayHintBtn").addEventListener("click", () => {
+      Sound.click();
+      openHintModalForIdiom(state.todayIdiom);
+    });
+
+    // 시작 화면 하단 퀵 메뉴
+    document.getElementById("quickStartCurrentLevelBtn").addEventListener("click", () => {
+      Sound.click();
+      enterLevelPlay(state.currentLevel, 1, false);
+    });
+    document.getElementById("quickWrongRetryBtn").addEventListener("click", () => {
+      Sound.click();
+      if (Object.keys(state.wrongNotes).length === 0) {
+        showToast("🎉 현재 틀린 문제가 없어요! 레벨 퀴즈에 도전해 보세요!");
+        return;
+      }
+      enterLevelPlay(state.currentLevel, 2, true);
+    });
+    document.getElementById("quickCollectionBtn").addEventListener("click", () => {
+      Sound.click();
+      openCollectionModal("learned");
+    });
+
+    // 플레이 화면 상단 컨트롤
+    document.getElementById("backToMapBtn").addEventListener("click", () => {
+      Sound.click();
+      switchView("start");
+    });
+    document.getElementById("instantHelpBtn").addEventListener("click", () => {
+      Sound.click();
+      openCurrentQuestionHintModal();
+    });
+
+    // STEP 1 ~ 5 탭 전환
+    document.querySelectorAll("#stepTabs .step-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        Sound.click();
+        const stepNum = Number(tab.dataset.step);
+        startStep(stepNum, false);
+      });
+    });
+
+    // STEP 1 학습 카드 네비게이션
+    document.getElementById("studySpeakBtn").addEventListener("click", () => {
+      const item = state.session.items[state.session.currentIndex];
+      if (item) speakIdiom(item);
+    });
+    document.getElementById("studyBookmarkBtn").addEventListener("click", () => {
+      Sound.click();
+      const item = state.session.items[state.session.currentIndex];
+      if (!item) return;
+      state.learnedIds.add(item.id);
+      saveGameData();
+      showToast(`⭐ [${item.word}] 사자성어가 학습 도감에 저장되었어요!`);
+    });
+    document.getElementById("prevStudyCardBtn").addEventListener("click", () => {
+      Sound.click();
+      if (state.session.currentIndex > 0) {
+        state.session.currentIndex -= 1;
+        renderStudyStepCard();
+      }
+    });
+    document.getElementById("shuffleStudyBatchBtn").addEventListener("click", () => {
+      Sound.click();
+      startStep(1, false);
+      showToast("🔀 새로운 사자성어 10개를 뽑았어요!");
+    });
+    document.getElementById("nextStudyCardBtn").addEventListener("click", () => {
+      Sound.click();
+      const s = state.session;
+      if (s.currentIndex + 1 < s.items.length) {
+        s.currentIndex += 1;
+        renderStudyStepCard();
+      } else {
+        startStep(2, false);
+        showToast("🎯 STEP 1 학습 완료! 이제 STEP 2 객관식 퀴즈에 도전해 보세요!");
+      }
+    });
+
+    // STEP 2, 4, 5 다음 문제 버튼 (상단 & 하단 2중 스위치)
+    document.getElementById("fbNextTopBtn").addEventListener("click", advanceQuestion);
+    document.getElementById("fbNextBottomBtn").addEventListener("click", advanceQuestion);
+
+    // STEP 3 빈칸 게임 다음 문제 버튼 (상단 & 하단 2중 스위치)
+    document.getElementById("blankNextTopBtn").addEventListener("click", advanceQuestion);
+    document.getElementById("blankNextBottomBtn").addEventListener("click", advanceQuestion);
+
+    // 결과 화면 버튼들
+    document.getElementById("resRetryStepBtn").addEventListener("click", () => {
+      Sound.click();
+      enterLevelPlay(state.currentLevel, state.session.step, state.session.isWrongRetry);
+    });
+    document.getElementById("resReviewWrongBtn").addEventListener("click", () => {
+      Sound.click();
+      enterLevelPlay(state.currentLevel, 2, true);
+    });
+    document.getElementById("resGoHomeBtn").addEventListener("click", () => {
+      Sound.click();
+      switchView("start");
+    });
+
+    // 모달 열기/닫기 이벤트
+    document.getElementById("openBookModalBtn").addEventListener("click", () => {
+      Sound.click();
+      openCollectionModal("all");
+    });
+    document.getElementById("closeBookModalBtn").addEventListener("click", () => {
+      Sound.click();
+      document.getElementById("modal-collection").classList.add("hidden");
+    });
+    document.querySelectorAll("#collectionFilterTabs .m-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        Sound.click();
+        state.collectionFilter = tab.dataset.filter;
+        document.querySelectorAll("#collectionFilterTabs .m-tab").forEach((t) => {
+          t.classList.toggle("active", t === tab);
+        });
+        renderCollectionList();
+      });
+    });
+    document.getElementById("collectionSearchInput").addEventListener("input", (e) => {
+      state.collectionSearch = e.target.value;
+      renderCollectionList();
+    });
+    document.getElementById("startWrongQuizFromModalBtn").addEventListener("click", () => {
+      Sound.click();
+      document.getElementById("modal-collection").classList.add("hidden");
+      enterLevelPlay(state.currentLevel, 2, true);
+    });
+
+    document.getElementById("openStatsModalBtn").addEventListener("click", () => {
+      Sound.click();
+      openStatsModal();
+    });
+    document.getElementById("closeStatsModalBtn").addEventListener("click", () => {
+      Sound.click();
+      document.getElementById("modal-stats").classList.add("hidden");
+    });
+
+    document.getElementById("closeHintModalBtn").addEventListener("click", () => {
+      Sound.click();
+      document.getElementById("modal-hint").classList.add("hidden");
+    });
+  }
+
+  function init() {
+    loadSaveData();
+    updateHUD();
+    renderTodayIdiom();
+    renderLevelSelectGrid();
+    bindEvents();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+</script>
+</body>
+</html>

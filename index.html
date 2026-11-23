@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>사자성어 마스터! | 중학생 500+ 인터랙티브 사자성어 게임</title>
+  <meta name="description" content="중학교 1~3학년 필수 사자성어 525개를 5단계 게임과 레벨업으로 재미있게 마스터하세요!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="🏆 사자성어 마스터! - 중학생 인터랙티브 한자·어휘 게임" />
+  <meta property="og:description" content="STEP 1 학습부터 빈칸 타임어택, 상황별 퀴즈, 최종 마스터 도전까지! 지금 바로 도전해 보세요." />
+  <meta name="theme-color" content="#4f46e5" />
+  <!-- Google Fonts: Pretendard/Noto Sans KR & Noto Serif KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ======================================================================
+       상단 게임 HUD (레벨, 칭호, 총점, 별, 사운드, 도감/해설 모달 버튼)
+       ====================================================================== -->
+  <header class="game-hud">
+    <div class="hud-inner">
+      <div class="hud-brand" id="hudHomeBtn" role="button" tabindex="0" aria-label="시작 화면으로 이동">
+        <span class="hud-mascot">🦊</span>
+        <div class="hud-title-wrap">
+          <h1 class="hud-title">사자성어 마스터!</h1>
+          <span class="hud-rank-badge" id="hudRankBadge">🌱 사자성어 새싹</span>
+        </div>
+      </div>
+
+      <div class="hud-stats">
+        <div class="hud-stat-pill level-pill" title="현재 선택된 레벨">
+          <span class="pill-label">LEVEL</span>
+          <strong class="pill-value" id="hudLevelText">1</strong>
+        </div>
+        <div class="hud-stat-pill score-pill" title="현재 획득 점수">
+          <span class="pill-label">SCORE</span>
+          <strong class="pill-value" id="hudScoreText">0</strong>
+        </div>
+        <div class="hud-stat-pill star-pill" title="획득한 총 별 개수">
+          <span class="pill-icon">⭐</span>
+          <strong class="pill-value" id="hudStarsText">0 / 15</strong>
+        </div>
+      </div>
+
+      <div class="hud-actions">
+        <button type="button" id="openBookModalBtn" class="hud-btn" title="학습한 사자성어 & 전체 525 도감 보기">
+          <span>📚</span>
+          <span class="hud-btn-label">도감·오답(<strong id="hudLearnedCount">0</strong>)</span>
+        </button>
+        <button type="button" id="openStatsModalBtn" class="hud-btn" title="나의 정답률 및 학습 리포트">
+          <span>📊</span>
+          <span class="hud-btn-label">기록</span>
+        </button>
+        <button type="button" id="soundToggleBtn" class="hud-btn active" aria-pressed="true" title="효과음 켜기/끄기">
+          <span id="soundIcon">🔊</span>
+        </button>
+        <button type="button" id="shareGameBtn" class="hud-btn share-btn" title="친구에게 게임 링크 공유하기">
+          <span>💬</span>
+          <span class="hud-btn-label">공유</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       메인 게임 스테이지 컨테이너
+       ====================================================================== -->
+  <main class="game-container">
+    <!-- --------------------------------------------------------------------
+         VIEW 1: 게임 시작 화면 & 레벨 선택 + 오늘의 사자성어
+         -------------------------------------------------------------------- -->
+    <section id="view-start" class="game-view active">
+      <!-- 히어로 배너 -->
+      <div class="hero-card">
+        <div class="hero-badge-row">
+          <span class="chip-badge primary">중학교 1~3학년 필수 525선 완벽 수록</span>
+          <span class="chip-badge accent">5단계 인터랙티브 퀘스트</span>
+        </div>
+        <div class="hero-main">
+          <div class="hero-text">
+            <h2 class="hero-title">즐기면서 저절로 외워지는<br /><span class="gradient-text">사자성어 마스터!</span></h2>
+            <p class="hero-desc">
+              한자별 음과 뜻부터 재미있는 유래, 실생활 예문, 타임어택 빈칸 채우기까지!<br />
+              5개의 레벨을 클리어하고 <strong>👑 사자성어 마스터</strong> 칭호에 도전하세요!
+            </p>
+          </div>
+          <div class="hero-character-box">
+            <div class="character-avatar" id="heroMascot">🦊</div>
+            <div class="character-speech" id="heroSpeech">
+              "안녕! 오늘도 사자성어 퀘스트를 함께 정복해 볼까?"
+            </div>
+          </div>
+        </div>
+
+        <!-- 오늘의 사자성어 카드 -->
+        <div class="today-idiom-box">
+          <div class="today-header">
+            <span class="today-tag">💡 오늘의 추천 사자성어</span>
+            <div class="today-controls">
+              <button type="button" id="todayHintBtn" class="mini-action-btn">📖 상세 뜻·유래 보기</button>
+              <button type="button" id="todayRefreshBtn" class="mini-action-btn">🔄 다른 사자성어</button>
+            </div>
+          </div>
+          <div class="today-body">
+            <div class="today-word-area">
+              <span class="today-hanja" id="todayHanja">一石二鳥</span>
+              <strong class="today-word" id="todayWord">일석이조</strong>
+              <span class="today-level-tag" id="todayLevelTag">LEVEL 1</span>
+            </div>
+            <p class="today-meaning" id="todayMeaning">돌 한 개를 던져 새 두 마리를 잡듯, 한 가지 일로 두 가지 이득을 봄</p>
+            <p class="today-example" id="todayExample">💬 예문: 주말에 영어 원서로 독서록 숙제도 하고 영어 실력도 늘렸더니 일석이조였다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEVEL 1 ~ LEVEL 5 선택 그리드 -->
+      <div class="level-select-section">
+        <div class="section-head">
+          <h3 class="section-heading">🗺️ 도전할 레벨을 선택하세요</h3>
+          <p class="section-sub">각 레벨의 <strong>STEP 5 최종 도전 퀴즈</strong>에서 60점 이상을 획득하면 다음 레벨이 열립니다!</p>
+        </div>
+
+        <div class="level-grid" id="levelGrid">
+          <!-- JS에서 LEVEL 1 ~ 5 카드 동적 렌더링 -->
+        </div>
+      </div>
+
+      <!-- 빠른 메뉴 바 (틀린 문제 다시 풀기 / 학습한 사자성어 모아보기 / 전체 랜덤 도전) -->
+      <div class="quick-menu-bar">
+        <button type="button" id="quickStartCurrentLevelBtn" class="cta-btn primary-cta">
+          🚀 현재 레벨 바로 시작하기
+        </button>
+        <button type="button" id="quickWrongRetryBtn" class="cta-btn warn-cta">
+          📝 틀린 문제 다시 풀기 (<span id="startWrongCount">0</span>)
+        </button>
+        <button type="button" id="quickCollectionBtn" class="cta-btn secondary-cta">
+          📚 학습한 사자성어 모아보기
+        </button>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         VIEW 2: 레벨 플레이 화면 (STEP 1 ~ STEP 5 탭 & 진행 화면)
+         -------------------------------------------------------------------- -->
+    <section id="view-play" class="game-view">
+      <!-- 상단 STEP 네비게이션 바 -->
+      <div class="step-nav-card">
+        <div class="step-nav-top">
+          <button type="button" id="backToMapBtn" class="back-btn">⬅️ 레벨 선택으로</button>
+          <div class="current-level-banner" id="playLevelBanner">LEVEL 1: 기초 사자성어</div>
+          <button type="button" id="instantHelpBtn" class="help-peek-btn" title="현재 문제의 사자성어 뜻과 해설 힌트 보기">
+            💡 뜻·해설 찬스 보기
+          </button>
+        </div>
+
+        <!-- 5단계 STEP 전환 탭 -->
+        <div class="step-tabs" id="stepTabs" role="tablist">
+          <button type="button" class="step-tab active" data-step="1">
+            <span class="step-num">STEP 1</span>
+            <span class="step-name">📖 학습하기</span>
+          </button>
+          <button type="button" class="step-tab" data-step="2">
+            <span class="step-num">STEP 2</span>
+            <span class="step-name">🎯 객관식 퀴즈</span>
+          </button>
+          <button type="button" class="step-tab" data-step="3">
+            <span class="step-num">STEP 3</span>
+            <span class="step-name">🧩 빈칸 타임어택</span>
+          </button>
+          <button type="button" class="step-tab" data-step="4">
+            <span class="step-num">STEP 4</span>
+            <span class="step-name">🏫 상황별 찾기</span>
+          </button>
+          <button type="button" class="step-tab" data-step="5">
+            <span class="step-num">STEP 5</span>
+            <span class="step-name">👑 최종 도전(10문)</span>
+          </button>
+        </div>
+
+        <!-- 진행률 막대 및 실시간 점수/콤보 표시 -->
+        <div class="progress-hud">
+          <div class="progress-meta">
+            <span class="progress-step-label" id="progressStepLabel">STEP 1 · 사자성어 학습 카드 (1 / 10)</span>
+            <div class="live-combo-box">
+              <span class="combo-badge hidden" id="comboBadge">🔥 0연속 정답!</span>
+              <span class="step-score-badge">획득 점수: <strong id="stepScoreText">0</strong>점</span>
+            </div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="stepProgressBar" style="width: 10%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           STEP 1: 사자성어 학습하기 (한자별 음·뜻, 쉬운 설명, 예문, 유래)
+           ================================================================== -->
+      <div id="step-view-1" class="step-content-card active">
+        <div class="study-card-header">
+          <span class="study-category-chip" id="studyCategoryChip">학문·노력</span>
+          <div class="study-header-actions">
+            <button type="button" id="studySpeakBtn" class="action-pill-btn">🔊 발음·뜻 듣기</button>
+            <button type="button" id="studyBookmarkBtn" class="action-pill-btn">⭐ 학습 완료 체크</button>
+          </div>
+        </div>
+
+        <div class="study-title-area">
+          <h2 class="study-word" id="studyWord">일석이조</h2>
+          <span class="study-hanja" id="studyHanja">一石二鳥</span>
+        </div>
+
+        <!-- 한자 4글자별 음과 뜻 쪼개기 카드 -->
+        <div class="hanja-breakdown-grid" id="studyBreakdownGrid">
+          <!-- JS에서 4개 한자 블록 생성 -->
+        </div>
+
+        <!-- 상세 설명 4종 세트 -->
+        <div class="study-info-grid">
+          <div class="study-info-box primary-box">
+            <div class="info-label">📌 핵심 의미</div>
+            <p class="info-text strong-text" id="studyMeaning"></p>
+          </div>
+
+          <div class="study-info-box easy-box">
+            <div class="info-label">🦊 중학생 눈높이 쉬운 설명</div>
+            <p class="info-text" id="studyEasyExp"></p>
+          </div>
+
+          <div class="study-info-box example-box">
+            <div class="info-label">💬 일상·학교생활 활용 예문</div>
+            <p class="info-text" id="studyExample"></p>
+          </div>
+
+          <div class="study-info-box story-box">
+            <div class="info-label">📜 기억하기 쉬운 이야기 &amp; 유래</div>
+            <p class="info-text" id="studyStory"></p>
+          </div>
+        </div>
+
+        <!-- 학습 카드 이동 컨트롤 -->
+        <div class="study-nav-actions">
+          <button type="button" id="prevStudyCardBtn" class="cta-btn secondary-cta">⬅️ 이전 사자성어</button>
+          <button type="button" id="shuffleStudyBatchBtn" class="cta-btn outline-cta">🔀 새로운 10개 뽑기</button>
+          <button type="button" id="nextStudyCardBtn" class="cta-btn primary-cta">다음 사자성어 ➡️</button>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           STEP 2, 4, 5 공통: 인터랙티브 4지선다 퀴즈 & 상황별 퀴즈 & 최종 도전
+           ================================================================== -->
+      <div id="step-view-quiz" class="step-content-card hidden">
+        <div class="quiz-question-card">
+          <div class="q-top-row">
+            <span class="q-type-chip" id="qTypeChip">뜻 맞히기 퀴즈</span>
+            <span class="q-points-chip" id="qPointsChip">기본 +10점 · 연속 정답 보너스!</span>
+          </div>
+
+          <p class="q-instruction" id="qInstruction">다음 사자성어의 알맞은 뜻은 무엇일까요?</p>
+
+          <div class="q-prompt-box" id="qPromptBox">
+            <div class="q-main-prompt" id="qMainPrompt">一石二鳥 (일석이조)</div>
+            <div class="q-sub-prompt" id="qSubPrompt"></div>
+          </div>
+
+          <!-- 한자별 훈음 힌트 바 -->
+          <div class="q-char-hint" id="qCharHint"></div>
+        </div>
+
+        <!-- 4지선다 선택지 그리드 -->
+        <div class="quiz-choices-grid" id="quizChoicesGrid" role="group" aria-label="4지선다 보기"></div>
+
+        <!-- 정답/오답 즉시 피드백 및 해설 박스 (상단·하단 다음 문제 스위치 포함) -->
+        <div id="quizFeedbackBox" class="quiz-feedback-box hidden" aria-live="polite">
+          <div class="fb-header" id="fbHeader">
+            <div class="fb-title-group">
+              <span class="fb-emoji" id="fbEmoji">🎉</span>
+              <div>
+                <h4 class="fb-title" id="fbTitle">정답입니다! 훌륭해요! (+10점)</h4>
+                <p class="fb-sub" id="fbSub"></p>
+              </div>
+            </div>
+            <button type="button" id="fbNextTopBtn" class="next-action-btn">다음 문제 ➡️</button>
+          </div>
+
+          <div class="fb-body">
+            <div class="fb-explain-card">
+              <div class="fb-word-line">
+                <strong id="fbWord">동고동락 (同苦同樂)</strong>
+                <span class="fb-breakdown" id="fbBreakdown"></span>
+              </div>
+              <p class="fb-meaning" id="fbMeaning"></p>
+              <p class="fb-reason" id="fbReason"></p>
+              <p class="fb-example" id="fbExample"></p>
+            </div>
+          </div>
+
+          <div class="fb-footer">
+            <button type="button" id="fbNextBottomBtn" class="cta-btn primary-cta full-width-btn">
+              다음 문제로 넘어가기 ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           STEP 3: 한자 빈칸 채우기 타임어택 게임
+           ================================================================== -->
+      <div id="step-view-blank" class="step-content-card hidden">
+        <div class="blank-game-header">
+          <div class="timer-wrap">
+            <span class="timer-icon">⏱️</span>
+            <span class="timer-label">제한 시간:</span>
+            <strong class="timer-seconds" id="blankTimerText">15.0초</strong>
+            <span class="timer-bonus-hint">(빠르게 맞히면 스피드 보너스 최대 +5점!)</span>
+          </div>
+          <div class="timer-bar-track">
+            <div class="timer-bar-fill" id="blankTimerBar" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="blank-question-card">
+          <p class="blank-instruction">뜻과 한글 음을 보고 빈칸(<strong>?</strong>)에 들어갈 알맞은 한자를 고르세요!</p>
+          <div class="blank-meaning-banner" id="blankMeaningText">
+            “돌 한 개를 던져 새 두 마리를 잡듯, 한 가지 일로 두 가지 이득을 봄”
+          </div>
+
+          <!-- 4글자 한자 슬롯 (그중 1~2개가 빈칸 ?) -->
+          <div class="blank-slots-row" id="blankSlotsRow">
+            <!-- JS 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 한자 보기 4지선다 -->
+        <div class="blank-options-grid" id="blankOptionsGrid">
+          <!-- JS 동적 생성 -->
+        </div>
+
+        <!-- 빈칸 게임 피드백 -->
+        <div id="blankFeedbackBox" class="quiz-feedback-box hidden" aria-live="polite">
+          <div class="fb-header" id="blankFbHeader">
+            <div class="fb-title-group">
+              <span class="fb-emoji" id="blankFbEmoji">⚡</span>
+              <div>
+                <h4 class="fb-title" id="blankFbTitle">정답입니다! 스피드 보너스 획득!</h4>
+                <p class="fb-sub" id="blankFbSub"></p>
+              </div>
+            </div>
+            <button type="button" id="blankNextTopBtn" class="next-action-btn">다음 문제 ➡️</button>
+          </div>
+          <div class="fb-body">
+            <div class="fb-explain-card">
+              <div class="fb-word-line">
+                <strong id="blankFbWord"></strong>
+                <span class="fb-breakdown" id="blankFbBreakdown"></span>
+              </div>
+              <p class="fb-meaning" id="blankFbMeaning"></p>
+              <p class="fb-example" id="blankFbExample"></p>
+            </div>
+          </div>
+          <div class="fb-footer">
+            <button type="button" id="blankNextBottomBtn" class="cta-btn primary-cta full-width-btn">
+              다음 빈칸 문제로 ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         VIEW 3: 단계 완료 & 최종 도전 결과 화면 (점수, 등급, 칭호, 별 보상)
+         -------------------------------------------------------------------- -->
+    <section id="view-result" class="game-view">
+      <div class="result-card">
+        <div class="result-trophy" id="resTrophyIcon">🏆</div>
+        <span class="result-step-badge" id="resStepBadge">LEVEL 1 · STEP 5 최종 도전 완료!</span>
+        <h2 class="result-heading" id="resHeading">축하합니다! 레벨을 통과했습니다!</h2>
+        <p class="result-desc" id="resDesc"></p>
+
+        <!-- 별 획득 애니메이션 -->
+        <div class="result-stars-row" id="resStarsRow">
+          <span class="res-star earned">⭐</span>
+          <span class="res-star earned">⭐</span>
+          <span class="res-star earned">⭐</span>
+        </div>
+
+        <!-- 획득 칭호 및 등급 카드 -->
+        <div class="result-title-banner">
+          <div class="title-box">
+            <span class="title-label">획득한 칭호</span>
+            <strong class="title-value" id="resTitleName">👑 사자성어 마스터</strong>
+          </div>
+          <div class="title-box">
+            <span class="title-label">최종 등급</span>
+            <strong class="title-value grade-value" id="resGradeText">S등급</strong>
+          </div>
+        </div>
+
+        <!-- 점수 요약 그리드 -->
+        <div class="result-stats-grid">
+          <div class="res-stat-box">
+            <span class="rs-label">정답 개수</span>
+            <strong class="rs-val correct" id="resCorrectText">9 / 10</strong>
+          </div>
+          <div class="res-stat-box">
+            <span class="rs-label">정답률</span>
+            <strong class="rs-val" id="resAccuracyText">90%</strong>
+          </div>
+          <div class="res-stat-box">
+            <span class="rs-label">최대 연속 콤보</span>
+            <strong class="rs-val combo" id="resMaxComboText">6연속</strong>
+          </div>
+          <div class="res-stat-box highlight">
+            <span class="rs-label">총 획득 점수</span>
+            <strong class="rs-val score" id="resTotalScoreText">115점</strong>
+          </div>
+        </div>
+
+        <!-- 결과 화면 액션 버튼들 -->
+        <div class="result-actions">
+          <button type="button" id="resNextActionBtn" class="cta-btn primary-cta">
+            🚀 다음 단계로 진격하기 ➡️
+          </button>
+          <button type="button" id="resRetryStepBtn" class="cta-btn secondary-cta">
+            🔄 다시 도전하기
+          </button>
+          <button type="button" id="resReviewWrongBtn" class="cta-btn warn-cta hidden">
+            📝 틀린 문제 다시 풀기
+          </button>
+          <button type="button" id="resGoHomeBtn" class="cta-btn outline-cta">
+            🏠 레벨 선택 화면으로
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       모달 1: 학습한 사자성어 모아보기 & 525선 전체 도감 + 오답노트
+       ====================================================================== -->
+  <div id="modal-collection" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="collectionModalTitle">
+    <div class="modal-window large-modal">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="collectionModalTitle">📚 사자성어 525 마스터 도감 &amp; 오답노트</h3>
+          <p class="modal-sub">학습한 사자성어와 틀린 문제를 언제든지 검색하고 복습할 수 있어요.</p>
+        </div>
+        <button type="button" id="closeBookModalBtn" class="modal-close-btn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modal-toolbar">
+        <div class="modal-filter-tabs" id="collectionFilterTabs">
+          <button type="button" class="m-tab active" data-filter="all">전체 525선</button>
+          <button type="button" class="m-tab" data-filter="learned">⭐ 학습 완료한 단어</button>
+          <button type="button" class="m-tab" data-filter="wrong">📝 내가 틀린 문제</button>
+          <button type="button" class="m-tab" data-filter="lv1">LV.1</button>
+          <button type="button" class="m-tab" data-filter="lv2">LV.2</button>
+          <button type="button" class="m-tab" data-filter="lv3">LV.3</button>
+          <button type="button" class="m-tab" data-filter="lv4">LV.4</button>
+          <button type="button" class="m-tab" data-filter="lv5">LV.5</button>
+        </div>
+        <div class="modal-search-row">
+          <input type="search" id="collectionSearchInput" class="modal-search-input" placeholder="사자성어, 한자, 뜻 검색 (예: 일석이조, 친구, 노력...)" />
+          <button type="button" id="startWrongQuizFromModalBtn" class="cta-btn warn-cta slim-btn hidden">
+            🔥 틀린 문제 복습 퀴즈 시작
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div id="collectionListGrid" class="collection-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       모달 2: 나의 학습 결과 & 칭호 리포트
+       ====================================================================== -->
+  <div id="modal-stats" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="statsModalTitle">📊 나의 사자성어 마스터 리포트</h3>
+          <p class="modal-sub">지금까지의 정답률과 레벨별 획득 별점, 칭호 등급을 확인하세요.</p>
+        </div>
+        <button type="button" id="closeStatsModalBtn" class="modal-close-btn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="stats-rank-showcase">
+          <div class="showcase-icon" id="statsRankIcon">🌱</div>
+          <div>
+            <span class="showcase-label">현재 나의 칭호</span>
+            <h4 class="showcase-title" id="statsRankTitle">사자성어 새싹</h4>
+            <p class="showcase-desc" id="statsRankDesc">최고 점수에 따라 칭호가 승급됩니다!</p>
+          </div>
+        </div>
+
+        <div class="stats-summary-grid">
+          <div class="st-box">
+            <span>누적 총점</span>
+            <strong id="stTotalScore">0점</strong>
+          </div>
+          <div class="st-box">
+            <span>최고 도전 점수</span>
+            <strong id="stBestScore">0점</strong>
+          </div>
+          <div class="st-box">
+            <span>전체 정답률</span>
+            <strong id="stAccuracy">0%</strong>
+          </div>
+          <div class="st-box">
+            <span>학습 완료 사자성어</span>
+            <strong id="stLearnedCount">0 / 525개</strong>
+          </div>
+        </div>
+
+        <div class="rank-guide-table">
+          <h5>🏆 점수별 칭호 승급 기준</h5>
+          <ul>
+            <li><span>0 ~ 30점</span> <strong>🌱 사자성어 새싹</strong></li>
+            <li><span>31 ~ 50점</span> <strong>🧭 사자성어 탐험가</strong></li>
+            <li><span>51 ~ 70점</span> <strong>⚔️ 사자성어 도전자</strong></li>
+            <li><span>71 ~ 90점</span> <strong>🔥 사자성어 고수</strong></li>
+            <li><span>91점 이상</span> <strong>👑 사자성어 마스터</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       모달 3: 게임 중 언제든지 여는 [뜻·해설·유래 찬스 카드]
+       ====================================================================== -->
+  <div id="modal-hint" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="hintModalTitle">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="hintModalTitle">💡 사자성어 상세 뜻·해설 카드</h3>
+          <p class="modal-sub">게임 진행 중 언제든지 한자 풀이와 유래, 예문을 확인할 수 있어요.</p>
+        </div>
+        <button type="button" id="closeHintModalBtn" class="modal-close-btn" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body" id="hintModalBody">
+        <!-- JS 동적 렌더링 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toastMessage" class="toast-message hidden" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
